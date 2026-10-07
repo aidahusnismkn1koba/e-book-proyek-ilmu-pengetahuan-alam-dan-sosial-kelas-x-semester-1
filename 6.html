@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 6: Pencemaran Lingkungan - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 6</span>
+            <h1>Pencemaran Lingkungan</h1>
+            <p class="subtitle">Memahami pengertian dan jenis pencemaran lingkungan, sumber pencemaran udara, air, dan tanah, dampak terhadap kesehatan dan ekosistem, serta upaya pencegahan melalui prinsip 3R dan pengelolaan lingkungan.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="5.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="7.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Pencemaran lingkungan merupakan salah satu masalah terbesar yang dihadapi umat manusia di abad ke-21. Aktivitas industri, transportasi, pertanian intensif, dan konsumsi masyarakat modern telah menghasilkan limbah dalam jumlah besar yang mencemari udara, air, dan tanah. Di Indonesia, pencemaran lingkungan menjadi isu kritis yang memengaruhi kualitas hidup jutaan orang, mulai dari polusi udara di kota-kota besar hingga pencemaran sungai oleh limbah industri dan rumah tangga.</p>
+                <br>
+                <p>Bagi peserta didik SMK, pemahaman tentang pencemaran lingkungan sangat penting—tidak hanya sebagai warga negara yang bertanggung jawab, tetapi juga sebagai calon tenaga kerja profesional yang akan berinteraksi langsung dengan proses produksi, limbah industri, dan standar lingkungan kerja. Pengetahuan ini menjadi dasar dalam menerapkan prinsip K3L (Keselamatan, Kesehatan Kerja, dan Lingkungan), mengelola limbah secara bertanggung jawab, dan mengembangkan teknologi ramah lingkungan di dunia kerja.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Pencemaran Lingkungan:</strong> Masuk atau dimasukkannya makhluk hidup, zat, energi, dan/atau komponen lain ke dalam lingkungan oleh kegiatan manusia, sehingga melampaui baku mutu lingkungan.</li>
+                    <li><strong>Polutan:</strong> Zat atau bahan yang menyebabkan terjadinya pencemaran.</li>
+                    <li><strong>Baku Mutu Lingkungan:</strong> Ukuran batas kadar makhluk hidup, zat, energi, atau komponen yang ada atau harus ada dan/atau unsur pencemar yang ditenggang keberadaannya dalam suatu sumber daya.</li>
+                    <li><strong>Jenis Pencemaran:</strong> Berdasarkan media (udara, air, tanah), berdasarkan sumber (industri, rumah tangga, pertanian), dan berdasarkan bentuk (kimia, biologi, fisik).</li>
+                    <li><strong>Prinsip 3R:</strong> Reduce (mengurangi), Reuse (menggunakan kembali), Recycle (mendaur ulang) sebagai upaya pencegahan pencemaran.</li>
+                    <li><strong>AMDAL:</strong> Analisis Mengenai Dampak Lingkungan, kajian resmi terhadap dampak besar dan penting suatu usaha/kegiatan terhadap lingkungan.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Pencemaran Sungai Batang Kuantan di Riau</h3>
+                <p>Sungai Batang Kuantan di Riau selama bertahun-tahun tercemar berat oleh limbah industri pulp dan kertas. Limbah cair yang mengandung bahan kimia berbahaya dibuang langsung ke sungai tanpa pengolahan yang memadai. Dampaknya sangat serius: air sungai berubah warna menjadi hitam pekat, ikan-ikan mati massal, masyarakat sekitar mengalami penyakit kulit dan pernapasan, serta sumber air bersih hilang. Baru setelah adanya tekanan publik dan penegakan hukum yang ketat, perusahaan-perusahaan tersebut dipaksa membangun Instalasi Pengolahan Air Limbah (IPAL) yang memadai.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Kasus ini menunjukkan bahwa pencemaran lingkungan bukan hanya masalah ekologis, tetapi juga masalah kesehatan masyarakat, ekonomi, dan hukum. Siswa SMK harus memahami bahwa pengelolaan lingkungan yang baik adalah bagian integral dari operasional industri yang berkelanjutan.</p>
+            </div>
+
+            <h2>6.1 Pengertian dan Jenis Pencemaran Lingkungan</h2>
+            <div class="card">
+                <h3>6.1.1 Definisi Pencemaran Lingkungan</h3>
+                <p>Menurut <strong>Undang-Undang No. 32 Tahun 2009 tentang Perlindungan dan Pengelolaan Lingkungan Hidup</strong>, pencemaran lingkungan adalah masuk atau dimasukkannya makhluk hidup, zat, energi, dan/atau komponen lain ke dalam lingkungan oleh kegiatan manusia, sehingga kualitas lingkungan turun sampai ke tingkat tertentu yang menyebabkan lingkungan menjadi kurang atau tidak dapat berfungsi lagi sesuai dengan peruntukannya.</p>
+
+                <h3>6.1.2 Klasifikasi Pencemaran</h3>
+                <p>Pencemaran lingkungan dapat diklasifikasikan berdasarkan beberapa aspek:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dasar Klasifikasi</th>
+                            <th>Jenis</th>
+                            <th>Penjelasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Berdasarkan Media</strong></td>
+                            <td>Udara, Air, Tanah</td>
+                            <td>Menurut lingkungan yang tercemar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berdasarkan Sumber</strong></td>
+                            <td>Industri, Rumah Tangga, Pertanian, Transportasi</td>
+                            <td>Menurut asal penyebab pencemaran</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berdasarkan Bentuk</strong></td>
+                            <td>Kimia, Biologi, Fisik</td>
+                            <td>Menurut jenis polutan yang mencemari</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berdasarkan Sifat</strong></td>
+                            <td>Point source, Non-point source</td>
+                            <td>Point: dari satu sumber spesifik; Non-point: dari banyak sumber tersebar</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>6.1.3 Indikator Pencemaran</h3>
+                <p>Suatu lingkungan dapat dikatakan tercemar jika:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Terjadi perubahan kualitas lingkungan yang dapat diukur (fisik, kimia, biologi).</li>
+                    <li>Kualitas lingkungan turun melampaui baku mutu yang telah ditetapkan.</li>
+                    <li>Fungsi lingkungan menurun atau tidak dapat lagi digunakan sesuai peruntukannya.</li>
+                    <li>Terjadi dampak negatif terhadap kesehatan manusia, ekosistem, atau makhluk hidup lainnya.</li>
+                </ul>
+            </div>
+
+            <h2>6.2 Pencemaran Udara, Air, dan Tanah</h2>
+            <div class="card">
+                <h3>6.2.1 Pencemaran Udara</h3>
+                <p><strong>Pencemaran udara</strong> adalah masuknya zat, energi, atau komponen lain ke dalam udara yang menyebabkan kualitas udara turun hingga tingkat tertentu.</p>
+                
+                <p style="margin-top: 1rem;"><strong>Sumber Pencemaran Udara:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Sumber Alam:</strong> Letusan gunung berapi, kebakaran hutan alami, debu tanah.</li>
+                    <li><strong>Sumber Antropogenik (buatan manusia):</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Emisi kendaraan bermotor (CO, NOx, HC)</li>
+                            <li>Industri dan pembangkit listrik (SO₂, CO₂, partikulat)</li>
+                            <li>Pembakaran sampah dan limbah</li>
+                            <li>Penggunaan AC dan kulkas (CFC perusak ozon)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>Polutan Utama Udara:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Karbon Monoksida (CO):</strong> Dari pembakaran tidak sempurna bahan bakar.</li>
+                    <li><strong>Sulfur Dioksida (SO₂):</strong> Dari pembakaran batu bara, penyebab hujan asam.</li>
+                    <li><strong>Nitrogen Oksida (NOx):</strong> Dari kendaraan bermotor dan industri.</li>
+                    <li><strong>Partikulat (PM2.5, PM10):</strong> Debu halus yang masuk ke paru-paru.</li>
+                    <li><strong>CFC (Chlorofluorocarbon):</strong> Merusak lapisan ozon.</li>
+                </ul>
+
+                <h3>6.2.2 Pencemaran Air</h3>
+                <p><strong>Pencemaran air</strong> adalah peristiwa masuknya zat, energi, atau makhluk hidup ke dalam air, sehingga kualitas air turun dan tidak dapat digunakan sesuai peruntukannya.</p>
+
+                <p style="margin-top: 1rem;"><strong>Sumber Pencemaran Air:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Limbah Domestik:</strong> Air limbah rumah tangga (sabun, deterjen, tinja).</li>
+                    <li><strong>Limbah Industri:</strong> Logam berat (merkuri, timbal, kadmium), bahan kimia beracun.</li>
+                    <li><strong>Limbah Pertanian:</strong> Pupuk kimia, pestisida, herbisida (menyebabkan eutrofikasi).</li>
+                    <li><strong>Limbah Pertambangan:</strong> Air asam tambang, logam berat.</li>
+                    <li><strong>Tumpahan Minyak:</strong> Dari kapal tanker atau pengeboran.</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>Indikator Pencemaran Air:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Perubahan warna, bau, dan rasa air.</li>
+                    <li>Penurunan kadar oksigen terlarut (DO - Dissolved Oxygen).</li>
+                    <li>Peningkatan BOD (Biochemical Oxygen Demand) dan COD (Chemical Oxygen Demand).</li>
+                    <li>Adanya mikroorganisme patogen (E. coli).</li>
+                    <li>Kematian biota air (ikan, plankton).</li>
+                </ul>
+
+                <h3>6.2.3 Pencemaran Tanah</h3>
+                <p><strong>Pencemaran tanah</strong> adalah keadaan di mana bahan kimia buatan manusia masuk dan mengubah lingkungan tanah alami.</p>
+
+                <p style="margin-top: 1rem;"><strong>Sumber Pencemaran Tanah:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Sampah anorganik:</strong> Plastik, styrofoam, kaca, logam yang tidak terurai.</li>
+                    <li><strong>Limbah B3 (Bahan Berbahaya dan Beracun):</strong> Baterai bekas, limbah elektronik, limbah medis.</li>
+                    <li><strong>Pestisida dan pupuk kimia berlebihan:</strong> Mengakumulasi residu di tanah.</li>
+                    <li><strong>Tumpahan bahan kimia industri:</strong> Minyak, pelarut, logam berat.</li>
+                    <li><strong>Pertambangan:</strong> Air asam tambang, tailing.</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>Dampak Pencemaran Tanah:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Penurunan kesuburan tanah.</li>
+                    <li>Akumulasi logam berat dalam tanaman (bioakumulasi).</li>
+                    <li>Tercemarnya air tanah.</li>
+                    <li>Gangguan ekosistem tanah (mikroorganisme, cacing tanah).</li>
+                </ul>
+            </div>
+
+            <h2>6.3 Dampak Pencemaran</h2>
+            <div class="card">
+                <h3>6.3.1 Dampak terhadap Kesehatan</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>ISPA (Infeksi Saluran Pernapasan Akut):</strong> Akibat polusi udara (PM2.5, SO₂).</li>
+                    <li><strong>Penyakit kulit:</strong> Akibat kontak dengan air atau tanah tercemar.</li>
+                    <li><strong>Kanker:</strong> Akibat paparan bahan karsinogenik (benzena, asbes, logam berat).</li>
+                    <li><strong>Gangguan saraf:</strong> Akibat paparan merkuri dan timbal.</li>
+                    <li><strong>Diare dan kolera:</strong> Akibat konsumsi air tercemar bakteri patogen.</li>
+                    <li><strong>Minamata disease:</strong> Keracunan merkuri dari ikan tercemar (kasus di Teluk Minamata, Jepang).</li>
+                    <li><strong>Itai-itai disease:</strong> Keracunan kadmium dari air dan beras tercemar.</li>
+                </ul>
+
+                <h3>6.3.2 Dampak terhadap Ekosistem</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Eutrofikasi:</strong> Ledakan populasi alga akibat kelebihan nutrisi (pupuk), menyebabkan kematian ikan karena kekurangan oksigen.</li>
+                    <li><strong>Hujan asam:</strong> Akibat SO₂ dan NOx, merusak tumbuhan, bangunan, dan ekosistem perairan.</li>
+                    <li><strong>Penipisan lapisan ozon:</strong> Akibat CFC, meningkatkan radiasi UV yang merusak makhluk hidup.</li>
+                    <li><strong>Bioakumulasi & Biomagnifikasi:</strong> Akumulasi racun dalam rantai makanan (misalnya: merkuri pada ikan predator besar).</li>
+                    <li><strong>Kepunahan spesies:</strong> Akibat hilangnya habitat dan keracunan.</li>
+                    <li><strong>Pemutihan karang:</strong> Akibat polusi laut dan pemanasan suhu.</li>
+                </ul>
+
+                <h3>6.3.3 Dampak terhadap Kehidupan Sosial</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Kerugian ekonomi:</strong> Biaya pengobatan, penurunan produktivitas pertanian dan perikanan.</li>
+                    <li><strong>Konflik sosial:</strong> Antara masyarakat dengan perusahaan pencemar.</li>
+                    <li><strong>Migrasi penduduk:</strong> Penduduk meninggalkan daerah tercemar.</li>
+                    <li><strong>Penurunan kualitas hidup:</strong> Udara kotor, air tidak layak konsumsi.</li>
+                    <li><strong>Kerusakan warisan budaya:</strong> Hujan asam merusak candi dan bangunan bersejarah.</li>
+                </ul>
+            </div>
+
+            <h2>6.4 Pencegahan dan Penanggulangan Pencemaran</h2>
+            <div class="card">
+                <h3>6.4.1 Prinsip 3R (Reduce, Reuse, Recycle)</h3>
+                <p>Prinsip 3R adalah pendekatan preventif untuk mengurangi timbulan sampah dan pencemaran:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prinsip</th>
+                            <th>Arti</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Reduce</strong></td>
+                            <td>Mengurangi penggunaan barang yang dapat mencemari lingkungan</td>
+                            <td>Membawa tas belanja sendiri, mengurangi penggunaan plastik sekali pakai, memilih produk dengan kemasan minimal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reuse</strong></td>
+                            <td>Menggunakan kembali barang yang masih layak pakai</td>
+                            <td>Menggunakan botol minum isi ulang, menyumbangkan pakaian bekas, menggunakan kertas bekas untuk catatan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recycle</strong></td>
+                            <td>Mendaur ulang sampah menjadi produk baru</td>
+                            <td>Mendaur ulang plastik menjadi bijih plastik, mengolah sampah organik menjadi kompos, daur ulang kertas</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 1rem;">Selain 3R, dikenal juga prinsip <strong>5R</strong> yang menambahkan:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Replace:</strong> Mengganti barang sekali pakai dengan barang yang lebih ramah lingkungan (misalnya: sedotan stainless menggantikan sedotan plastik).</li>
+                    <li><strong>Rot:</strong> Mengolah sampah organik menjadi kompos melalui proses pembusukan alami.</li>
+                </ul>
+
+                <h3>6.4.2 Pengelolaan Limbah Industri</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>IPAL (Instalasi Pengolahan Air Limbah):</strong> Mengolah limbah cair sebelum dibuang ke lingkungan.</li>
+                    <li><strong>Filter dan Scrubber:</strong> Mengurangi emisi gas buang dari cerobong industri.</li>
+                    <li><strong>Incinerator:</strong> Membakar sampah B3 pada suhu tinggi dengan kontrol emisi.</li>
+                    <li><strong>Landfill Saniter:</strong> Tempat Pembuangan Akhir (TPA) dengan sistem kedap air dan pengolahan lindi.</li>
+                    <li><strong>Teknologi Bersih:</strong> Mengganti bahan baku atau proses produksi yang lebih ramah lingkungan.</li>
+                </ul>
+
+                <h3>6.4.3 Regulasi dan Instrumen Lingkungan</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>AMDAL (Analisis Mengenai Dampak Lingkungan):</strong> Kajian wajib untuk kegiatan usaha yang berdampak besar terhadap lingkungan.</li>
+                    <li><strong>UKL-UPL (Upaya Pengelolaan Lingkungan - Upaya Pemantauan Lingkungan):</strong> Untuk usaha dengan dampak menengah.</li>
+                    <li><strong>Baku Mutu Lingkungan:</strong> Standar kualitas air, udara, dan tanah yang harus dipatuhi.</li>
+                    <li><strong>ISO 14001:</strong> Standar internasional sistem manajemen lingkungan.</li>
+                    <li><strong>PROPER:</strong> Program Penilaian Peringkat Kinerja Perusahaan dalam Pengelolaan Lingkungan oleh KLHK.</li>
+                </ul>
+
+                <h3>6.4.4 Peran Siswa SMK dalam Pencegahan Pencemaran</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Menerapkan prinsip 3R di sekolah dan rumah.</li>
+                    <li>Mengelola limbah B3 di bengkel/laboratorium dengan benar.</li>
+                    <li>Menggunakan Alat Pelindung Diri (APD) saat menangani bahan berbahaya.</li>
+                    <li>Mengikuti prosedur K3L (Keselamatan, Kesehatan Kerja, dan Lingkungan) di tempat kerja.</li>
+                    <li>Menjadi agen edukasi lingkungan di komunitas.</li>
+                    <li>Mengembangkan inovasi teknologi tepat guna untuk pengelolaan limbah.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Pencemaran Lingkungan</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Menganggap semua bahan kimia itu berbahaya (faktanya, banyak bahan kimia yang aman dan bermanfaat; yang berbahaya adalah penggunaan yang tidak tepat).</li>
+                    <li>Beranggapan bahwa pencemaran hanya masalah negara maju (faktanya, Indonesia termasuk salah satu negara dengan tingkat pencemaran tinggi).</li>
+                    <li>Meremehkan sampah rumah tangga (faktanya, kontribusi sampah rumah tangga terhadap pencemaran sangat signifikan).</li>
+                    <li>Mengira "terurai" berarti "hilang" (faktanya, plastik yang terurai menjadi mikroplastik justru lebih berbahaya karena masuk ke rantai makanan).</li>
+                    <li>Tidak menyadari bahwa pencemaran dapat bersifat akumulatif dan baru terlihat dampaknya setelah bertahun-tahun.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Pencemaran lingkungan adalah masuknya zat, energi, atau komponen lain ke dalam lingkungan yang melampaui baku mutu dan menurunkan fungsi lingkungan. Pencemaran dapat terjadi pada udara, air, dan tanah, dengan sumber dari industri, rumah tangga, pertanian, dan transportasi. Dampaknya sangat luas: terhadap kesehatan (ISPA, kanker, penyakit kulit), ekosistem (eutrofikasi, hujan asam, bioakumulasi), dan kehidupan sosial (kerugian ekonomi, konflik, migrasi). Upaya pencegahan dan penanggulangan dilakukan melalui prinsip 3R (Reduce, Reuse, Recycle), pengelolaan limbah industri (IPAL, filter, teknologi bersih), serta penegakan regulasi (AMDAL, UKL-UPL, baku mutu). Sebagai calon tenaga kerja profesional, siswa SMK memiliki peran strategis dalam menerapkan prinsip K3L, mengelola limbah secara bertanggung jawab, dan mengembangkan inovasi ramah lingkungan di dunia kerja.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Republik Indonesia. (2009). <em>Undang-Undang No. 32 Tahun 2009 tentang Perlindungan dan Pengelolaan Lingkungan Hidup</em>. Jakarta: Sekretariat Negara.</li>
+                    <li>Kementerian Lingkungan Hidup dan Kehutanan. (2023). <em>Indeks Kualitas Lingkungan Hidup Indonesia</em>. Jakarta: KLHK.</li>
+                    <li>Soemarwoto, O. (2015). <em>Ekologi, Lingkungan Hidup, dan Pembangunan</em>. Jakarta: Djambatan.</li>
+                    <li>Supriadi. (2024). <em>Konsep Dasar Pengelolaan Lingkungan untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="5.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="7.html" class="btn">Bab 7: Keanekaragaman Hayati dan SDA →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 6: Pencemaran Lingkungan</h2>
+                <p style="color: var(--text-secondary);">Materi: Pengertian Pencemaran, Jenis (Udara/Air/Tanah), Dampak, dan Pencegahan (3R & Pengelolaan Lingkungan)</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Menurut UU No. 32 Tahun 2009, pencemaran lingkungan didefinisikan sebagai...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Proses alami yang terjadi tanpa campur tangan manusia</label>
+                        <label><input type="radio" name="q1" value="b"> b. Masuknya zat, energi, atau komponen lain ke dalam lingkungan oleh kegiatan manusia sehingga kualitasnya turun</label>
+                        <label><input type="radio" name="q1" value="c"> c. Peningkatan kualitas lingkungan akibat aktivitas industri</label>
+                        <label><input type="radio" name="q1" value="d"> d. Proses daur ulang sampah menjadi produk baru</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Zat atau bahan yang menyebabkan terjadinya pencemaran disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Baku mutu</label>
+                        <label><input type="radio" name="q2" value="b"> b. AMDAL</label>
+                        <label><input type="radio" name="q2" value="c"> c. Polutan</label>
+                        <label><input type="radio" name="q2" value="d"> d. Ekosistem</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Gas yang paling dominan dihasilkan dari pembakaran bahan bakar kendaraan bermotor dan menyebabkan polusi udara di perkotaan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Oksigen (O₂)</label>
+                        <label><input type="radio" name="q3" value="b"> b. Karbon Monoksida (CO) dan Nitrogen Oksida (NOx)</label>
+                        <label><input type="radio" name="q3" value="c"> c. Nitrogen (N₂)</label>
+                        <label><input type="radio" name="q3" value="d"> d. Uap air (H₂O)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Fenomena ledakan populasi alga di perairan akibat kelebihan nutrisi (pupuk) yang menyebabkan kematian ikan disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Bioakumulasi</label>
+                        <label><input type="radio" name="q4" value="b"> b. Biomagnifikasi</label>
+                        <label><input type="radio" name="q4" value="c"> c. Eutrofikasi</label>
+                        <label><input type="radio" name="q4" value="d"> d. Bioremediasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Hujan asam terutama disebabkan oleh emisi gas...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Karbon dioksida (CO₂) dan metana (CH₄)</label>
+                        <label><input type="radio" name="q5" value="b"> b. Sulfur dioksida (SO₂) dan Nitrogen oksida (NOx)</label>
+                        <label><input type="radio" name="q5" value="c"> c. Oksigen (O₂) dan nitrogen (N₂)</label>
+                        <label><input type="radio" name="q5" value="d"> d. CFC dan ozon (O₃)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Prinsip "Reduce" dalam 3R berarti...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Mendaur ulang sampah menjadi produk baru</label>
+                        <label><input type="radio" name="q6" value="b"> b. Menggunakan kembali barang yang masih layak pakai</label>
+                        <label><input type="radio" name="q6" value="c"> c. Mengurangi penggunaan barang yang dapat mencemari lingkungan</label>
+                        <label><input type="radio" name="q6" value="d"> d. Membakar sampah di tempat terbuka</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. IPAL adalah singkatan dari...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Instalasi Pengolahan Air Limbah</label>
+                        <label><input type="radio" name="q7" value="b"> b. Indikator Pencemaran Air Laut</label>
+                        <label><input type="radio" name="q7" value="c"> c. Instrumen Pengukuran Aliran Limbah</label>
+                        <label><input type="radio" name="q7" value="d"> d. Inovasi Pengelolaan Alam Lestari</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. AMDAL merupakan singkatan dari...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Analisis Mengenai Dampak Lingkungan</label>
+                        <label><input type="radio" name="q8" value="b"> b. Alat Monitoring Dampak Limbah</label>
+                        <label><input type="radio" name="q8" value="c"> c. Asosiasi Manajemen Daur Ulang</label>
+                        <label><input type="radio" name="q8" value="d"> d. Analisis Mutu Air Limbah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Penyakit Minamata di Jepang disebabkan oleh pencemaran...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Timbal (Pb) di udara</label>
+                        <label><input type="radio" name="q9" value="b"> b. Merkuri (Hg) di perairan yang terakumulasi pada ikan</label>
+                        <label><input type="radio" name="q9" value="c"> c. Kadmium (Cd) di tanah pertanian</label>
+                        <label><input type="radio" name="q9" value="d"> d. Pestisida di sayuran</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Salah satu peran siswa SMK dalam pencegahan pencemaran di dunia kerja adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Membuang limbah sembarangan agar cepat selesai</label>
+                        <label><input type="radio" name="q10" value="b"> b. Mengabaikan prosedur K3L karena merepotkan</label>
+                        <label><input type="radio" name="q10" value="c"> c. Menerapkan prinsip K3L dan mengelola limbah B3 dengan benar</label>
+                        <label><input type="radio" name="q10" value="d"> d. Menggunakan bahan berbahaya tanpa APD</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan pengertian pencemaran lingkungan menurut UU No. 32 Tahun 2009! Sebutkan dan jelaskan klasifikasi pencemaran berdasarkan media, sumber, dan bentuk!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Bandingkan pencemaran udara, air, dan tanah dari segi: (a) sumber utama, (b) polutan khas, dan (c) indikator terjadinya pencemaran! Berikan masing-masing 2 contoh konkret yang dapat Anda amati di lingkungan sekitar!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Jelaskan konsep bioakumulasi dan biomagnifikasi! Mengapa proses ini sangat berbahaya bagi kesehatan manusia meskipun kadar polutan di lingkungan terlihat kecil? Berikan contoh kasus nyata!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Uraikan secara rinci prinsip 3R (Reduce, Reuse, Recycle) dalam pencegahan pencemaran! Berikan masing-masing 3 contoh penerapan praktis yang dapat Anda lakukan di sekolah, rumah, dan tempat kerja (bengkel/laboratorium)!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Analisis sebuah kasus pencemaran lingkungan yang terjadi di Indonesia (misalnya: pencemaran sungai, udara, atau tanah). Identifikasi sumber pencemar, dampak yang ditimbulkan terhadap kesehatan, ekosistem, dan sosial-ekonomi, serta rumuskan solusi konkret yang dapat diterapkan oleh pemerintah, industri, dan masyarakat!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 6
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'b',
+            q4: 'c',
+            q5: 'b',
+            q6: 'c',
+            q7: 'a',
+            q8: 'a',
+            q9: 'b',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

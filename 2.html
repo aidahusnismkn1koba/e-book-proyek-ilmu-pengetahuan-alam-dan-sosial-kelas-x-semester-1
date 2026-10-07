@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 2: Makhluk Hidup dan Lingkungannya - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 2</span>
+            <h1>Makhluk Hidup dan Lingkungannya</h1>
+            <p class="subtitle">Memahami ciri-ciri makhluk hidup, interaksi ekosistem, komponen biotik-abiotik, serta peran manusia dalam menjaga keseimbangan alam.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="1.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="3.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Alam semesta terdiri dari berbagai komponen yang saling berinteraksi membentuk suatu kesatuan yang dinamis. Memahami hubungan antara makhluk hidup dan lingkungannya adalah fondasi utama dalam Ilmu Pengetahuan Alam. Bagi peserta didik SMK, pemahaman ini tidak hanya bersifat teoretis, tetapi juga menjadi dasar dalam menerapkan prinsip-prinsip keberlanjutan, pengelolaan lingkungan, dan teknologi ramah lingkungan di dunia kerja.</p>
+                <br>
+                <p>Setiap organisme memiliki ciri-ciri khusus dan kebutuhan dasar yang harus dipenuhi untuk bertahan hidup. Pemenuhan kebutuhan ini terjadi melalui interaksi yang kompleks dengan lingkungan sekitarnya, baik dengan makhluk hidup lain maupun dengan unsur-unsur tak hidup (abiotik). Keseimbangan dalam interaksi ini sangat rapuh dan sangat dipengaruhi oleh aktivitas manusia.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Ciri Makhluk Hidup:</strong> Bergerak, bernapas (respirasi), memerlukan nutrisi, tumbuh dan berkembang, berkembang biak, peka terhadap rangsang (iritabilitas), dan beradaptasi.</li>
+                    <li><strong>Ekosistem:</strong> Kesatuan komunitas makhluk hidup (biotik) dengan lingkungan tak hidupnya (abiotik) yang saling berinteraksi.</li>
+                    <li><strong>Rantai & Jaring Makanan:</strong> Alur perpindahan energi dan materi dari produsen ke konsumen hingga dekomposer.</li>
+                    <li><strong>Keseimbangan Lingkungan:</strong> Kondisi dinamis di mana populasi dan sumber daya alam berada dalam keadaan stabil, yang perlu dijaga oleh peran aktif manusia.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Runtuhnya Rantai Makanan di Perairan</h3>
+                <p>Di sebuah wilayah pesisir, penggunaan pestisida berlebihan di lahan pertanian terdekat terbawa arus hujan ke laut. Pestisida ini membunuh fitoplankton (produsen). Akibatnya, populasi zooplankton dan ikan kecil (konsumen) menurun drastis karena kekurangan makanan. Akhirnya, nelayan setempat mengalami gagal panen karena populasi ikan besar yang menjadi target tangkapan juga menghilang.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Gangguan pada satu tingkat trofik (produsen) akan berdampak domino pada seluruh rantai makanan, membuktikan betapa eratnya ketergantungan antar komponen ekosistem.</p>
+            </div>
+
+            <h2>2.1 Ciri-ciri dan Kebutuhan Dasar Makhluk Hidup</h2>
+            <div class="card">
+                <p>Untuk dapat dikategorikan sebagai makhluk hidup, suatu entitas harus menunjukkan serangkaian karakteristik biologis. Selain itu, makhluk hidup memerlukan pemenuhan kebutuhan dasar berupa udara (oksigen/karbon dioksida), air, nutrisi (makanan), cahaya (bagi tumbuhan), dan ruang/tempat hidup yang sesuai.</p>
+                <p style="margin-top: 1rem;">Kegagalan dalam memenuhi salah satu kebutuhan dasar ini akan mengganggu homeostasis (keseimbangan internal) organisme, yang dapat berujung pada kematian atau migrasi ke lingkungan yang lebih mendukung.</p>
+            </div>
+
+            <h2>2.2 Interaksi dan Komponen Ekosistem</h2>
+            <div class="card">
+                <h3>2.2.1 Komponen Biotik dan Abiotik</h3>
+                <p>Ekosistem tersusun atas dua komponen utama yang tidak dapat dipisahkan:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Komponen Biotik:</strong> Semua makhluk hidup, diklasifikasikan berdasarkan fungsinya menjadi <em>Produsen</em> (tumbuhan/alga), <em>Konsumen</em> (herbivora, karnivora, omnivora), dan <em>Dekomposer/Pengurai</em> (bakteri dan jamur).</li>
+                    <li><strong>Komponen Abiotik:</strong> Faktor fisik dan kimia seperti cahaya matahari, suhu, air, tanah, kelembapan, dan mineral.</li>
+                </ul>
+
+                <h3>2.2.2 Rantai dan Jaring-Jaring Makanan</h3>
+                <p><strong>Rantai makanan</strong> adalah perpindahan energi makanan dari sumber daya tumbuhan melalui seri organisme atau melalui jenjang makan. Sementara itu, <strong>jaring-jaring makanan</strong> adalah kumpulan dari beberapa rantai makanan yang saling berhubungan dan kompleks, yang menggambarkan realitas ekosistem yang sebenarnya di mana satu organisme dapat memiliki lebih dari satu sumber makanan.</p>
+            </div>
+
+            <h2>2.3 Peran Manusia dalam Menjaga Keseimbangan Lingkungan</h2>
+            <div class="card">
+                <p>Manusia adalah komponen biotik yang memiliki dampak paling signifikan terhadap ekosistem, baik secara positif maupun negatif. Eksploitasi sumber daya alam yang berlebihan, deforestasi, dan polusi adalah contoh dampak negatif yang mengganggu keseimbangan.</p>
+                <p style="margin-top: 1rem;">Sebaliknya, peran positif manusia dapat diwujudkan melalui:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Penerapan prinsip 3R (<em>Reduce, Reuse, Recycle</em>).</li>
+                    <li>Konservasi keanekaragaman hayati (cagar alam, taman nasional).</li>
+                    <li>Penggunaan teknologi ramah lingkungan dan energi terbarukan.</li>
+                    <li>Reboisasi dan penghijauan kembali lahan kritis.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Ekosistem</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Menganggap dekomposer tidak penting, padahal mereka adalah kunci daur ulang nutrisi di alam.</li>
+                    <li>Menyamakan rantai makanan dengan jaring makanan (jaring makanan jauh lebih kompleks dan stabil).</li>
+                    <li>Beranggapan bahwa komponen abiotik tidak "hidup" berarti tidak berpengaruh, padahal faktor abiotik sangat menentukan jenis makhluk hidup yang bisa bertahan di suatu area.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Keberlangsungan hidup manusia sangat bergantung pada kesehatan ekosistem. Memahami ciri makhluk hidup, interaksi biotik-abiotik, dan dinamika rantai makanan memberikan kita perspektif bahwa setiap tindakan terhadap lingkungan akan memiliki konsekuensi. Sebagai calon tenaga kerja dan warga negara yang bertanggung jawab, siswa SMK harus menjadi agen perubahan dalam menjaga keseimbangan lingkungan melalui tindakan nyata dan berkelanjutan.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Irnaningtyas. (2022). <em>Biologi untuk SMA/MA Kelas X</em>. Jakarta: Erlangga.</li>
+                    <li>Odum, E. P. (1993). <em>Dasar-dasar Ekologi</em>. Yogyakarta: Gadjah Mada University Press.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="1.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="3.html" class="btn">Bab 3: Materi dan Perubahannya →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 2: Makhluk Hidup dan Lingkungannya</h2>
+                <p style="color: var(--text-secondary);">Materi: Ciri Makhluk Hidup, Ekosistem, Biotik-Abiotik, Rantai Makanan, dan Peran Manusia</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Berikut ini yang merupakan ciri makhluk hidup yang menunjukkan kemampuan menanggapi rangsang adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Tumbuhan melakukan fotosintesis</label>
+                        <label><input type="radio" name="q1" value="b"> b. Daun putri malu menguncup saat disentuh</label>
+                        <label><input type="radio" name="q1" value="c"> c. Akar tumbuhan tumbuh menuju air</label>
+                        <label><input type="radio" name="q1" value="d"> d. Manusia mengeluarkan keringat saat panas</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Komponen abiotik dalam sebuah ekosistem hutan meliputi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Pohon, tanah, dan rusa</label>
+                        <label><input type="radio" name="q2" value="b"> b. Cahaya matahari, suhu, dan air</label>
+                        <label><input type="radio" name="q2" value="c"> c. Jamur, bakteri, dan seresah daun</label>
+                        <label><input type="radio" name="q2" value="d"> d. Burung, udara, dan semak belukar</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Organisme yang berperan sebagai produsen dalam ekosistem perairan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Zooplankton</label>
+                        <label><input type="radio" name="q3" value="b"> b. Ikan kecil</label>
+                        <label><input type="radio" name="q3" value="c"> c. Fitoplankton</label>
+                        <label><input type="radio" name="q3" value="d"> d. Bakteri pengurai</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Perbedaan utama antara rantai makanan dan jaring-jaring makanan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Rantai makanan lebih kompleks daripada jaring makanan</label>
+                        <label><input type="radio" name="q4" value="b"> b. Jaring makanan terdiri dari beberapa rantai makanan yang saling berhubungan</label>
+                        <label><input type="radio" name="q4" value="c"> c. Rantai makanan hanya terjadi di darat, jaring makanan di air</label>
+                        <label><input type="radio" name="q4" value="d"> d. Tidak ada perbedaan, keduanya adalah istilah yang sama</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Jika populasi ular di sawah diburu secara massal, dampak ekologis yang paling mungkin terjadi adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Populasi padi meningkat pesat</label>
+                        <label><input type="radio" name="q5" value="b"> b. Populasi tikus meningkat dan merusak tanaman padi</label>
+                        <label><input type="radio" name="q5" value="c"> c. Populasi elang akan meningkat</label>
+                        <label><input type="radio" name="q5" value="d"> d. Tanah menjadi lebih subur</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Peran utama dekomposer (pengurai) dalam ekosistem adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Memproduksi makanan melalui fotosintesis</label>
+                        <label><input type="radio" name="q6" value="b"> b. Memangsa organisme yang sakit</label>
+                        <label><input type="radio" name="q6" value="c"> c. Menguraikan materi organik menjadi zat anorganik yang dapat digunakan kembali oleh produsen</label>
+                        <label><input type="radio" name="q6" value="d"> d. Menjadi sumber makanan utama bagi konsumen puncak</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Hubungan antara lebah dan bunga di mana lebah mendapat nektar dan bunga terbantu penyerbukannya disebut simbiosis...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Parasitisme</label>
+                        <label><input type="radio" name="q7" value="b"> b. Komensalisme</label>
+                        <label><input type="radio" name="q7" value="c"> c. Mutualisme</label>
+                        <label><input type="radio" name="q7" value="d"> d. Amensalisme</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Tindakan manusia yang paling mendukung prinsip keberlanjutan ekosistem adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Membuka lahan pertanian dengan cara membakar hutan</label>
+                        <label><input type="radio" name="q8" value="b"> b. Menggunakan pestisida kimia secara berlebihan</label>
+                        <label><input type="radio" name="q8" value="c"> c. Menerapkan sistem tebang pilih dan reboisasi</label>
+                        <label><input type="radio" name="q8" value="d"> d. Membuang limbah industri langsung ke sungai</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Kebutuhan dasar yang mutlak harus dipenuhi oleh semua makhluk hidup untuk melakukan proses respirasi seluler adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Cahaya matahari</label>
+                        <label><input type="radio" name="q9" value="b"> b. Oksigen (atau akseptor elektron lain) dan nutrisi</label>
+                        <label><input type="radio" name="q9" value="c"> c. Tanah yang subur</label>
+                        <label><input type="radio" name="q9" value="d"> d. Suhu di atas 30°C</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Dalam sebuah ekosistem yang seimbang, apa yang terjadi jika salah satu komponen biotik punah?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Tidak ada dampak sama sekali</label>
+                        <label><input type="radio" name="q10" value="b"> b. Hanya komponen abiotik yang terpengaruh</label>
+                        <label><input type="radio" name="q10" value="c"> c. Akan terjadi ketidakseimbangan yang mempengaruhi komponen lainnya dalam jaring makanan</label>
+                        <label><input type="radio" name="q10" value="d"> d. Ekosistem akan segera membentuk komponen pengganti yang identik</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan 4 ciri-ciri makhluk hidup dan mengapa pemenuhan kebutuhan dasar (seperti air dan nutrisi) sangat krusial bagi kelangsungan ciri-ciri tersebut!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Deskripsikan perbedaan antara komponen biotik dan abiotik! Berikan masing-masing 3 contoh yang dapat Anda temukan di lingkungan sekolah Anda!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Buatlah sebuah contoh rantai makanan di ekosistem sawah! Jelaskan apa yang akan terjadi pada rantai tersebut jika populasi konsumen II (misalnya katak) menurun drastis!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Mengapa dekomposer (pengurai) sering disebut sebagai "pahlawan" ekosistem? Jelaskan peran vital mereka dalam daur ulang materi!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Analisis satu masalah lingkungan di sekitar tempat tinggal Anda (misalnya: sampah plastik atau alih fungsi lahan). Rumuskan 2 solusi nyata yang dapat Anda lakukan sebagai siswa SMK untuk membantu menjaga keseimbangan lingkungan tersebut!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 2
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'c',
+            q4: 'b',
+            q5: 'b',
+            q6: 'c',
+            q7: 'c',
+            q8: 'c',
+            q9: 'b',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

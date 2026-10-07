@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 13: Projek IPAS - Perencanaan dan Pengumpulan Data - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .template-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Montserrat', monospace;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 13</span>
+            <h1>Projek IPAS: Perencanaan dan Pengumpulan Data</h1>
+            <p class="subtitle">Tahap kedua projek IPAS: menyusun rancangan kegiatan, menentukan teknik pengumpulan data (observasi, wawancara, angket, dokumentasi), melaksanakan pengumpulan data secara sistematis, serta menjaga objektivitas, etika, keselamatan, dan kejujuran.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="12.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="14.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Setelah pada Pertemuan 12 siswa berhasil mengidentifikasi masalah dan menyusun proposal projek, pada Pertemuan 13 ini siswa memasuki tahap <strong>Perencanaan dan Pengumpulan Data</strong>—jantung dari sebuah projek IPAS. Tahap ini menentukan kualitas data yang akan dianalisis pada tahap selanjutnya. Data yang buruk akan menghasilkan analisis yang salah, solusi yang tidak tepat, dan produk akhir yang tidak bermanfaat.</p>
+                <br>
+                <p>Perencanaan yang matang dan pelaksanaan pengumpulan data yang sistematis menjadi kunci keberhasilan projek. Siswa tidak hanya dituntut untuk mengumpulkan data, tetapi juga harus menjaga <strong>objektivitas, etika, keselamatan, dan kejujuran</strong> dalam setiap langkahnya. Dalam dunia kerja, kompetensi ini sangat dihargai—seorang profesional harus mampu merancang penelitian lapangan, menggunakan instrumen yang tepat, serta menjunjung tinggi integritas data.</p>
+                <br>
+                <p>Oleh karena itu, materi ini dirancang agar siswa mampu: (1) menyusun rancangan kegiatan yang terstruktur, (2) memilih dan menggunakan teknik pengumpulan data yang tepat, (3) melaksanakan pengumpulan data secara sistematis, dan (4) menjunjung tinggi prinsip objektivitas, etika, keselamatan, dan kejujuran.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Rancangan Kegiatan Proyek:</strong> Dokumen tertulis yang memuat rencana sistematis pelaksanaan projek (jadwal, pembagian tugas, instrumen, logistik).</li>
+                    <li><strong>Observasi:</strong> Pengamatan langsung terhadap fenomena dengan atau tanpa partisipasi.</li>
+                    <li><strong>Wawancara:</strong> Tanya jawab lisan antara peneliti dan narasumber untuk mendapatkan informasi mendalam.</li>
+                    <li><strong>Angket/Kuesioner:</strong> Daftar pertanyaan tertulis yang dibagikan kepada responden.</li>
+                    <li><strong>Dokumentasi:</strong> Pengumpulan data melalui foto, video, arsip, atau catatan resmi.</li>
+                    <li><strong>Objektivitas:</strong> Sikap tidak memihak, berdasarkan fakta, bukan opini pribadi.</li>
+                    <li><strong>Etika Penelitian:</strong> Prinsip moral dalam pengumpulan data (izin, kerahasiaan, kejujuran).</li>
+                    <li><strong>Keselamatan Kerja:</strong> Upaya menjaga keselamatan diri dan orang lain selama pengumpulan data.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Kegagalan Projek Akibat Perencanaan yang Buruk</h3>
+                <p>Sekelompok siswa SMK ingin meneliti tentang "kesadaran siswa terhadap sampah plastik di sekolah". Mereka langsung menyebarkan angket ke 100 siswa tanpa membuat rancangan kegiatan yang jelas, tanpa uji coba instrumen, dan tanpa memperhatikan etika (tidak meminta izin kepada kepala sekolah). Akibatnya:</p>
+                <br>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li>Pertanyaan angket ambigu, sehingga 40% responden salah menafsirkan.</li>
+                    <li>Kepala sekolah menegur karena tidak ada izin resmi.</li>
+                    <li>Data yang terkumpul tidak valid karena responden mengisi asal-asalan.</li>
+                    <li>Projek harus diulang dari awal, membuang waktu 2 minggu.</li>
+                </ul>
+                <br>
+                <p>Di kelompok lain, siswa merancang kegiatan dengan matang: membuat jadwal rinci, uji coba angket ke 10 siswa terlebih dahulu, meminta izin tertulis, dan menjelaskan tujuan kepada responden. Hasilnya, data terkumpul valid, responden kooperatif, dan projek berjalan lancar.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Perencanaan yang matang bukan membuang waktu, melainkan investasi untuk keberhasilan projek. Etika dan kejujuran juga menjadi kunci kepercayaan narasumber dan validitas data.</p>
+            </div>
+
+            <h2>13.1 Menyusun Rancangan Kegiatan Proyek</h2>
+            <div class="card">
+                <h3>13.1.1 Apa Itu Rancangan Kegiatan Proyek?</h3>
+                <p><strong>Rancangan kegiatan proyek</strong> adalah dokumen tertulis yang memuat rencana sistematis pelaksanaan projek dari awal hingga akhir. Rancangan ini menjadi "peta jalan" (roadmap) bagi tim agar projek berjalan terarah, efisien, dan tepat waktu.</p>
+
+                <h3>13.1.2 Komponen Rancangan Kegiatan</h3>
+                <p>Rancangan kegiatan yang baik harus memuat komponen-komponen berikut:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Komponen</th>
+                            <th>Isi</th>
+                            <th>Tujuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Judul Projek</strong></td>
+                            <td>Nama projek yang spesifik dan menarik</td>
+                            <td>Identitas dan fokus projek</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Latar Belakang Singkat</strong></td>
+                            <td>Ringkasan masalah dan alasan pemilihan topik</td>
+                            <td>Memberi konteks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tujuan Projek</strong></td>
+                            <td>Hasil konkret yang ingin dicapai (SMART)</td>
+                            <td>Arah pencapaian</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rumusan Masalah</strong></td>
+                            <td>Pertanyaan spesifik yang akan dijawab</td>
+                            <td>Fokus kajian</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jadwal Kegiatan</strong></td>
+                            <td>Tahapan, waktu, dan durasi setiap aktivitas</td>
+                            <td>Kontrol waktu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pembagian Tugas</strong></td>
+                            <td>Peran setiap anggota tim</td>
+                            <td>Koordinasi tim</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Instrumen Pengumpulan Data</strong></td>
+                            <td>Pedoman observasi, wawancara, angket, dll.</td>
+                            <td>Alat ukur data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Logistik dan Anggaran</strong></td>
+                            <td>Alat, bahan, transportasi, biaya</td>
+                            <td>Kesiapan sumber daya</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risiko dan Mitigasi</strong></td>
+                            <td>Potensi hambatan dan rencana cadangan</td>
+                            <td>Antisipasi masalah</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>13.1.3 Langkah Menyusun Rancangan Kegiatan</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Review proposal</strong> dari tahap identifikasi masalah (Pertemuan 12).</li>
+                    <li><strong>Tentukan tahapan projek</strong> (perencanaan → pengumpulan data → analisis → implementasi → pelaporan).</li>
+                    <li><strong>Buat jadwal rinci</strong> (Gantt Chart sederhana) dengan tanggal mulai dan selesai setiap tahap.</li>
+                    <li><strong>Bagi peran tim</strong> berdasarkan keahlian masing-masing anggota.</li>
+                    <li><strong>Siapkan instrumen</strong> (pedoman observasi, daftar pertanyaan wawancara, draf angket).</li>
+                    <li><strong>Uji coba instrumen</strong> ke responden kecil (5-10 orang) untuk memastikan kejelasan.</li>
+                    <li><strong>Siapkan logistik</strong> (alat tulis, kamera, formulir izin, transportasi).</li>
+                    <li><strong>Identifikasi risiko</strong> dan siapkan rencana cadangan.</li>
+                    <li><strong>Konsultasikan</strong> rancangan dengan guru pembimbing.</li>
+                    <li><strong>Revisi</strong> berdasarkan masukan, lalu finalisasi.</li>
+                </ol>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Jadwal Kegiatan (Gantt Chart Sederhana):</strong><br><br>
+                    <strong>Minggu 1:</strong> Finalisasi proposal, persiapan instrumen, pengurusan izin<br>
+                    <strong>Minggu 2:</strong> Uji coba instrumen, observasi awal<br>
+                    <strong>Minggu 3:</strong> Pengumpulan data utama (wawancara, angket)<br>
+                    <strong>Minggu 4:</strong> Dokumentasi lanjutan, verifikasi data<br>
+                    <strong>Minggu 5:</strong> Rekapitulasi dan persiapan analisis<br><br>
+                    <em>Catatan: Setiap minggu harus ada laporan kemajuan kepada guru pembimbing.</em>
+                </div>
+            </div>
+
+            <h2>13.2 Teknik Pengumpulan Data</h2>
+            <div class="card">
+                <p>Pemilihan teknik pengumpulan data harus disesuaikan dengan <strong>jenis data yang dibutuhkan</strong> dan <strong>rumusan masalah</strong>. Berikut empat teknik utama beserta panduan penggunaannya.</p>
+
+                <h3>13.2.1 Observasi (Pengamatan)</h3>
+                <p><strong>Observasi</strong> adalah teknik pengumpulan data melalui pengamatan langsung terhadap fenomena yang terjadi. Observasi dapat dibagi menjadi:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Observasi</th>
+                            <th>Ciri</th>
+                            <th>Contoh Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Observasi Partisipan</strong></td>
+                            <td>Peneliti ikut serta dalam aktivitas yang diamati</td>
+                            <td>Ikut kerja bakti membersihkan sungai untuk memahami dinamika sosial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observasi Non-Partisipan</strong></td>
+                            <td>Peneliti hanya mengamati dari luar</td>
+                            <td>Mengamati pola buang sampah di kantin tanpa ikut serta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observasi Terstruktur</strong></td>
+                            <td>Menggunakan pedoman observasi yang sudah disiapkan</td>
+                            <td>Menghitung jumlah siswa yang membawa botol minum sendiri</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observasi Tidak Terstruktur</strong></td>
+                            <td>Tanpa pedoman baku, lebih fleksibel</td>
+                            <td>Mengamati suasana umum di pasar tradisional</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Pedoman Observasi:</strong><br><br>
+                    <strong>Judul:</strong> Observasi Pola Buang Sampah di Kantin SMKN 1 Koto Balingka<br>
+                    <strong>Tanggal:</strong> ...<br>
+                    <strong>Waktu:</strong> 11.30 - 12.30 (jam istirahat)<br>
+                    <strong>Lokasi:</strong> Area kantin depan<br>
+                    <strong>Hal yang Diamati:</strong><br>
+                    &nbsp;&nbsp;□ Jumlah siswa yang membuang sampah di tempat sampah<br>
+                    &nbsp;&nbsp;□ Jumlah siswa yang membuang sampah sembarangan<br>
+                    &nbsp;&nbsp;□ Jenis sampah yang paling banyak dibuang<br>
+                    &nbsp;&nbsp;□ Ketersediaan tempat sampah terpilah<br>
+                    &nbsp;&nbsp;□ Respon siswa terhadap teguran petugas<br>
+                    <strong>Catatan Lapangan:</strong> ...<br>
+                    <strong>Dokumentasi Foto:</strong> Ya / Tidak
+                </div>
+
+                <h3>13.2.2 Wawancara</h3>
+                <p><strong>Wawancara</strong> adalah teknik pengumpulan data melalui tanya jawab lisan antara peneliti (pewawancara) dan narasumber (responden). Wawancara dibagi menjadi:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Wawancara</th>
+                            <th>Ciri</th>
+                            <th>Kapan Digunakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Terstruktur</strong></td>
+                            <td>Pertanyaan sudah disiapkan secara rinci</td>
+                            <td>Ketika data yang dibutuhkan spesifik dan seragam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Semi-Terstruktur</strong></td>
+                            <td>Ada pedoman, tetapi fleksibel untuk probing</td>
+                            <td>Ingin menggali informasi mendalam namun tetap terarah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tidak Terstruktur</strong></td>
+                            <td>Tanpa pedoman baku, seperti percakapan</td>
+                            <td>Studi eksploratif, menggali perspektif narasumber</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="template-box">
+                    <strong>📝 Tips Wawancara yang Efektif:</strong><br><br>
+                    ✅ <strong>Sebelum wawancara:</strong><br>
+                    &nbsp;&nbsp;• Siapkan pedoman pertanyaan<br>
+                    &nbsp;&nbsp;• Buat janji temu dengan narasumber<br>
+                    &nbsp;&nbsp;• Bawa alat perekam (dengan izin) dan catatan<br>
+                    &nbsp;&nbsp;• Kenali latar belakang narasumber<br><br>
+                    ✅ <strong>Saat wawancara:</strong><br>
+                    &nbsp;&nbsp;• Perkenalkan diri dan jelaskan tujuan<br>
+                    &nbsp;&nbsp;• Bangun rapport (hubungan baik)<br>
+                    &nbsp;&nbsp;• Ajukan pertanyaan terbuka (bukan ya/tidak)<br>
+                    &nbsp;&nbsp;• Dengarkan aktif, jangan memotong<br>
+                    &nbsp;&nbsp;• Catat poin penting dan bahasa tubuh<br><br>
+                    ✅ <strong>Setelah wawancara:</strong><br>
+                    &nbsp;&nbsp;• Ucapkan terima kasih<br>
+                    &nbsp;&nbsp;• Transkrip hasil wawancara segera<br>
+                    &nbsp;&nbsp;• Verifikasi data dengan narasumber (member checking)
+                </div>
+
+                <h3>13.2.3 Angket / Kuesioner</h3>
+                <p><strong>Angket (kuesioner)</strong> adalah daftar pertanyaan tertulis yang dibagikan kepada responden untuk diisi sendiri. Angket efektif untuk mengumpulkan data dari banyak orang dalam waktu singkat.</p>
+
+                <p style="margin-top: 1rem;"><strong>Jenis Pertanyaan dalam Angket:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Pertanyaan Tertutup:</strong> Pilihan jawaban sudah disediakan (Ya/Tidak, Skala Likert, pilihan ganda).</li>
+                    <li><strong>Pertanyaan Terbuka:</strong> Responden menjawab dengan kata-kata sendiri.</li>
+                    <li><strong>Skala Sikap (Likert):</strong> Sangat Setuju – Setuju – Netral – Tidak Setuju – Sangat Tidak Setuju.</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Butir Angket (Skala Likert):</strong><br><br>
+                    <strong>Pernyataan:</strong> "Saya selalu membuang sampah pada tempatnya."<br><br>
+                    &nbsp;&nbsp;☐ Sangat Setuju&nbsp;&nbsp;&nbsp;☐ Setuju&nbsp;&nbsp;&nbsp;☐ Netral&nbsp;&nbsp;&nbsp;☐ Tidak Setuju&nbsp;&nbsp;&nbsp;☐ Sangat Tidak Setuju<br><br>
+                    <strong>Prinsip Penyusunan Angket yang Baik:</strong><br>
+                    &nbsp;&nbsp;• Bahasa sederhana, tidak ambigu<br>
+                    &nbsp;&nbsp;• Satu pertanyaan = satu ide<br>
+                    &nbsp;&nbsp;• Hindari pertanyaan leading (menggiring)<br>
+                    &nbsp;&nbsp;• Urutkan dari umum ke khusus<br>
+                    &nbsp;&nbsp;• Uji coba ke 10-15 responden sebelum disebar luas
+                </div>
+
+                <h3>13.2.4 Dokumentasi</h3>
+                <p><strong>Dokumentasi</strong> adalah teknik pengumpulan data melalui catatan, arsip, foto, video, atau dokumen resmi. Dokumentasi dapat berupa:</p>
+
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Dokumen Resmi:</strong> Data BPS, laporan sekolah, peraturan nagari, statistik desa.</li>
+                    <li><strong>Arsip Sejarah:</strong> Foto lama, surat kabar, catatan tokoh masyarakat.</li>
+                    <li><strong>Foto dan Video:</strong> Dokumentasi visual kondisi lapangan.</li>
+                    <li><strong>Media Digital:</strong> Postingan media sosial, berita online, blog.</li>
+                    <li><strong>Artefak:</strong> Benda fisik yang menjadi bukti (sampah, produk, bangunan).</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Checklist Dokumentasi:</strong><br><br>
+                    ☐ Foto kondisi awal (before)<br>
+                    ☐ Foto kondisi saat kegiatan (during)<br>
+                    ☐ Foto kondisi akhir (after)<br>
+                    ☐ Video wawancara (dengan izin)<br>
+                    ☐ Salinan dokumen resmi (dengan stempel)<br>
+                    ☐ Catatan waktu dan lokasi setiap dokumentasi<br>
+                    ☐ Identitas pemilik dokumen (untuk kredit)
+                </div>
+
+                <h3>13.2.5 Memilih Teknik yang Tepat</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Data yang Dibutuhkan</th>
+                            <th>Teknik Terbaik</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Perilaku, aktivitas, fenomena fisik</td>
+                            <td>Observasi</td>
+                        </tr>
+                        <tr>
+                            <td>Pendapat mendalam, pengalaman pribadi</td>
+                            <td>Wawancara</td>
+                        </tr>
+                        <tr>
+                            <td>Data dari banyak responden, pola umum</td>
+                            <td>Angket</td>
+                        </tr>
+                        <tr>
+                            <td>Data historis, bukti fisik, kebijakan</td>
+                            <td>Dokumentasi</td>
+                        </tr>
+                        <tr>
+                            <td>Data kompleks, butuh validasi silang</td>
+                            <td>Triangulasi (gabungan beberapa teknik)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>13.3 Melaksanakan Pengumpulan Data Secara Sistematis</h2>
+            <div class="card">
+                <h3>13.3.1 Prinsip Pengumpulan Data Sistematis</h3>
+                <p>Pengumpulan data yang sistematis berarti dilakukan secara <strong>terencana, terstruktur, konsisten, dan terdokumentasi</strong>. Berikut prinsip-prinsipnya:</p>
+
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Ikuti rancangan:</strong> Lakukan sesuai jadwal dan prosedur yang telah disusun.</li>
+                    <li><strong>Gunakan instrumen yang sama:</strong> Konsisten dalam menggunakan pedoman observasi, daftar pertanyaan, atau angket.</li>
+                    <li><strong>Catat setiap aktivitas:</strong> Buat jurnal harian pengumpulan data (logbook).</li>
+                    <li><strong>Verifikasi data:</strong> Cek kelengkapan dan konsistensi data setiap hari.</li>
+                    <li><strong>Dokumentasikan proses:</strong> Foto, video, dan catatan proses pengumpulan data.</li>
+                    <li><strong>Laporkan progres:</strong> Update rutin kepada guru pembimbing dan anggota tim.</li>
+                </ol>
+
+                <h3>13.3.2 Langkah-Langkah Pelaksanaan</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tahap</th>
+                            <th>Aktivitas</th>
+                            <th>Output</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Persiapan</strong></td>
+                            <td>Finalisasi instrumen, urus izin, siapkan logistik</td>
+                            <td>Surat izin, instrumen final, logbook</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Uji Coba</strong></td>
+                            <td>Uji instrumen ke 10-15 responden</td>
+                            <td>Hasil uji coba, revisi instrumen</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Pengumpulan Utama</strong></td>
+                            <td>Laksanakan observasi, wawancara, penyebaran angket</td>
+                            <td>Data mentah (hasil observasi, transkrip, angket terisi)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Verifikasi</strong></td>
+                            <td>Cek kelengkapan, validitas, dan konsistensi data</td>
+                            <td>Data tervalidasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Dokumentasi</strong></td>
+                            <td>Kumpulkan foto, video, arsip pendukung</td>
+                            <td>Arsip dokumentasi lengkap</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Rekapitulasi</strong></td>
+                            <td>Susun data dalam tabel atau spreadsheet</td>
+                            <td>Database siap analisis</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>13.3.3 Jurnal Harian Pengumpulan Data (Logbook)</h3>
+                <p>Logbook adalah catatan harian yang merekam setiap aktivitas pengumpulan data. Logbook berfungsi sebagai bukti proses dan alat refleksi.</p>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Format Logbook:</strong><br><br>
+                    <strong>Hari/Tanggal:</strong> Senin, 10 Februari 2027<br>
+                    <strong>Lokasi:</strong> Kantin SMKN 1 Koto Balingka<br>
+                    <strong>Anggota Tim:</strong> Ani, Budi, Citra<br>
+                    <strong>Aktivitas:</strong><br>
+                    &nbsp;&nbsp;• 11.30-12.30: Observasi pola buang sampah<br>
+                    &nbsp;&nbsp;• 12.30-13.00: Wawancara dengan 3 pedagang kantin<br>
+                    &nbsp;&nbsp;• 13.00-14.00: Penyebaran 30 angket ke siswa<br><br>
+                    <strong>Data Terkumpul:</strong><br>
+                    &nbsp;&nbsp;• 1 lembar pedoman observasi terisi<br>
+                    &nbsp;&nbsp;• 3 transkrip wawancara<br>
+                    &nbsp;&nbsp;• 28 angket kembali (2 rusak)<br>
+                    &nbsp;&nbsp;• 5 foto dokumentasi<br><br>
+                    <strong>Kendala:</strong> Beberapa siswa menolak mengisi angket karena buru-buru<br>
+                    <strong>Rencana Besok:</strong> Tambah waktu penyebaran angket, siapkan hadiah kecil sebagai insentif
+                </div>
+            </div>
+
+            <h2>13.4 Menjaga Objektivitas, Etika, Keselamatan, dan Kejujuran</h2>
+            <div class="card">
+                <h3>13.4.1 Objektivitas dalam Pengumpulan Data</h3>
+                <p><strong>Objektivitas</strong> berarti mengumpulkan data berdasarkan fakta, bukan opini, perasaan, atau kepentingan pribadi. Cara menjaga objektivitas:</p>
+
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Pisahkan fakta dari opini:</strong> Catat apa yang terjadi, bukan apa yang Anda pikirkan tentangnya.</li>
+                    <li><strong>Gunakan instrumen yang terstandar:</strong> Pedoman observasi dan angket yang sama untuk semua responden.</li>
+                    <li><strong>Hindari pertanyaan leading:</strong> Jangan menggiring jawaban responden.</li>
+                    <li><strong>Catat semua data:</strong> Termasuk data yang tidak sesuai dengan harapan.</li>
+                    <li><strong>Triangulasi:</strong> Gunakan beberapa sumber atau teknik untuk memvalidasi data.</li>
+                </ul>
+
+                <h3>13.4.2 Etika Pengumpulan Data</h3>
+                <p><strong>Etika penelitian</strong> adalah prinsip moral yang harus dijunjung dalam pengumpulan data. Prinsip utama etika:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prinsip</th>
+                            <th>Penjelasan</th>
+                            <th>Implementasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Informed Consent</strong></td>
+                            <td>Persetujuan setelah diberi penjelasan</td>
+                            <td>Jelaskan tujuan, prosedur, risiko, dan manfaat sebelum responden berpartisipasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kerahasiaan (Confidentiality)</strong></td>
+                            <td>Menjaga privasi narasumber</td>
+                            <td>Tidak menyebarkan data pribadi, gunakan kode anonim jika perlu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Voluntariness</strong></td>
+                            <td>Partisipasi bersifat sukarela</td>
+                            <td>Responden boleh menolak atau mengundurkan diri kapan saja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Respect</strong></td>
+                            <td>Menghormati narasumber</td>
+                            <td>Sopan santun, tidak memaksa, menghargai waktu dan privasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permission</strong></td>
+                            <td>Izin resmi dari pihak berwenang</td>
+                            <td>Surat izin dari sekolah, nagari, atau orang tua (jika responden di bawah umur)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Lembar Persetujuan (Informed Consent):</strong><br><br>
+                    "Saya yang bertanda tangan di bawah ini:<br>
+                    Nama: ...<br>
+                    NIS/NIP: ...<br><br>
+                    Telah diberikan penjelasan oleh tim peneliti dari SMKN 1 Koto Balingka tentang projek IPAS berjudul '[Judul Projek]'. Saya memahami tujuan, prosedur, dan potensi risiko dari partisipasi saya. Saya bersedia berpartisipasi secara sukarela dan dapat mengundurkan diri kapan saja tanpa konsekuensi.<br><br>
+                    Data yang saya berikan akan dijaga kerahasiaannya dan hanya digunakan untuk keperluan projek ini.<br><br>
+                    Padang, ...<br>
+                    Responden&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Peneliti<br>
+                    (tanda tangan)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(tanda tangan)"
+                </div>
+
+                <h3>13.4.3 Keselamatan Kerja dalam Pengumpulan Data</h3>
+                <p>Keselamatan kerja bukan hanya di laboratorium, tetapi juga saat pengumpulan data di lapangan. Hal-hal yang perlu diperhatikan:</p>
+
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Kenali lokasi:</strong> Pelajari kondisi lapangan sebelum berangkat (medan, cuaca, risiko).</li>
+                    <li><strong>Bawa perlengkapan keselamatan:</strong> APD sesuai kebutuhan (masker, sarung tangan, helm jika di area industri).</li>
+                    <li><strong>Jangan pergi sendiri:</strong> Selalu bekerja dalam tim, minimal 2-3 orang.</li>
+                    <li><strong>Informasikan ke pihak terkait:</strong> Beri tahu guru/orang tua tentang lokasi dan jadwal.</li>
+                    <li><strong>Hindari area berbahaya:</strong> Jangan masuk ke area terlarang atau berisiko tinggi tanpa izin.</li>
+                    <li><strong>Siapkan kontak darurat:</strong> Nomor darurat, rumah sakit terdekat, kontak tokoh lokal.</li>
+                    <li><strong>Jaga kesehatan:</strong> Bawa air minum, makan cukup, istirahat jika lelah.</li>
+                </ul>
+
+                <h3>13.4.4 Kejujuran dalam Pengumpulan Data</h3>
+                <p><strong>Kejujuran</strong> adalah fondasi integritas ilmiah. Data yang jujur adalah data apa adanya, tanpa rekayasa. Praktik yang harus dihindari:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Praktik Curang</th>
+                            <th>Penjelasan</th>
+                            <th>Akibat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Fabrikasi</strong></td>
+                            <td>Mengarang data yang tidak pernah dikumpulkan</td>
+                            <td>Analisis salah, solusi tidak tepat, kredibilitas hancur</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Falsifikasi</strong></td>
+                            <td>Memanipulasi data agar sesuai harapan</td>
+                            <td>Kesimpulan bias, merugikan masyarakat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plagiarisme</strong></td>
+                            <td>Mengaku data orang lain sebagai milik sendiri</td>
+                            <td>Pelanggaran etika, sanksi akademik</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Selecting Bias</strong></td>
+                            <td>Hanya memilih data yang mendukung hipotesis</td>
+                            <td>Analisis tidak objektif, solusi tidak komprehensif</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <h3>⚠️ Ingat Prinsip Ini!</h3>
+                    <p style="margin-top: 0.5rem;">"<em>Lebih baik melaporkan data yang tidak sesuai harapan daripada memanipulasi data. Data yang jujur—even jika hasilnya mengecewakan—tetap bernilai ilmiah dan menjadi dasar pembelajaran. Data palsu adalah dosa terbesar dalam penelitian.</em>"</p>
+                </div>
+
+                <h3>13.4.5 Peran Siswa SMK</h3>
+                <p>Sebagai calon profesional, siswa SMK harus membiasakan diri dengan prinsip-prinsip ini sejak dini:</p>
+
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Di dunia kerja:</strong> Objektivitas dan kejujuran data adalah fondasi pengambilan keputusan bisnis.</li>
+                    <li><strong>Di industri:</strong> Etika penelitian berlaku dalam quality control, audit, dan R&D.</li>
+                    <li><strong>Di masyarakat:</strong> Integritas data membangun kepercayaan publik.</li>
+                    <li><strong>Untuk diri sendiri:</strong> Kebiasaan jujur dan objektif membentuk karakter profesional yang dihargai.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum pada Tahap Pengumpulan Data</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Tidak membuat rancangan kegiatan, langsung terjun tanpa persiapan.</li>
+                    <li>Instrumen tidak diuji coba, sehingga banyak data tidak valid.</li>
+                    <li>Tidak mengurus izin, sehingga ditolak oleh pihak terkait.</li>
+                    <li>Pertanyaan angket ambigu atau leading, menggiring jawaban responden.</li>
+                    <li>Tidak mencatat proses (tidak ada logbook), sehingga sulit melacak data.</li>
+                    <li>Memanipulasi data agar sesuai harapan (fabrikasi/falsifikasi).</li>
+                    <li>Melanggar etika: tidak meminta izin, menyebarkan data pribadi narasumber.</li>
+                    <li>Mengabaikan keselamatan: pergi sendiri ke lokasi berbahaya, tidak bawa APD.</li>
+                    <li>Tidak melakukan triangulasi, sehingga data tidak terverifikasi.</li>
+                    <li>Terburu-buru, sehingga data tidak lengkap atau tidak konsisten.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Tahap perencanaan dan pengumpulan data adalah jantung dari projek IPAS. Rancangan kegiatan yang matang—meliputi jadwal, pembagian tugas, instrumen, dan logistik—menjadi peta jalan agar projek berjalan terarah. Empat teknik pengumpulan data utama (observasi, wawancara, angket, dokumentasi) harus dipilih sesuai dengan jenis data yang dibutuhkan, dan dapat dikombinasikan melalui triangulasi untuk validitas yang lebih tinggi. Pelaksanaan pengumpulan data harus sistematis: terencana, konsisten, terdokumentasi dalam logbook, dan terverifikasi. Yang tak kalah penting adalah penegakan empat prinsip utama: objektivitas (berdasarkan fakta), etika (izin, kerahasiaan, sukarela, hormat), keselamatan (APD, kerja tim, kenali lokasi), dan kejujuran (tidak fabrikasi, falsifikasi, atau plagiarisme). Dengan menguasai tahap ini, siswa SMK tidak hanya menyelesaikan projek IPAS dengan baik, tetapi juga membangun kompetensi profesional yang sangat dibutuhkan di dunia kerja: perencanaan sistematis, pengumpulan data yang valid, dan integritas ilmiah yang tinggi.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Creswell, J. W. (2014). <em>Research Design: Qualitative, Quantitative, and Mixed Methods Approaches (4th ed.)</em>. Thousand Oaks: SAGE.</li>
+                    <li>Sugiyono. (2019). <em>Metode Penelitian Kuantitatif, Kualitatif, dan R&D</em>. Bandung: Alfabeta.</li>
+                    <li>Moleong, L. J. (2017). <em>Metodologi Penelitian Kualitatif</em>. Bandung: Remaja Rosdakarya.</li>
+                    <li>Supriadi. (2024). <em>Panduan Projek IPAS Berbasis Potensi Lokal untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="12.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="14.html" class="btn">Bab 14: Projek IPAS - Analisis Data & Pemecahan Masalah →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 13: Projek IPAS - Perencanaan dan Pengumpulan Data</h2>
+                <p style="color: var(--text-secondary);">Materi: Rancangan Kegiatan, Teknik Pengumpulan Data, Pelaksanaan Sistematis, Objektivitas-Etika-Keselamatan-Kejujuran</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="2" selected>Semester 2 (Genap)</option>
+                        <option value="1">Semester 1 (Ganjil)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Dokumen tertulis yang memuat rencana sistematis pelaksanaan projek dari awal hingga akhir disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Laporan akhir</label>
+                        <label><input type="radio" name="q1" value="b"> b. Rancangan kegiatan proyek</label>
+                        <label><input type="radio" name="q1" value="c"> c. Daftar pustaka</label>
+                        <label><input type="radio" name="q1" value="d"> d. Transkrip wawancara</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Teknik pengumpulan data melalui pengamatan langsung terhadap fenomena disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Wawancara</label>
+                        <label><input type="radio" name="q2" value="b"> b. Angket</label>
+                        <label><input type="radio" name="q2" value="c"> c. Observasi</label>
+                        <label><input type="radio" name="q2" value="d"> d. Dokumentasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Wawancara di mana peneliti menggunakan pedoman pertanyaan tetapi tetap fleksibel untuk menggali lebih dalam disebut wawancara...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Terstruktur</label>
+                        <label><input type="radio" name="q3" value="b"> b. Semi-terstruktur</label>
+                        <label><input type="radio" name="q3" value="c"> c. Tidak terstruktur</label>
+                        <label><input type="radio" name="q3" value="d"> d. Kelompok terarah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Daftar pertanyaan tertulis yang dibagikan kepada responden untuk diisi sendiri disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Pedoman observasi</label>
+                        <label><input type="radio" name="q4" value="b"> b. Transkrip</label>
+                        <label><input type="radio" name="q4" value="c"> c. Angket/kuesioner</label>
+                        <label><input type="radio" name="q4" value="d"> d. Logbook</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Prinsip etika penelitian yang menyatakan bahwa partisipasi responden bersifat sukarela disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Confidentiality</label>
+                        <label><input type="radio" name="q5" value="b"> b. Voluntariness</label>
+                        <label><input type="radio" name="q5" value="c"> c. Informed consent</label>
+                        <label><input type="radio" name="q5" value="d"> d. Anonymity</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Tindakan mengarang data yang tidak pernah dikumpulkan disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Falsifikasi</label>
+                        <label><input type="radio" name="q6" value="b"> b. Plagiarisme</label>
+                        <label><input type="radio" name="q6" value="c"> c. Fabrikasi</label>
+                        <label><input type="radio" name="q6" value="d"> d. Triangulasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Catatan harian yang merekam setiap aktivitas pengumpulan data disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Transkrip</label>
+                        <label><input type="radio" name="q7" value="b"> b. Logbook (jurnal harian)</label>
+                        <label><input type="radio" name="q7" value="c"> c. Daftar pustaka</label>
+                        <label><input type="radio" name="q7" value="d"> d. Angket</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Teknik pengumpulan data yang paling tepat untuk mendapatkan data dari banyak responden dalam waktu singkat adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Wawancara mendalam</label>
+                        <label><input type="radio" name="q8" value="b"> b. Observasi partisipan</label>
+                        <label><input type="radio" name="q8" value="c"> c. Angket/kuesioner</label>
+                        <label><input type="radio" name="q8" value="d"> d. Studi dokumentasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Penggunaan beberapa teknik pengumpulan data sekaligus untuk memvalidasi data disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Fabrikasi</label>
+                        <label><input type="radio" name="q9" value="b"> b. Triangulasi</label>
+                        <label><input type="radio" name="q9" value="c"> c. Falsifikasi</label>
+                        <label><input type="radio" name="q9" value="d"> d. Plagiarisme</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. [HOTS] Seorang siswa ingin meneliti tentang kesadaran kebersihan di kantin sekolah. Ia hanya mencatat data siswa yang membuang sampah pada tempatnya dan mengabaikan data siswa yang membuang sampah sembarangan karena "tidak sesuai harapan". Tindakan siswa ini melanggar prinsip...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Kerahasiaan (confidentiality)</label>
+                        <label><input type="radio" name="q10" value="b"> b. Kesukarelaan (voluntariness)</label>
+                        <label><input type="radio" name="q10" value="c"> c. Objektivitas dan kejujuran</label>
+                        <label><input type="radio" name="q10" value="d"> d. Keselamatan kerja</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan 9 komponen utama rancangan kegiatan proyek! Berikan contoh konkret untuk masing-masing komponen dalam projek IPAS tentang "pengurangan sampah plastik di kantin sekolah"!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Bandingkan 4 teknik pengumpulan data (observasi, wawancara, angket, dokumentasi) dari segi: definisi, kelebihan, kekurangan, dan contoh penggunaannya dalam projek IPAS! Kapan masing-masing teknik paling tepat digunakan?</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Uraikan 6 langkah pelaksanaan pengumpulan data secara sistematis! Berikan contoh konkret penerapan setiap langkah dalam sebuah projek IPAS, lengkap dengan output yang dihasilkan pada setiap langkah!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Jelaskan 4 prinsip utama dalam pengumpulan data: objektivitas, etika, keselamatan, dan kejujuran! Berikan masing-masing 3 contoh pelanggaran dan 3 cara menjaga prinsip tersebut dalam praktik pengumpulan data di lapangan!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Rancang sebuah rencana pengumpulan data untuk projek IPAS berjudul "Pengaruh Program Bank Sampah terhadap Kesadaran Siswa SMKN 1 Koto Balingka dalam Mengelola Sampah". Susunlah: (a) rumusan masalah (2 pertanyaan), (b) teknik pengumpulan data yang akan digunakan beserta alasan, (c) instrumen yang akan dibuat, (d) jadwal pengumpulan data selama 2 minggu, (e) rencana mitigasi risiko, dan (f) cara menjaga objektivitas, etika, keselamatan, dan kejujuran dalam projek ini!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 13
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'b',
+            q4: 'c',
+            q5: 'b',
+            q6: 'c',
+            q7: 'b',
+            q8: 'c',
+            q9: 'b',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            document.getElementById('skorPG').textContent = pgScore;
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

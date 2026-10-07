@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 7: Keanekaragaman Hayati dan Sumber Daya Alam - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 7</span>
+            <h1>Keanekaragaman Hayati dan Sumber Daya Alam</h1>
+            <p class="subtitle">Memahami tingkatan keanekaragaman hayati, potensi sumber daya alam Indonesia, pemanfaatan berkelanjutan, serta pelestarian keanekaragaman hayati berbasis potensi lokal.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="6.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="8.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Indonesia dikenal sebagai salah satu negara <em>megabiodiversity</em> dunia—memiliki kekayaan keanekaragaman hayati yang luar biasa, mulai dari hutan hujan tropis, terumbu karang, hingga spesies endemik yang tidak ditemukan di tempat lain di bumi. Kekayaan ini bukan hanya warisan alam, tetapi juga modal pembangunan yang harus dikelola secara bijaksana agar dapat dinikmati oleh generasi sekarang dan mendatang.</p>
+                <br>
+                <p>Bagi peserta didik SMK, pemahaman tentang keanekaragaman hayati dan sumber daya alam (SDA) sangat penting—terutama bagi mereka yang akan bekerja di bidang pertanian, perikanan, kehutanan, pariwisata, dan industri berbasis bahan alam. Pengetahuan ini menjadi dasar dalam menerapkan prinsip pembangunan berkelanjutan, mengembangkan produk berbasis potensi lokal, dan menjaga keseimbangan ekosistem yang menjadi fondasi kehidupan dan ekonomi masyarakat.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Keanekaragaman Hayati (Biodiversitas):</strong> Variasi makhluk hidup di bumi pada tingkat gen, jenis (spesies), dan ekosistem.</li>
+                    <li><strong>Sumber Daya Alam (SDA):</strong> Semua kekayaan alam (hayati dan non-hayati) yang dapat dimanfaatkan untuk memenuhi kebutuhan manusia.</li>
+                    <li><strong>SDA Hayati:</strong> SDA yang berasal dari makhluk hidup (tumbuhan, hewan, mikroorganisme).</li>
+                    <li><strong>SDA Non-Hayati:</strong> SDA yang berasal dari benda tak hidup (mineral, tambang, air, tanah, energi).</li>
+                    <li><strong>Pembangunan Berkelanjutan:</strong> Pembangunan yang memenuhi kebutuhan saat ini tanpa mengorbankan kemampuan generasi mendatang untuk memenuhi kebutuhannya.</li>
+                    <li><strong>Konservasi:</strong> Upaya perlindungan, pengawetan, dan pemanfaatan keanekaragaman hayati secara bijaksana.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Konservasi Harimau Sumatera di Bukit Barisan Selatan</h3>
+                <p>Taman Nasional Bukit Barisan Selatan (TNBBS) di Sumatera merupakan habitat terakhir Harimau Sumatera (<em>Panthera tigris sumatrae</em>), subspesies harimau endemik yang hanya ada di Pulau Sumatera. Populasinya diperkirakan kurang dari 400 ekor di alam liar. Ancaman utama meliputi perburuan liar, perambahan hutan untuk perkebunan sawit, dan konflik dengan masyarakat sekitar.</p>
+                <br>
+                <p>Berbagai upaya konservasi dilakukan: patroli anti-perburuan, rehabilitasi habitat, program <em>human-wildlife conflict resolution</em>, serta pemberdayaan masyarakat sekitar melalui ekowisata dan agroforestri. Hasilnya, kesadaran masyarakat meningkat dan beberapa populasi harimau mulai menunjukkan tanda pemulihan.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Konservasi bukan hanya tentang melindungi satwa, tetapi juga melibatkan masyarakat lokal melalui pemberdayaan ekonomi berbasis potensi alam. Siswa SMK dapat berperan dalam mengembangkan solusi teknologi dan kewirausahaan yang mendukung konservasi.</p>
+            </div>
+
+            <h2>7.1 Pengertian dan Tingkatan Keanekaragaman Hayati</h2>
+            <div class="card">
+                <p><strong>Keanekaragaman hayati</strong> (biodiversitas) adalah keseluruhan variasi makhluk hidup di bumi, termasuk variasi genetik di dalam spesies, variasi antar spesies, dan variasi ekosistem tempat mereka hidup. Konsep ini pertama kali dipopulerkan oleh Edward O. Wilson pada tahun 1988 dan menjadi fondasi bagi ilmu konservasi modern.</p>
+
+                <h3>7.1.1 Tiga Tingkatan Keanekaragaman Hayati</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tingkatan</th>
+                            <th>Definisi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Keanekaragaman Gen</strong></td>
+                            <td>Variasi gen dalam satu spesies yang menyebabkan perbedaan sifat antar individu</td>
+                            <td>Berbagai varietas padi (IR64, Ciherang, Rojolele), berbagai jenis mangga (gedok, manalagi, arumanis), berbagai warna bunga mawar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keanekaragaman Jenis (Spesies)</strong></td>
+                            <td>Variasi antar spesies yang berbeda dalam satu famili atau kelompok</td>
+                            <td>Keluarga kucing (kucing domestik, harimau, singa, cheetah), keluarga palma (kelapa, sawit, pinang, kurma)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keanekaragaman Ekosistem</strong></td>
+                            <td>Variasi ekosistem di bumi dengan komunitas organisme dan lingkungan fisik yang berbeda</td>
+                            <td>Hutan hujan tropis, hutan mangrove, padang rumput, terumbu karang, gurun, tundra</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>7.1.2 Nilai Keanekaragaman Hayati</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Nilai Ekologis:</strong> Menjaga keseimbangan ekosistem, siklus nutrisi, dan rantai makanan.</li>
+                    <li><strong>Nilai Ekonomi:</strong> Sumber bahan pangan, obat-obatan, bahan baku industri, dan objek pariwisata.</li>
+                    <li><strong>Nilai Ilmu Pengetahuan:</strong> Sumber penelitian dan pengembangan teknologi (bioprospeksi).</li>
+                    <li><strong>Nilai Budaya:</strong> Bagian dari identitas, tradisi, dan kearifan lokal masyarakat.</li>
+                    <li><strong>Nilai Estetika:</strong> Keindahan alam yang meningkatkan kualitas hidup.</li>
+                </ul>
+            </div>
+
+            <h2>7.2 Potensi Sumber Daya Alam Indonesia</h2>
+            <div class="card">
+                <p>Indonesia terletak di posisi strategis (khatulistiwa, antara dua benua dan dua samudra) yang menjadikannya salah satu negara terkaya di dunia dalam hal SDA. Kekayaan ini dapat dikelompokkan menjadi:</p>
+
+                <h3>7.2.1 SDA Hayati (Biotik)</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Flora:</strong> Lebih dari 38.000 spesies tumbuhan, termasuk Rafflesia arnoldii (bunga terbesar di dunia), 400+ spesies anggrek, dan berbagai tanaman obat.</li>
+                    <li><strong>Fauna:</strong> Lebih dari 300.000 spesies hewan, termasuk spesies endemik seperti Komodo, Orangutan, Harimau Sumatera, Badak Jawa, Cendrawasih, dan Anoa.</li>
+                    <li><strong>Mikroorganisme:</strong> Berperan dalam fermentasi, penguraian, dan bioteknologi.</li>
+                </ul>
+
+                <h3>7.2.2 SDA Non-Hayati (Abiotik)</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Mineral & Tambang:</strong> Emas, tembaga (Freeport), nikel, timah, batubara, minyak bumi, gas alam.</li>
+                    <li><strong>Air:</strong> Potensi hidroelektrik, air tanah, dan sungai-sungai besar.</li>
+                    <li><strong>Tanah:</strong> Tanah vulkanik yang subur untuk pertanian.</li>
+                    <li><strong>Energi Terbarukan:</strong> Panas bumi (Indonesia terbesar ke-2 di dunia), energi surya, angin, gelombang, dan bioenergi.</li>
+                    <li><strong>Kelautan:</strong> Terumbu karang terluas (Coral Triangle), potensi perikanan, dan wisata bahari.</li>
+                </ul>
+
+                <h3>7.2.3 Potensi Lokal Sumatera Barat</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Pertanian:</strong> Kopi Solok, kakau, kelapa, padi, sayur-mayur dataran tinggi.</li>
+                    <li><strong>Perikanan:</strong> Ikan air tawar (Danau Maninjau, Singkarak, Diatas), rumput laut pesisir.</li>
+                    <li><strong>Pariwisata Alam:</strong> Jam Gadang, Ngarai Sianok, Danau Maninjau, Harau, Gunung Marapi-Singgalang.</li>
+                    <li><strong>Kearifan Lokal:</strong> Sistem <em>subak</em> (irigasi), rumah gadang, kuliner tradisional (rendang, dadih).</li>
+                    <li><strong>Kerajinan:</strong> Songket, ukiran kayu, tenun, dan produk berbasis bahan alam.</li>
+                </ul>
+            </div>
+
+            <h2>7.3 Pemanfaatan Sumber Daya Alam secara Berkelanjutan</h2>
+            <div class="card">
+                <h3>7.3.1 Konsep Pembangunan Berkelanjutan</h3>
+                <p>Pembangunan berkelanjutan (<em>sustainable development</em>) didefinisikan oleh <strong>Komisi Brundtland (1987)</strong> sebagai: "Pembangunan yang memenuhi kebutuhan generasi saat ini tanpa mengorbankan kemampuan generasi mendatang untuk memenuhi kebutuhan mereka." Konsep ini bertumpu pada tiga pilar:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Pilar Ekonomi:</strong> Pertumbuhan yang inklusif dan berkelanjutan.</li>
+                    <li><strong>Pilar Sosial:</strong> Keadilan, kesehatan, pendidikan, dan kesejahteraan masyarakat.</li>
+                    <li><strong>Pilar Lingkungan:</strong> Pelestarian ekosistem dan pengelolaan SDA yang bijaksana.</li>
+                </ul>
+
+                <h3>7.3.2 Prinsip Pemanfaatan SDA Berkelanjutan</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Prinsip Kelestarian:</strong> Memanfaatkan SDA dengan menjaga kemampuan regenerasinya (misalnya: tebang pilih, tidak menangkap ikan dengan pukat harimau).</li>
+                    <li><strong>Prinsip Efisiensi:</strong> Menggunakan SDA seefisien mungkin untuk meminimalkan limbah.</li>
+                    <li><strong>Prinsip Keadilan Antargenerasi:</strong> Menjaga kualitas SDA agar dapat dinikmati generasi mendatang.</li>
+                    <li><strong>Prinsip Partisipatif:</strong> Melibatkan masyarakat lokal dalam pengelolaan SDA.</li>
+                    <li><strong>Prinsip Kearifan Lokal:</strong> Mengintegrasikan pengetahuan tradisional dengan teknologi modern.</li>
+                </ul>
+
+                <h3>7.3.3 Contoh Penerapan Berkelanjutan</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bidang</th>
+                            <th>Penerapan Berkelanjutan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pertanian</strong></td>
+                            <td>Pertanian organik, rotasi tanaman, agroforestri, pengendalian hama terpadu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perikanan</strong></td>
+                            <td>Budidaya ramah lingkungan, larangan pukat harimau, kawasan konservasi laut</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kehutanan</strong></td>
+                            <td>Tebang pilih, reboisasi, hutan adat, sertifikasi FSC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pariwisata</strong></td>
+                            <td>Ekowisata, wisata berbasis masyarakat, daya dukung lingkungan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Industri</strong></td>
+                            <td>Produksi bersih, daur ulang, teknologi rendah emisi, ekonomi sirkular</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi</strong></td>
+                            <td>Transisi ke energi terbarukan, efisiensi energi, smart grid</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>7.4 Pelestarian Keanekaragaman Hayati dan Pengembangan Potensi Lokal</h2>
+            <div class="card">
+                <h3>7.4.1 Ancaman terhadap Keanekaragaman Hayati</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Hilangnya habitat:</strong> Deforestasi, alih fungsi lahan, urbanisasi.</li>
+                    <li><strong>Eksploitasi berlebihan:</strong> Perburuan liar, penangkapan ikan berlebihan, penebangan ilegal.</li>
+                    <li><strong>Spesies invasif:</strong> Spesies asing yang mengganggu ekosistem lokal.</li>
+                    <li><strong>Pencemaran:</strong> Limbah industri, pestisida, plastik.</li>
+                    <li><strong>Perubahan iklim:</strong> Mengganggu pola distribusi dan reproduksi spesies.</li>
+                </ul>
+
+                <h3>7.4.2 Upaya Pelestarian</h3>
+                <p><strong>A. Konservasi In Situ (di habitat asli):</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Taman Nasional:</strong> TN Gunung Leuser, TN Kerinci Seblat, TN Komodo.</li>
+                    <li><strong>Cagar Alam:</strong> Perlindungan ketat untuk spesies/endemik tertentu.</li>
+                    <li><strong>Suaka Margasatwa:</strong> Perlindungan khusus untuk satwa liar.</li>
+                    <li><strong>Taman Hutan Raya:</strong> Kombinasi konservasi dan penelitian.</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>B. Konservasi Ex Situ (di luar habitat asli):</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Kebun Binatang:</strong> Penangkaran satwa langka.</li>
+                    <li><strong>Kebun Raya:</strong> Koleksi tumbuhan (Kebun Raya Bogor).</li>
+                    <li><strong>Bank Gen:</strong> Penyimpanan materi genetik untuk masa depan.</li>
+                    <li><strong>Penangkaran Buatan:</strong> Penangkaran penyu, orangutan, harimau.</li>
+                </ul>
+
+                <h3>7.4.3 Pengembangan Potensi Lokal Berbasis Keanekaragaman Hayati</h3>
+                <p>Siswa SMK dapat berperan dalam mengembangkan potensi lokal melalui:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Agribisnis Berkelanjutan:</strong> Budidaya tanaman obat, buah lokal, kopi specialty.</li>
+                    <li><strong>Ekowisata:</strong> Mengemas destinasi alam dengan prinsip konservasi.</li>
+                    <li><strong>Industri Kreatif:</strong> Produk kerajinan berbasis bahan alam lokal.</li>
+                    <li><strong>Bioteknologi:</strong> Pemanfaatan mikroorganisme untuk fermentasi (rendang, dadih, tapai).</li>
+                    <li><strong>Kuliner Tradisional:</strong> Mengangkat warisan kuliner berbasis SDA lokal.</li>
+                    <li><strong>Branding Produk Lokal:</strong> Sertifikasi, kemasan modern, pemasaran digital.</li>
+                </ul>
+
+                <h3>7.4.4 Peran Siswa SMK</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Menjadi agen konservasi di sekolah dan komunitas.</li>
+                    <li>Mengembangkan produk inovatif berbasis SDA lokal.</li>
+                    <li>Menerapkan prinsip K3L di dunia kerja.</li>
+                    <li>Mendukung produk lokal yang ramah lingkungan.</li>
+                    <li>Mendokumentasikan dan melestarikan kearifan lokal.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Keanekaragaman Hayati dan SDA</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Mengira keanekaragaman hayati hanya tentang jumlah spesies (padahal mencakup juga variasi gen dan ekosistem).</li>
+                    <li>Beranggapan bahwa konservasi berarti "melarang pemanfaatan" (padahal konservasi modern mendukung pemanfaatan bijaksana).</li>
+                    <li>Meremehkan kearifan lokal (padahal banyak praktik tradisional yang terbukti berkelanjutan secara ilmiah).</li>
+                    <li>Mengira SDA Indonesia tidak akan habis (faktanya, banyak SDA yang sudah mengalami penurunan drastis).</li>
+                    <li>Tidak menyadari bahwa kehilangan biodiversitas berdampak langsung pada ketahanan pangan dan kesehatan manusia.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Keanekaragaman hayati adalah variasi kehidupan di bumi pada tingkat gen, spesies, dan ekosistem yang memiliki nilai ekologis, ekonomi, ilmu pengetahuan, budaya, dan estetika. Indonesia sebagai negara megabiodiversity memiliki potensi SDA yang luar biasa, baik hayati (flora, fauna, mikroorganisme) maupun non-hayati (mineral, energi, air). Pemanfaatan SDA harus dilakukan secara berkelanjutan dengan prinsip kelestarian, efisiensi, keadilan antargenerasi, partisipatif, dan kearifan lokal. Pelestarian dilakukan melalui konservasi in situ (taman nasional, cagar alam) dan ex situ (kebun binatang, bank gen), serta pengembangan potensi lokal berbasis agribisnis, ekowisata, industri kreatif, dan bioteknologi. Sebagai calon tenaga kerja profesional, siswa SMK memiliki peran strategis dalam melestarikan keanekaragaman hayati sekaligus mengembangkan ekonomi berbasis potensi lokal yang berkelanjutan.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Campbell, N. A., & Reece, J. B. (2020). <em>Biology (12th ed.)</em>. New York: Pearson.</li>
+                    <li>LIPI. (2022). <em>Indeks Keanekaragaman Hayati Indonesia</em>. Jakarta: LIPI Press.</li>
+                    <li>Kementerian LHK. (2023). <em>Status Keanekaragaman Hayati Indonesia</em>. Jakarta: KLHK.</li>
+                    <li>WCED. (1987). <em>Our Common Future (Brundtland Report)</em>. Oxford: Oxford University Press.</li>
+                    <li>Supriadi. (2024). <em>Konsep Dasar Keanekaragaman Hayati dan SDA untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="6.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="8.html" class="btn">Bab 8: Teknologi dalam Kehidupan →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 7: Keanekaragaman Hayati dan Sumber Daya Alam</h2>
+                <p style="color: var(--text-secondary);">Materi: Tingkatan Biodiversitas, Potensi SDA Indonesia, Pemanfaatan Berkelanjutan, dan Pelestarian</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Keanekaragaman hayati pada tingkat gen ditunjukkan oleh...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Perbedaan antara harimau dan kucing domestik</label>
+                        <label><input type="radio" name="q1" value="b"> b. Perbedaan varietas padi IR64, Ciherang, dan Rojolele</label>
+                        <label><input type="radio" name="q1" value="c"> c. Perbedaan antara hutan hujan tropis dan padang rumput</label>
+                        <label><input type="radio" name="q1" value="d"> d. Perbedaan antara ikan air tawar dan ikan air laut</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Indonesia dikenal sebagai negara megabiodiversity karena...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Memiliki jumlah penduduk terbanyak di Asia Tenggara</label>
+                        <label><input type="radio" name="q2" value="b"> b. Memiliki kekayaan keanekaragaman hayati yang sangat tinggi</label>
+                        <label><input type="radio" name="q2" value="c"> c. Memiliki wilayah terluas di dunia</label>
+                        <label><input type="radio" name="q2" value="d"> d. Memiliki industri paling maju</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Bunga Rafflesia arnoldii merupakan contoh keanekaragaman hayati tingkat...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Gen</label>
+                        <label><input type="radio" name="q3" value="b"> b. Spesies (jenis)</label>
+                        <label><input type="radio" name="q3" value="c"> c. Ekosistem</label>
+                        <label><input type="radio" name="q3" value="d"> d. Populasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Sumber daya alam hayati (biotik) meliputi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Batubara, minyak bumi, dan gas alam</label>
+                        <label><input type="radio" name="q4" value="b"> b. Tumbuhan, hewan, dan mikroorganisme</label>
+                        <label><input type="radio" name="q4" value="c"> c. Tanah, air, dan udara</label>
+                        <label><input type="radio" name="q4" value="d"> d. Emas, nikel, dan timah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Pembangunan berkelanjutan didefinisikan sebagai pembangunan yang...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Mengutamakan pertumbuhan ekonomi tanpa batas</label>
+                        <label><input type="radio" name="q5" value="b"> b. Memenuhi kebutuhan saat ini tanpa mengorbankan kemampuan generasi mendatang</label>
+                        <label><input type="radio" name="q5" value="c"> c. Fokus hanya pada pelestarian lingkungan tanpa pembangunan</label>
+                        <label><input type="radio" name="q5" value="d"> d. Mengandalkan bantuan luar negeri</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Konservasi in situ adalah upaya pelestarian yang dilakukan...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Di kebun binatang</label>
+                        <label><input type="radio" name="q6" value="b"> b. Di kebun raya</label>
+                        <label><input type="radio" name="q6" value="c"> c. Di habitat aslinya (taman nasional, cagar alam)</label>
+                        <label><input type="radio" name="q6" value="d"> d. Di bank gen</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Contoh hewan endemik Indonesia yang hanya ditemukan di Pulau Komodo adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Harimau Sumatera</label>
+                        <label><input type="radio" name="q7" value="b"> b. Komodo (Varanus komodoensis)</label>
+                        <label><input type="radio" name="q7" value="c"> c. Orangutan</label>
+                        <label><input type="radio" name="q7" value="d"> d. Badak Jawa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Salah satu ancaman utama terhadap keanekaragaman hayati adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Reboisasi hutan</label>
+                        <label><input type="radio" name="q8" value="b"> b. Konservasi ex situ</label>
+                        <label><input type="radio" name="q8" value="c"> c. Hilangnya habitat akibat deforestasi dan alih fungsi lahan</label>
+                        <label><input type="radio" name="q8" value="d"> d. Pertanian organik</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Potensi lokal Sumatera Barat yang dapat dikembangkan secara berkelanjutan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Pertambangan emas skala besar tanpa izin</label>
+                        <label><input type="radio" name="q9" value="b"> b. Ekowisata Danau Maninjau dan budidaya ikan air tawar</label>
+                        <label><input type="radio" name="q9" value="c"> c. Pembalakan liar di hutan lindung</label>
+                        <label><input type="radio" name="q9" value="d"> d. Perburuan satwa liar untuk dijual</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Peran siswa SMK dalam pelestarian keanekaragaman hayati dapat diwujudkan melalui...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Membuang limbah sembarangan</label>
+                        <label><input type="radio" name="q10" value="b"> b. Mengembangkan produk inovatif berbasis SDA lokal yang ramah lingkungan</label>
+                        <label><input type="radio" name="q10" value="c"> c. Menggunakan bahan kimia berbahaya tanpa batas</label>
+                        <label><input type="radio" name="q10" value="d"> d. Mengabaikan kearifan lokal</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan tiga tingkatan keanekaragaman hayati (gen, spesies, ekosistem)! Berikan masing-masing 2 contoh konkret yang dapat Anda temukan di lingkungan sekitar Anda!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Uraikan potensi sumber daya alam Indonesia, baik hayati maupun non-hayati! Jelaskan mengapa Indonesia disebut sebagai negara megabiodiversity dan apa implikasinya bagi pembangunan nasional!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Jelaskan konsep pembangunan berkelanjutan menurut Komisi Brundtland! Uraikan tiga pilar utamanya (ekonomi, sosial, lingkungan) dan berikan contoh penerapannya di bidang pertanian dan perikanan!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Bandingkan konservasi in situ dan ex situ! Berikan masing-masing 3 contoh di Indonesia, serta jelaskan kelebihan dan kekurangan dari masing-masing pendekatan!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Rancang sebuah ide usaha berbasis potensi lokal di daerah Anda (Sumatera Barat atau daerah asal Anda) yang menerapkan prinsip keanekaragaman hayati dan pembangunan berkelanjutan! Jelaskan produk/jasa yang ditawarkan, bahan baku lokal yang digunakan, dampak ekonomi dan lingkungan, serta strategi pemasaran yang akan Anda terapkan!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 7
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'b',
+            q4: 'b',
+            q5: 'b',
+            q6: 'c',
+            q7: 'b',
+            q8: 'c',
+            q9: 'b',
+            q10: 'b'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 3: Materi dan Perubahannya - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 3</span>
+            <h1>Materi dan Perubahannya</h1>
+            <p class="subtitle">Memahami konsep materi, klasifikasi zat (unsur, senyawa, campuran), metode pemisahan, serta perubahan fisika dan kimia dalam kehidupan sehari-hari dan dunia kerja.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="2.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="4.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Seluruh benda yang ada di sekitar kita—mulai dari udara yang kita hirup, air yang kita minum, hingga logam yang digunakan dalam mesin industri—tersusun atas materi. Dalam konteks Projek IPAS, pemahaman tentang materi dan perubahannya merupakan fondasi penting untuk menjelaskan fenomena alam, proses industri, hingga permasalahan lingkungan seperti pencemaran dan pengelolaan limbah.</p>
+                <br>
+                <p>Bagi peserta didik SMK, penguasaan konsep materi dan perubahannya tidak hanya bersifat akademis, tetapi juga aplikatif. Pengetahuan ini menjadi dasar dalam memahami proses manufaktur, pengujian kualitas produk, pengolahan bahan baku, hingga identifikasi reaksi berbahaya di lingkungan kerja. Oleh karena itu, materi ini dirancang agar siswa mampu mengklasifikasikan zat, memisahkan campuran, serta membedakan perubahan fisika dan kimia secara kontekstual.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Materi:</strong> Segala sesuatu yang memiliki massa dan menempati ruang.</li>
+                    <li><strong>Unsur:</strong> Zat tunggal yang tidak dapat diuraikan menjadi zat lain yang lebih sederhana melalui reaksi kimia biasa.</li>
+                    <li><strong>Senyawa:</strong> Zat tunggal yang terbentuk dari gabungan dua unsur atau lebih melalui reaksi kimia dengan perbandingan tetap.</li>
+                    <li><strong>Campuran:</strong> Gabungan dua zat atau lebih tanpa melalui reaksi kimia, sehingga masing-masing zat masih mempertahankan sifat aslinya.</li>
+                    <li><strong>Perubahan Fisika:</strong> Perubahan yang tidak menghasilkan zat baru (hanya berubah wujud atau bentuk).</li>
+                    <li><strong>Perubahan Kimia:</strong> Perubahan yang menghasilkan zat baru dengan sifat yang berbeda dari zat asalnya.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Kecelakaan Akibat Salah Mengidentifikasi Perubahan Kimia</h3>
+                <p>Di sebuah bengkel las SMK, seorang siswa mencampur cairan pembersih berbasis klorin dengan cairan pembersih lain yang mengandung asam. Ia mengira hanya akan menghasilkan larutan pembersih yang lebih kuat. Namun, campuran tersebut justru menghasilkan gas klorin beracun yang menyebabkan keracunan massal dan kerusakan paru-paru.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Ketidaktahuan tentang perubahan kimia dan reaksi antar zat dapat berakibat fatal. Pemahaman dasar tentang materi dan perubahannya sangat penting untuk keselamatan kerja (K3) di dunia industri maupun kehidupan sehari-hari.</p>
+            </div>
+
+            <h2>3.1 Pengertian dan Sifat-Sifat Materi</h2>
+            <div class="card">
+                <p><strong>Materi</strong> didefinisikan sebagai segala sesuatu yang memiliki massa dan menempati ruang (volume). Materi dapat berada dalam tiga wujud utama: <em>padat</em>, <em>cair</em>, dan <em>gas</em>. Setiap materi memiliki dua jenis sifat:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Sifat Fisika:</strong> Sifat yang dapat diamati tanpa mengubah komposisi zat, seperti warna, bau, titik didih, titik leleh, massa jenis, dan kelarutan.</li>
+                    <li><strong>Sifat Kimia:</strong> Sifat yang baru dapat diamati ketika zat mengalami perubahan kimia, seperti mudah terbakar, mudah berkarat, atau reaktif terhadap asam.</li>
+                </ul>
+            </div>
+
+            <h2>3.2 Unsur, Senyawa, dan Campuran</h2>
+            <div class="card">
+                <h3>3.2.1 Klasifikasi Zat</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Zat</th>
+                            <th>Definisi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Unsur</strong></td>
+                            <td>Zat tunggal yang tidak dapat diuraikan</td>
+                            <td>Emas (Au), Oksigen (O₂), Besi (Fe)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senyawa</strong></td>
+                            <td>Gabungan dua unsur atau lebih dengan perbandingan tetap</td>
+                            <td>Air (H₂O), Garam dapur (NaCl), Gula (C₁₂H₂₂O₁₁)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Campuran Homogen</strong></td>
+                            <td>Campuran yang komponennya tidak dapat dibedakan (larutan)</td>
+                            <td>Air gula, udara, larutan garam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Campuran Heterogen</strong></td>
+                            <td>Campuran yang komponennya masih dapat dibedakan</td>
+                            <td>Air + pasir, salad buah, tanah</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3.2.2 Metode Pemisahan Campuran</h3>
+                <p>Dalam dunia kerja, pemisahan campuran sangat penting, misalnya dalam industri minyak, pengolahan air, dan farmasi. Berikut metode-metode utama:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Filtrasi (Penyaringan):</strong> Memisahkan zat padat dari cairan berdasarkan ukuran partikel. Contoh: menyaring air keruh.</li>
+                    <li><strong>Distilasi (Penyulingan):</strong> Memisahkan cairan berdasarkan perbedaan titik didih. Contoh: pemurnian air, pengolahan minyak bumi.</li>
+                    <li><strong>Kromatografi:</strong> Memisahkan zat berdasarkan perbedaan kecepatan migrasi pada medium tertentu. Contoh: uji kandungan zat dalam makanan.</li>
+                    <li><strong>Sublimasi:</strong> Memisahkan zat yang dapat menyublim (padat langsung gas). Contoh: pemurnian kamper.</li>
+                    <li><strong>Magnet:</strong> Memisahkan bahan yang dapat ditarik magnet. Contoh: memisahkan serbuk besi dari pasir.</li>
+                </ul>
+            </div>
+
+            <h2>3.3 Perubahan Fisika dan Perubahan Kimia</h2>
+            <div class="card">
+                <h3>3.3.1 Perubahan Fisika</h3>
+                <p>Perubahan fisika adalah perubahan yang <strong>tidak menghasilkan zat baru</strong>. Hanya wujud atau bentuk zat yang berubah, sedangkan komposisi kimianya tetap sama. Ciri-cirinya:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Tidak terbentuk zat baru</li>
+                    <li>Sifat zat tetap sama sebelum dan sesudah perubahan</li>
+                    <li>Bersifat reversibel (dapat kembali ke bentuk semula)</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Contoh:</strong> Es mencair, air menguap, gula dilarutkan dalam air, besi dipotong, kertas disobek.</p>
+
+                <h3>3.3.2 Perubahan Kimia</h3>
+                <p>Perubahan kimia adalah perubahan yang <strong>menghasilkan zat baru</strong> dengan sifat yang berbeda dari zat asalnya. Ciri-cirinya:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Terbentuk zat baru</li>
+                    <li>Terjadi perubahan warna, suhu, atau terbentuk gas/endapan</li>
+                    <li>Bersifat irreversibel (sulit kembali ke bentuk semula)</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Contoh:</strong> Besi berkarat, kayu dibakar, makanan membusuk, fotosintesis, pencernaan makanan.</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Materi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Menganggap air murni sebagai unsur (padahal air adalah senyawa H₂O).</li>
+                    <li>Menyamakan campuran homogen dengan senyawa (campuran homogen dapat dipisahkan secara fisika, senyawa hanya secara kimia).</li>
+                    <li>Mengira gula yang larut dalam air adalah perubahan kimia (padahal hanya perubahan fisika karena gula tidak berubah menjadi zat baru).</li>
+                    <li>Tidak memperhatikan aspek keselamatan saat melakukan eksperimen perubahan kimia di laboratorium.</li>
+                </ul>
+            </div>
+
+            <h2>3.4 Penerapan dalam Dunia Kerja</h2>
+            <div class="card">
+                <p>Pemahaman tentang materi dan perubahannya sangat relevan dengan berbagai bidang kejuruan di SMK:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Teknik Mesin/Otomotif:</strong> Memahami proses korosi (perubahan kimia) pada logam dan cara pencegahannya.</li>
+                    <li><strong>Tata Boga:</strong> Memahami perubahan kimia saat memasak (misalnya: protein telur yang menggumpal saat dipanaskan).</li>
+                    <li><strong>Farmasi/Kesehatan:</strong> Pemisahan zat aktif dari bahan alam menggunakan metode ekstraksi dan kromatografi.</li>
+                    <li><strong>Teknik Kimia Industri:</strong> Distilasi dalam pengolahan minyak bumi dan pembuatan produk kimia.</li>
+                    <li><strong>Agribisnis:</strong> Pemahaman tentang pupuk (senyawa) dan pencampuran media tanam (campuran heterogen).</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Materi adalah segala sesuatu yang memiliki massa dan menempati ruang, yang dapat diklasifikasikan menjadi unsur, senyawa, dan campuran. Pemahaman tentang sifat materi, metode pemisahan campuran, serta perbedaan perubahan fisika dan kimia merupakan kompetensi dasar yang sangat penting bagi siswa SMK. Pengetahuan ini tidak hanya memperkuat literasi sains, tetapi juga menjadi bekal praktis dalam menghadapi tantangan dunia kerja, terutama dalam aspek keselamatan, efisiensi proses, dan inovasi produk.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Chang, R. (2010). <em>Chemistry (10th ed.)</em>. New York: McGraw-Hill.</li>
+                    <li>Brady, J. E. (1999). <em>Kimia Universitas Asas dan Struktur</em>. Jakarta: Binarupa Aksara.</li>
+                    <li>Supriadi. (2024). <em>Konsep Dasar Kimia Terapan untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="2.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="4.html" class="btn">Bab 4: Energi dan Perubahannya →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 3: Materi dan Perubahannya</h2>
+                <p style="color: var(--text-secondary);">Materi: Pengertian Materi, Unsur-Senyawa-Campuran, Metode Pemisahan, dan Perubahan Fisika-Kimia</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Definisi yang paling tepat untuk materi adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Segala sesuatu yang dapat dilihat oleh mata</label>
+                        <label><input type="radio" name="q1" value="b"> b. Segala sesuatu yang memiliki massa dan menempati ruang</label>
+                        <label><input type="radio" name="q1" value="c"> c. Segala sesuatu yang dapat diraba</label>
+                        <label><input type="radio" name="q1" value="d"> d. Segala sesuatu yang berasal dari alam</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Zat tunggal yang tidak dapat diuraikan menjadi zat lain yang lebih sederhana melalui reaksi kimia biasa disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Senyawa</label>
+                        <label><input type="radio" name="q2" value="b"> b. Campuran</label>
+                        <label><input type="radio" name="q2" value="c"> c. Unsur</label>
+                        <label><input type="radio" name="q2" value="d"> d. Larutan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Air (H₂O) diklasifikasikan sebagai...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Unsur</label>
+                        <label><input type="radio" name="q3" value="b"> b. Senyawa</label>
+                        <label><input type="radio" name="q3" value="c"> c. Campuran homogen</label>
+                        <label><input type="radio" name="q3" value="d"> d. Campuran heterogen</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Contoh campuran homogen dalam kehidupan sehari-hari adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Air dan pasir</label>
+                        <label><input type="radio" name="q4" value="b"> b. Salad buah</label>
+                        <label><input type="radio" name="q4" value="c"> c. Air gula yang terlarut sempurna</label>
+                        <label><input type="radio" name="q4" value="d"> d. Tanah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Metode pemisahan yang paling tepat untuk memisahkan cairan dengan titik didih berbeda adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Filtrasi</label>
+                        <label><input type="radio" name="q5" value="b"> b. Distilasi</label>
+                        <label><input type="radio" name="q5" value="c"> c. Kromatografi</label>
+                        <label><input type="radio" name="q5" value="d"> d. Sublimasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Berikut yang merupakan contoh perubahan fisika adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Besi berkarat</label>
+                        <label><input type="radio" name="q6" value="b"> b. Kayu dibakar menjadi arang</label>
+                        <label><input type="radio" name="q6" value="c"> c. Es batu mencair menjadi air</label>
+                        <label><input type="radio" name="q6" value="d"> d. Makanan membusuk</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Ciri utama dari perubahan kimia adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Tidak terbentuk zat baru</label>
+                        <label><input type="radio" name="q7" value="b"> b. Terjadi perubahan wujud saja</label>
+                        <label><input type="radio" name="q7" value="c"> c. Terbentuk zat baru dengan sifat berbeda</label>
+                        <label><input type="radio" name="q7" value="d"> d. Dapat kembali ke bentuk semula dengan mudah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Peristiwa berikut yang termasuk perubahan kimia adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Garam dilarutkan dalam air</label>
+                        <label><input type="radio" name="q8" value="b"> b. Kertas disobek menjadi kecil-kecil</label>
+                        <label><input type="radio" name="q8" value="c"> c. Fotosintesis pada tumbuhan</label>
+                        <label><input type="radio" name="q8" value="d"> d. Air dipanaskan hingga mendidih</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Metode yang tepat untuk memisahkan serbuk besi dari campuran pasir adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Distilasi</label>
+                        <label><input type="radio" name="q9" value="b"> b. Kromatografi</label>
+                        <label><input type="radio" name="q9" value="c"> c. Magnet</label>
+                        <label><input type="radio" name="q9" value="d"> d. Sublimasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Dalam dunia kerja, pemahaman tentang perubahan kimia sangat penting untuk...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Menghitung biaya produksi</label>
+                        <label><input type="radio" name="q10" value="b"> b. Mencegah reaksi berbahaya dan menjaga keselamatan kerja (K3)</label>
+                        <label><input type="radio" name="q10" value="c"> c. Menentukan jadwal kerja karyawan</label>
+                        <label><input type="radio" name="q10" value="d"> d. Menghitung keuntungan perusahaan</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan perbedaan mendasar antara unsur, senyawa, dan campuran! Berikan masing-masing 2 contoh yang dapat Anda temukan di lingkungan sekolah!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Bandingkan campuran homogen dan campuran heterogen! Berikan masing-masing 3 contoh dalam kehidupan sehari-hari, serta jelaskan bagaimana cara membedakan keduanya secara visual!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Sebutkan dan jelaskan 4 metode pemisahan campuran! Untuk setiap metode, berikan contoh penerapannya dalam dunia industri atau kehidupan sehari-hari!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Jelaskan perbedaan antara perubahan fisika dan perubahan kimia! Berikan masing-masing 3 contoh dan sebutkan ciri-ciri yang membedakan keduanya!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Analisis satu proses yang terjadi di dunia kerja (misalnya: pengelasan, memasak, pembuatan roti, atau pengolahan limbah). Tentukan apakah proses tersebut termasuk perubahan fisika atau kimia, dan jelaskan mengapa pemahaman ini penting bagi pekerja di bidang tersebut!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 3
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'b',
+            q4: 'c',
+            q5: 'b',
+            q6: 'c',
+            q7: 'c',
+            q8: 'c',
+            q9: 'c',
+            q10: 'b'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

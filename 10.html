@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 10: Kegiatan Ekonomi dan Kebutuhan Manusia - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 10</span>
+            <h1>Kegiatan Ekonomi dan Kebutuhan Manusia</h1>
+            <p class="subtitle">Memahami kebutuhan manusia dan faktor yang memengaruhinya, konsep kelangkaan dan skala prioritas, kegiatan produksi-distribusi-konsumsi, serta perilaku ekonomi yang bertanggung jawab.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="9.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="11.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Setiap hari, manusia menghadapi berbagai kebutuhan—mulai dari makan, minum, pakaian, tempat tinggal, pendidikan, hingga hiburan. Namun, alat pemuas kebutuhan (sumber daya) terbatas, sementara kebutuhan manusia tidak terbatas. Kondisi inilah yang melahirkan ilmu ekonomi: ilmu tentang bagaimana manusia memenuhi kebutuhannya yang tidak terbatas dengan sumber daya yang terbatas.</p>
+                <br>
+                <p>Dalam konteks Projek IPAS untuk SMK, pemahaman tentang kegiatan ekonomi sangat relevan. Siswa SMK tidak hanya dipersiapkan untuk menjadi pekerja profesional, tetapi juga calon wirausahawan yang harus memahami prinsip ekonomi—mulai dari mengelola keuangan pribadi, memahami pasar, hingga mengembangkan produk yang bernilai ekonomis. Pengetahuan ini menjadi fondasi bagi literasi finansial, pengambilan keputusan ekonomi yang rasional, dan pembentukan karakter ekonomi yang bertanggung jawab.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Kebutuhan:</strong> Sesuatu yang harus dipenuhi untuk mempertahankan kelangsungan hidup dan mencapai kesejahteraan.</li>
+                    <li><strong>Keinginan:</strong> Sesuatu yang diharapkan dipenuhi tetapi tidak bersifat mendesak untuk kelangsungan hidup.</li>
+                    <li><strong>Kelangkaan (Scarcity):</strong> Kondisi di mana sumber daya terbatas, sementara kebutuhan manusia tidak terbatas.</li>
+                    <li><strong>Biaya Peluang (Opportunity Cost):</strong> Nilai dari pilihan terbaik yang dikorbankan ketika membuat suatu keputusan.</li>
+                    <li><strong>Skala Prioritas:</strong> Daftar kebutuhan yang diurutkan berdasarkan tingkat kepentingan dan urgensi.</li>
+                    <li><strong>Produksi, Distribusi, Konsumsi:</strong> Tiga kegiatan utama dalam perekonomian.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: UMKM Rendang di Koto Balingka</h3>
+                <p>Ibu Sari, seorang ibu rumah tangga di Nagari Koto Balingka, memiliki keterampilan membuat rendang warisan keluarga. Dengan modal terbatas (Rp 500.000), ia harus memilih: membeli bahan baku dalam jumlah besar untuk stok, atau membeli sedikit-sedikit untuk produksi harian? Jika ia memilih membeli bahan baku dalam jumlah besar, ia mengorbankan uang yang bisa digunakan untuk membayar listrik dan sekolah anaknya.</p>
+                <br>
+                <p>Ibu Sari kemudian menyusun <strong>skala prioritas</strong>: (1) kebutuhan pokok keluarga, (2) modal usaha, (3) tabungan darurat, (4) keinginan membeli peralatan baru. Ia memilih memproduksi rendang dalam skala kecil terlebih dahulu, menjualnya ke tetangga dan pasar lokal, lalu menggunakan keuntungan untuk memperluas usaha. Dalam setahun, usahanya berkembang dan ia mulai menjual rendang kemasan secara online ke luar daerah.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Kasus Ibu Sari menunjukkan bagaimana konsep ekonomi—kelangkaan, pilihan, biaya peluang, dan skala prioritas—diterapkan dalam kehidupan nyata. Siswa SMK perlu memahami konsep ini untuk menjadi wirausahawan yang cerdas dan bertanggung jawab.</p>
+            </div>
+
+            <h2>10.1 Kebutuhan Manusia dan Faktor yang Memengaruhinya</h2>
+            <div class="card">
+                <h3>10.1.1 Pengertian Kebutuhan</h3>
+                <p><strong>Kebutuhan</strong> adalah segala sesuatu yang diperlukan manusia untuk mempertahankan kelangsungan hidup dan mencapai kesejahteraan. Berbeda dengan <strong>keinginan</strong> yang bersifat pelengkap dan tidak mendesak, kebutuhan bersifat wajib dipenuhi. Jika tidak dipenuhi, kelangsungan hidup atau kesejahteraan manusia akan terganggu.</p>
+
+                <h3>10.1.2 Klasifikasi Kebutuhan</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dasar Klasifikasi</th>
+                            <th>Jenis</th>
+                            <th>Penjelasan</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intensitas</strong></td>
+                            <td>Primer, Sekunder, Tersier</td>
+                            <td>Berdasarkan tingkat kepentingan</td>
+                            <td>Makanan (primer), HP (sekunder), mobil mewah (tersier)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Waktu Pemenuhan</strong></td>
+                            <td>Sekarang, Masa Depan</td>
+                            <td>Berdasarkan kapan dibutuhkan</td>
+                            <td>Obat saat sakit (sekarang), tabungan pensiun (masa depan)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sifat</strong></td>
+                            <td>Jasmani, Rohani</td>
+                            <td>Berdasarkan aspek yang dipenuhi</td>
+                            <td>Makan, olahraga (jasmani); ibadah, rekreasi (rohani)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Subjek</strong></td>
+                            <td>Individu, Kolektif</td>
+                            <td>Berdasarkan siapa yang membutuhkan</td>
+                            <td>Kacamata (individu), jalan raya (kolektif)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>10.1.3 Faktor yang Memengaruhi Kebutuhan</h3>
+                <p>Kebutuhan setiap orang berbeda-beda. Perbedaan ini dipengaruhi oleh beberapa faktor:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Umur:</strong> Kebutuhan bayi (susu, popok) berbeda dengan remaja (buku, seragam) dan lansia (obat-obatan).</li>
+                    <li><strong>Jenis Kelamin:</strong> Kebutuhan laki-laki dan perempuan berbeda (misalnya: produk perawatan).</li>
+                    <li><strong>Pendidikan:</strong> Semakin tinggi pendidikan, semakin beragam kebutuhan (buku, kursus, teknologi).</li>
+                    <li><strong>Pekerjaan:</strong> Kebutuhan petani berbeda dengan kebutuhan guru atau pekerja kantoran.</li>
+                    <li><strong>Adat Istiadat/Budaya:</strong> Upacara adat, pakaian tradisional, makanan khas.</li>
+                    <li><strong>Tingkat Pendapatan:</strong> Semakin tinggi pendapatan, semakin beragam dan kompleks kebutuhan.</li>
+                    <li><strong>Lingkungan/Geografis:</strong> Kebutuhan masyarakat pesisir berbeda dengan masyarakat pegunungan.</li>
+                    <li><strong>Perkembangan Zaman/Teknologi:</strong> Munculnya kebutuhan baru seperti smartphone, internet, dll.</li>
+                </ul>
+            </div>
+
+            <h2>10.2 Kelangkaan, Pilihan, dan Skala Prioritas</h2>
+            <div class="card">
+                <h3>10.2.1 Kelangkaan (Scarcity)</h3>
+                <p><strong>Kelangkaan</strong> adalah kondisi di mana sumber daya yang tersedia terbatas, sementara kebutuhan manusia tidak terbatas. Kelangkaan merupakan masalah pokok ekonomi yang memaksa manusia untuk membuat <strong>pilihan</strong>. Kelangkaan dapat terjadi karena:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Keterbatasan sumber daya alam.</li>
+                    <li>Pertumbuhan penduduk yang lebih cepat dari pertumbuhan produksi.</li>
+                    <li>Kemampuan produksi yang terbatas.</li>
+                    <li>Bencana alam dan kerusakan lingkungan.</li>
+                    <li>Krisis ekonomi dan politik.</li>
+                </ul>
+
+                <h3>10.2.2 Biaya Peluang (Opportunity Cost)</h3>
+                <p>Karena kelangkaan, manusia harus membuat pilihan. Setiap pilihan memiliki <strong>biaya peluang</strong>—yaitu nilai dari pilihan terbaik yang harus dikorbankan. Contoh:</p>
+                <p style="margin-top: 1rem;"><em>Seorang siswa SMK memiliki uang Rp 100.000. Ia harus memilih antara membeli sepatu baru atau mendaftar kursus online. Jika ia memilih membeli sepatu, maka biaya peluangnya adalah manfaat yang hilang dari kursus online yang tidak ia ambil.</em></p>
+
+                <h3>10.2.3 Skala Prioritas</h3>
+                <p><strong>Skala prioritas</strong> adalah daftar kebutuhan yang diurutkan berdasarkan tingkat kepentingan dan urgensi, dari yang paling penting hingga yang bisa ditunda. Skala prioritas membantu manusia membuat keputusan ekonomi yang rasional.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Urutan</th>
+                            <th>Kebutuhan</th>
+                            <th>Alasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Makanan dan minuman</td>
+                            <td>Kebutuhan primer untuk kelangsungan hidup</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Biaya transportasi sekolah</td>
+                            <td>Kebutuhan untuk mengakses pendidikan</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Pulsa/internet untuk belajar</td>
+                            <td>Kebutuhan pendukung pendidikan</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Buku dan alat tulis</td>
+                            <td>Kebutuhan sekunder pendidikan</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Hiburan (nonton, jajan)</td>
+                            <td>Kebutuhan tersier, bisa ditunda</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>10.3 Kegiatan Produksi, Distribusi, dan Konsumsi</h2>
+            <div class="card">
+                <h3>10.3.1 Produksi</h3>
+                <p><strong>Produksi</strong> adalah kegiatan menghasilkan barang/jasa atau menambah nilai guna barang/jasa untuk memenuhi kebutuhan manusia. Pelakunya disebut <strong>produsen</strong>.</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Sektor Primer:</strong> Mengolah SDA langsung (pertanian, perikanan, pertambangan).</li>
+                    <li><strong>Sektor Sekunder:</strong> Industri pengolahan (pabrik tekstil, makanan, kerajinan).</li>
+                    <li><strong>Sektor Tersier:</strong> Jasa (pendidikan, kesehatan, transportasi, pariwisata).</li>
+                </ul>
+
+                <h3>10.3.2 Distribusi</h3>
+                <p><strong>Distribusi</strong> adalah kegiatan menyalurkan barang/jasa dari produsen ke konsumen. Pelakunya disebut <strong>distributor</strong>. Jenis distribusi:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Distribusi Langsung:</strong> Produsen menjual langsung ke konsumen (warung, pasar).</li>
+                    <li><strong>Distribusi Semi Langsung:</strong> Melalui perantara yang merupakan bagian dari produsen (agen, toko resmi).</li>
+                    <li><strong>Distribusi Tidak Langsung:</strong> Melalui perantara independen (pedagang besar, retailer).</li>
+                </ul>
+
+                <h3>10.3.3 Konsumsi</h3>
+                <p><strong>Konsumsi</strong> adalah kegiatan menggunakan atau menghabiskan nilai guna barang/jasa untuk memenuhi kebutuhan. Pelakunya disebut <strong>konsumen</strong>. Tujuan konsumsi:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Memenuhi kebutuhan fisik dan rohani.</li>
+                    <li>Mencapai kepuasan maksimal (utility).</li>
+                    <li>Menjaga kelangsungan hidup dan kesejahteraan.</li>
+                </ul>
+
+                <h3>10.3.4 Keterkaitan Ketiga Kegiatan</h3>
+                <p>Ketiga kegiatan ini saling terkait dalam sebuah <strong>siklus ekonomi</strong>:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Produsen menghasilkan barang/jasa → didistribusikan → dikonsumsi oleh konsumen.</li>
+                    <li>Konsumen memberikan pendapatan kepada produsen melalui pembelian.</li>
+                    <li>Pendapatan digunakan produsen untuk memproduksi kembali (investasi).</li>
+                    <li>Siklus ini menciptakan perputaran ekonomi yang menggerakkan masyarakat.</li>
+                </ul>
+            </div>
+
+            <h2>10.4 Pemanfaatan Sumber Daya secara Bijak dan Perilaku Ekonomi Bertanggung Jawab</h2>
+            <div class="card">
+                <h3>10.4.1 Pemanfaatan Sumber Daya secara Bijak</h3>
+                <p>Sumber daya (alam, manusia, modal, kewirausahaan) harus dimanfaatkan secara bijaksana agar dapat dinikmati oleh generasi sekarang dan mendatang. Prinsipnya:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Efisiensi:</strong> Menggunakan sumber daya seminimal mungkin untuk hasil maksimal.</li>
+                    <li><strong>Efektivitas:</strong> Mencapai tujuan yang tepat dengan cara yang tepat.</li>
+                    <li><strong>Berkelanjutan:</strong> Tidak merusak lingkungan dan menjaga ketersediaan untuk masa depan.</li>
+                    <li><strong>Adil:</strong> Memastikan manfaat sumber daya dinikmati oleh semua pihak.</li>
+                </ul>
+
+                <h3>10.4.2 Perilaku Ekonomi yang Bertanggung Jawab</h3>
+                <p>Perilaku ekonomi bertanggung jawab adalah sikap dan tindakan ekonomi yang tidak hanya mementingkan diri sendiri, tetapi juga mempertimbangkan dampak sosial, lingkungan, dan etika. Ciri-cirinya:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Rasional:</strong> Membuat keputusan berdasarkan pertimbangan untung-rugi yang logis.</li>
+                    <li><strong>Hemat:</strong> Tidak boros, hidup sesuai kemampuan (sesuai pepatah Minang: "Alam takambang jadi guru").</li>
+                    <li><strong>Jujur:</strong> Tidak menipu dalam bertransaksi (prinsip <em>dagang basabab</em>).</li>
+                    <li><strong>Peduli sosial:</strong> Berzakat, bersedekah, membantu sesama.</li>
+                    <li><strong>Ramah lingkungan:</strong> Memilih produk ramah lingkungan, mengurangi limbah.</li>
+                    <li><strong>Mendukung produk lokal:</strong> Mengutamakan produk UMKM dan kearifan lokal.</li>
+                </ul>
+
+                <h3>10.4.3 Literasi Finansial untuk Siswa SMK</h3>
+                <p>Sebagai calon tenaga kerja dan wirausahawan, siswa SMK perlu menguasai literasi finansial dasar:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Mengelola uang saku:</strong> Membuat anggaran sederhana, mencatat pengeluaran.</li>
+                    <li><strong>Menabung:</strong> Menyisihkan minimal 10-20% pendapatan untuk masa depan.</li>
+                    <li><strong>Menghindari utang konsumtif:</strong> Tidak berutang untuk hal yang tidak produktif (pinjol, paylater).</li>
+                    <li><strong>Mengenal instrumen investasi:</strong> Deposito, reksadana, emas sebagai alternatif tabungan.</li>
+                    <li><strong>Melindungi diri dari penipuan:</strong> Waspada terhadap skema cepat kaya, investasi bodong.</li>
+                </ul>
+
+                <h3>10.4.4 Peran Siswa SMK dalam Perekonomian</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Menerapkan prinsip ekonomi dalam kehidupan sehari-hari (hemat, rasional, jujur).</li>
+                    <li>Mengembangkan jiwa kewirausahaan berbasis potensi lokal.</li>
+                    <li>Mendukung produk UMKM dan ekonomi kerakyatan.</li>
+                    <li>Menjadi konsumen cerdas yang kritis terhadap produk dan iklan.</li>
+                    <li>Melestarikan kearifan lokal ekonomi (seperti tradisi <em>dagang basabab</em> dan <em>marantau</em> sebagai strategi ekonomi Minangkabau).</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Kegiatan Ekonomi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Menyamakan kebutuhan dengan keinginan (kebutuhan wajib dipenuhi, keinginan bisa ditunda).</li>
+                    <li>Mengabaikan biaya peluang saat membuat keputusan (setiap pilihan memiliki konsekuensi).</li>
+                    <li>Tidak membuat skala prioritas, sehingga uang habis untuk hal yang tidak penting.</li>
+                    <li>Beranggapan bahwa ekonomi hanya tentang uang (padahal juga tentang pilihan, nilai, dan kesejahteraan).</li>
+                    <li>Tidak menyadari bahwa perilaku konsumsi kita memengaruhi lingkungan dan masyarakat (jejak karbon, dukungan terhadap produk lokal vs impor).</li>
+                    <li>Terjerat utang konsumtif (pinjol, paylater) tanpa mempertimbangkan kemampuan bayar.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Kegiatan ekonomi berawal dari masalah pokok: kebutuhan manusia yang tidak terbatas, sementara sumber daya terbatas (kelangkaan). Untuk mengatasi kelangkaan, manusia harus membuat pilihan dengan menyusun skala prioritas dan mempertimbangkan biaya peluang. Kegiatan ekonomi terdiri dari tiga pilar: produksi (menghasilkan barang/jasa), distribusi (menyalurkan ke konsumen), dan konsumsi (menggunakan barang/jasa). Pemanfaatan sumber daya harus dilakukan secara bijaksana dengan prinsip efisiensi, efektivitas, keberlanjutan, dan keadilan. Perilaku ekonomi yang bertanggung jawab—rasional, hemat, jujur, peduli sosial, ramah lingkungan, dan mendukung produk lokal—menjadi kunci bagi siswa SMK untuk menjadi warga negara dan profesional yang sukses sekaligus berkontribusi pada kesejahteraan masyarakat.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Mankiw, N. G. (2020). <em>Principles of Economics (9th ed.)</em>. Boston: Cengage Learning.</li>
+                    <li>Sukirno, S. (2015). <em>Mikroekonomi Teori Pengantar (Edisi ke-13)</em>. Jakarta: PT RajaGrafindo Persada.</li>
+                    <li>Pratama, R. (2023). <em>Literasi Finansial untuk Generasi Muda</em>. Bandung: Simbiosa Rekatama Media.</li>
+                    <li>Supriadi. (2024). <em>Konsep Dasar Ekonomi dan Kewirausahaan untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="9.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="11.html" class="btn">Bab 11: Potensi dan Permasalahan Lingkungan Sosial →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 10: Kegiatan Ekonomi dan Kebutuhan Manusia</h2>
+                <p style="color: var(--text-secondary);">Materi: Kebutuhan Manusia, Kelangkaan & Skala Prioritas, Produksi-Distribusi-Konsumsi, dan Perilaku Ekonomi Bertanggung Jawab</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Sesuatu yang harus dipenuhi manusia untuk mempertahankan kelangsungan hidup disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Keinginan</label>
+                        <label><input type="radio" name="q1" value="b"> b. Kebutuhan</label>
+                        <label><input type="radio" name="q1" value="c"> c. Kemewahan</label>
+                        <label><input type="radio" name="q1" value="d"> d. Hiburan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Kondisi di mana sumber daya terbatas sementara kebutuhan manusia tidak terbatas disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Inflasi</label>
+                        <label><input type="radio" name="q2" value="b"> b. Deflasi</label>
+                        <label><input type="radio" name="q2" value="c"> c. Kelangkaan (scarcity)</label>
+                        <label><input type="radio" name="q2" value="d"> d. Monopoli</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Nilai dari pilihan terbaik yang dikorbankan ketika membuat suatu keputusan disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Biaya produksi</label>
+                        <label><input type="radio" name="q3" value="b"> b. Biaya peluang (opportunity cost)</label>
+                        <label><input type="radio" name="q3" value="c"> c. Biaya distribusi</label>
+                        <label><input type="radio" name="q3" value="d"> d. Biaya konsumsi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Daftar kebutuhan yang diurutkan berdasarkan tingkat kepentingan dari yang paling penting disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Daftar belanja</label>
+                        <label><input type="radio" name="q4" value="b"> b. Skala prioritas</label>
+                        <label><input type="radio" name="q4" value="c"> c. Anggaran pendapatan</label>
+                        <label><input type="radio" name="q4" value="d"> d. Neraca keuangan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Kegiatan menghasilkan barang/jasa atau menambah nilai guna barang/jasa disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Konsumsi</label>
+                        <label><input type="radio" name="q5" value="b"> b. Distribusi</label>
+                        <label><input type="radio" name="q5" value="c"> c. Produksi</label>
+                        <label><input type="radio" name="q5" value="d"> d. Investasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Orang atau pihak yang menyalurkan barang/jasa dari produsen ke konsumen disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Produsen</label>
+                        <label><input type="radio" name="q6" value="b"> b. Konsumen</label>
+                        <label><input type="radio" name="q6" value="c"> c. Distributor</label>
+                        <label><input type="radio" name="q6" value="d"> d. Investor</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Makanan, pakaian, dan tempat tinggal termasuk dalam kebutuhan...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Primer</label>
+                        <label><input type="radio" name="q7" value="b"> b. Sekunder</label>
+                        <label><input type="radio" name="q7" value="c"> c. Tersier</label>
+                        <label><input type="radio" name="q7" value="d"> d. Kuarter</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Faktor yang memengaruhi kebutuhan manusia, KECUALI...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Umur dan jenis kelamin</label>
+                        <label><input type="radio" name="q8" value="b"> b. Pendidikan dan pekerjaan</label>
+                        <label><input type="radio" name="q8" value="c"> c. Adat istiadat dan lingkungan</label>
+                        <label><input type="radio" name="q8" value="d"> d. Warna kesukaan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Ciri perilaku ekonomi yang bertanggung jawab adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Boros dan konsumtif</label>
+                        <label><input type="radio" name="q9" value="b"> b. Rasional, hemat, jujur, dan peduli lingkungan</label>
+                        <label><input type="radio" name="q9" value="c"> c. Mengutamakan produk impor</label>
+                        <label><input type="radio" name="q9" value="d"> d. Berutang untuk gaya hidup</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. [HOTS] Seorang siswa SMK memiliki uang Rp 200.000 dari hasil magang. Ia harus memilih antara membeli sepatu baru (keinginan) atau membayar kursus online untuk meningkatkan skill (kebutuhan pengembangan diri). Jika ia memilih kursus online, maka biaya peluang yang ia tanggung adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Manfaat dari kursus online yang akan ia dapatkan</label>
+                        <label><input type="radio" name="q10" value="b"> b. Kepuasan memiliki sepatu baru yang harus ia korbankan</label>
+                        <label><input type="radio" name="q10" value="c"> c. Uang Rp 200.000 yang ia keluarkan</label>
+                        <label><input type="radio" name="q10" value="d"> d. Waktu yang ia habiskan untuk kursus</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan perbedaan antara kebutuhan dan keinginan! Berikan masing-masing 3 contoh dalam kehidupan sehari-hari seorang siswa SMK, dan uraikan mengapa membedakan keduanya sangat penting dalam pengambilan keputusan ekonomi!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Uraikan 4 klasifikasi kebutuhan (berdasarkan intensitas, waktu pemenuhan, sifat, dan subjek)! Berikan masing-masing 2 contoh konkret, dan jelaskan bagaimana klasifikasi ini membantu manusia dalam menyusun skala prioritas!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Jelaskan konsep kelangkaan (scarcity) dan biaya peluang (opportunity cost)! Berikan 2 contoh kasus nyata dalam kehidupan siswa SMK, dan uraikan bagaimana kedua konsep ini memengaruhi pengambilan keputusan ekonomi sehari-hari!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Bandingkan kegiatan produksi, distribusi, dan konsumsi! Berikan masing-masing 2 contoh pelaku dan aktivitasnya, serta jelaskan bagaimana ketiga kegiatan ini saling terkait dalam membentuk siklus perekonomian!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Rancang sebuah rencana pengelolaan keuangan pribadi untuk siswa SMK selama satu bulan (dengan asumsi uang saku Rp 300.000/bulan)! Susunlah dalam bentuk skala prioritas, alokasi persentase untuk masing-masing kebutuhan, dan jelaskan bagaimana rencana ini mencerminkan perilaku ekonomi yang bertanggung jawab!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 10
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'b',
+            q4: 'b',
+            q5: 'c',
+            q6: 'c',
+            q7: 'a',
+            q8: 'd',
+            q9: 'b',
+            q10: 'b'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            document.getElementById('skorPG').textContent = pgScore;
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

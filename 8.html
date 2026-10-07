@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS: Ujian Tengah Semester - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+        .hots-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            font-weight: 700;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+
+        .options label {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .score-number { font-family: 'Cinzel', serif; font-size: 3.5rem; color: var(--gold-primary); font-weight: 700; }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; color: black; }
+            .question-text, .options label { color: black; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 8</span>
+            <h1>Ujian Tengah Semester (UTS)</h1>
+            <p class="subtitle">Materi: Pertemuan 1-7 (Hakikat Sains, Makhluk Hidup, Materi, Energi, Bumi & Cuaca, Pencemaran, Keanekaragaman Hayati)<br>Total: 25 Soal Pilihan Ganda | Waktu: 60 Menit | Bobot: 100 Poin</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="7.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#uji-formatif" class="btn btn-primary">Mulai Ujian</a>
+            <a href="9.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <section id="uji-formatif">
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawab seluruh 25 soal terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0; color: var(--gold-primary);">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Soal Ujian Tengah Semester</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Pilih SATU jawaban yang paling tepat (A, B, C, D, atau E) untuk setiap soal.</p>
+
+                <!-- Pertemuan 1 -->
+                <div class="question-block">
+                    <p class="question-text">1. Langkah pertama yang harus dilakukan dalam metode ilmiah adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Mengumpulkan data</label>
+                        <label><input type="radio" name="q1" value="b"> B. Mengamati dan merumuskan masalah</label>
+                        <label><input type="radio" name="q1" value="c"> C. Membuat hipotesis</label>
+                        <label><input type="radio" name="q1" value="d"> D. Melakukan eksperimen</label>
+                        <label><input type="radio" name="q1" value="e"> E. Menarik kesimpulan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. <span class="hots-badge">HOTS</span> Seorang siswa SMK melakukan praktikum kimia tanpa menggunakan kacamata safety dan sarung tangan, lalu mencatat data hasil reaksi yang tidak sesuai dengan teori. Dampak dari tindakan tersebut terhadap validitas data dan keselamatan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Data tetap valid karena reaksi kimia berjalan normal</label>
+                        <label><input type="radio" name="q2" value="b"> B. Data tidak valid dan berisiko tinggi terjadi kecelakaan kerja</label>
+                        <label><input type="radio" name="q2" value="c"> C. Data menjadi lebih akurat karena tanpa gangguan APD</label>
+                        <label><input type="radio" name="q2" value="d"> D. Tidak ada dampak sama sekali terhadap hasil praktikum</label>
+                        <label><input type="radio" name="q2" value="e"> E. Reaksi kimia akan berjalan lebih cepat tanpa APD</label>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 2 -->
+                <div class="question-block">
+                    <p class="question-text">3. Komponen abiotik dalam sebuah ekosistem hutan meliputi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Pohon, tanah, dan rusa</label>
+                        <label><input type="radio" name="q3" value="b"> B. Jamur, bakteri, dan seresah daun</label>
+                        <label><input type="radio" name="q3" value="c"> C. Cahaya matahari, suhu, dan air</label>
+                        <label><input type="radio" name="q3" value="d"> D. Burung, udara, dan semak belukar</label>
+                        <label><input type="radio" name="q3" value="e"> E. Cacing tanah, humus, dan akar</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. <span class="hots-badge">HOTS</span> Jika populasi ular di sawah diburu secara massal oleh masyarakat, dampak ekologis berantai (domino) yang paling mungkin terjadi terhadap keseimbangan rantai makanan dan hasil panen adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Populasi padi meningkat pesat karena tidak ada gangguan</label>
+                        <label><input type="radio" name="q4" value="b"> B. Populasi tikus meningkat drastis dan merusak tanaman padi</label>
+                        <label><input type="radio" name="q4" value="c"> C. Populasi elang akan meningkat karena makanan melimpah</label>
+                        <label><input type="radio" name="q4" value="d"> D. Tanah menjadi lebih subur karena bangkai ular</label>
+                        <label><input type="radio" name="q4" value="e"> E. Tidak ada perubahan signifikan pada ekosistem sawah</label>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 3 -->
+                <div class="question-block">
+                    <p class="question-text">5. Contoh campuran homogen dalam kehidupan sehari-hari adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Campuran air dan pasir</label>
+                        <label><input type="radio" name="q5" value="b"> B. Salad buah</label>
+                        <label><input type="radio" name="q5" value="c"> C. Air gula yang terlarut sempurna</label>
+                        <label><input type="radio" name="q5" value="d"> D. Tanah liat</label>
+                        <label><input type="radio" name="q5" value="e"> E. Campuran minyak dan air</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. <span class="hots-badge">HOTS</span> Seorang siswa ingin memisahkan campuran yang terdiri dari serbuk besi, pasir, dan garam dapur. Urutan metode pemisahan yang paling efisien dan tepat adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Didekatkan magnet, dilarutkan air, filtrasi, evaporasi</label>
+                        <label><input type="radio" name="q6" value="b"> B. Filtrasi, didekatkan magnet, lalu evaporasi</label>
+                        <label><input type="radio" name="q6" value="c"> C. Evaporasi, didekatkan magnet, lalu filtrasi</label>
+                        <label><input type="radio" name="q6" value="d"> D. Didekatkan magnet, diuapkan, lalu disaring</label>
+                        <label><input type="radio" name="q6" value="e"> E. Dilarutkan air, diuapkan, lalu didekatkan magnet</label>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 4 -->
+                <div class="question-block">
+                    <p class="question-text">7. Satuan energi dalam Sistem Internasional (SI) adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Newton (N)</label>
+                        <label><input type="radio" name="q7" value="b"> B. Watt (W)</label>
+                        <label><input type="radio" name="q7" value="c"> C. Joule (J)</label>
+                        <label><input type="radio" name="q7" value="d"> D. Pascal (Pa)</label>
+                        <label><input type="radio" name="q7" value="e"> E. Kalori (kal)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. <span class="hots-badge">HOTS</span> Sekolah berencana mengganti seluruh lampu pijar dengan lampu LED untuk penghematan energi. Alasan ilmiah yang paling tepat mendukung keputusan ini adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Lampu LED memiliki harga pembelian yang lebih murah</label>
+                        <label><input type="radio" name="q8" value="b"> B. Lampu LED mengubah lebih banyak energi listrik menjadi cahaya daripada panas (efisiensi tinggi)</label>
+                        <label><input type="radio" name="q8" value="c"> C. Lampu LED menghasilkan panas yang lebih banyak untuk menghangatkan ruangan</label>
+                        <label><input type="radio" name="q8" value="d"> D. Lampu pijar tidak menggunakan energi listrik sama sekali</label>
+                        <label><input type="radio" name="q8" value="e"> E. Lampu LED tidak memerlukan arus listrik untuk menyala</label>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 5 -->
+                <div class="question-block">
+                    <p class="question-text">9. Lapisan atmosfer bumi tempat terjadinya fenomena cuaca (hujan, awan, angin) adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Stratosfer</label>
+                        <label><input type="radio" name="q9" value="b"> B. Mesosfer</label>
+                        <label><input type="radio" name="q9" value="c"> C. Troposfer</label>
+                        <label><input type="radio" name="q9" value="d"> D. Termosfer</label>
+                        <label><input type="radio" name="q9" value="e"> E. Eksosfer</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. <span class="hots-badge">HOTS</span> Fenomena gagal panen padi di Sumatera Barat akibat pergeseran pola musim yang tidak menentu dan curah hujan ekstrem merupakan bukti nyata dampak perubahan iklim terhadap sektor...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Pariwisata dan hiburan</label>
+                        <label><input type="radio" name="q10" value="b"> B. Pertambangan dan energi</label>
+                        <label><input type="radio" name="q10" value="c"> C. Ketahanan pangan dan ekonomi masyarakat</label>
+                        <label><input type="radio" name="q10" value="d"> D. Teknologi informasi dan komunikasi</label>
+                        <label><input type="radio" name="q10" value="e"> E. Transportasi udara internasional</label>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 6 -->
+                <div class="question-block">
+                    <p class="question-text">11. Gas rumah kaca yang paling dominan dihasilkan dari pembakaran bahan bakar fosil dan berkontribusi besar terhadap pemanasan global adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Oksigen (O₂)</label>
+                        <label><input type="radio" name="q11" value="b"> B. Karbon dioksida (CO₂)</label>
+                        <label><input type="radio" name="q11" value="c"> C. Nitrogen (N₂)</label>
+                        <label><input type="radio" name="q11" value="d"> D. Hidrogen (H₂)</label>
+                        <label><input type="radio" name="q11" value="e"> E. Helium (He)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">12. <span class="hots-badge">HOTS</span> Sebuah pabrik tekstil membuang limbah cair berwarna pekat langsung ke sungai tanpa melalui Instalasi Pengolahan Air Limbah (IPAL). Dampak jangka panjang yang paling mungkin terjadi pada ekosistem sungai dan masyarakat sekitar adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Populasi ikan berkembang biak dengan sangat pesat</label>
+                        <label><input type="radio" name="q12" value="b"> B. Eutrofikasi, kematian biota air, dan peningkatan penyakit kulit pada masyarakat</label>
+                        <label><input type="radio" name="q12" value="c"> C. Kualitas air sungai menjadi lebih jernih dan layak minum</label>
+                        <label><input type="radio" name="q12" value="d"> D. Tanah di sekitar sungai menjadi lebih subur untuk pertanian</label>
+                        <label><input type="radio" name="q12" value="e"> E. Tidak ada dampak signifikan karena air sungai akan mengalir sendiri</label>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 7 -->
+                <div class="question-block">
+                    <p class="question-text">13. Perbedaan varietas padi seperti IR64, Ciherang, dan Rojolele merupakan contoh keanekaragaman hayati pada tingkat...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Gen</label>
+                        <label><input type="radio" name="q13" value="b"> B. Jenis (Spesies)</label>
+                        <label><input type="radio" name="q13" value="c"> C. Ekosistem</label>
+                        <label><input type="radio" name="q13" value="d"> D. Populasi</label>
+                        <label><input type="radio" name="q13" value="e"> E. Komunitas</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">14. <span class="hots-badge">HOTS</span> Taman Nasional Bukit Barisan Selatan adalah habitat terakhir Harimau Sumatera. Strategi konservasi yang paling berkelanjutan untuk mengatasi konflik antara harimau dan masyarakat sekitar adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Memburu dan membasmi harimau yang masuk ke pemukiman</label>
+                        <label><input type="radio" name="q14" value="b"> B. Memindahkan seluruh populasi harimau ke kebun binatang di kota</label>
+                        <label><input type="radio" name="q14" value="c"> C. Memberdayakan masyarakat melalui ekowisata dan sistem peringatan dini non-lethal</label>
+                        <label><input type="radio" name="q14" value="d"> D. Menutup total akses masyarakat ke hutan tanpa solusi alternatif ekonomi</label>
+                        <label><input type="radio" name="q14" value="e"> E. Membiarkan alam mengatur sendiri tanpa campur tangan manusia</label>
+                    </div>
+                </div>
+
+                <!-- Campuran LOTS & HOTS -->
+                <div class="question-block">
+                    <p class="question-text">15. Hukum kekekalan energi menyatakan bahwa...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Energi dapat diciptakan dari ketiadaan</label>
+                        <label><input type="radio" name="q15" value="b"> B. Energi dapat dimusnahkan sepenuhnya</label>
+                        <label><input type="radio" name="q15" value="c"> C. Energi tidak dapat diciptakan atau dimusnahkan, hanya dapat berubah bentuk</label>
+                        <label><input type="radio" name="q15" value="d"> D. Energi selalu berkurang setiap kali berubah bentuk</label>
+                        <label><input type="radio" name="q15" value="e"> E. Energi hanya dimiliki oleh benda yang bergerak</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">16. <span class="hots-badge">HOTS</span> Seorang siswa mengamati dua peristiwa: (1) es batu mencair menjadi air, dan (2) kertas dibakar menjadi abu. Pernyataan yang paling tepat membedakan kedua peristiwa tersebut berdasarkan konsep perubahan materi adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Keduanya merupakan perubahan fisika</label>
+                        <label><input type="radio" name="q16" value="b"> B. Keduanya merupakan perubahan kimia</label>
+                        <label><input type="radio" name="q16" value="c"> C. Es mencair adalah perubahan fisika (reversibel), kertas dibakar adalah perubahan kimia (irreversibel)</label>
+                        <label><input type="radio" name="q16" value="d"> D. Es mencair adalah perubahan kimia, kertas dibakar adalah perubahan fisika</label>
+                        <label><input type="radio" name="q16" value="e"> E. Tidak ada perubahan zat yang terjadi pada kedua peristiwa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">17. Upaya pelestarian keanekaragaman hayati yang dilakukan di dalam habitat aslinya (seperti Taman Nasional) disebut konservasi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Ex situ</label>
+                        <label><input type="radio" name="q17" value="b"> B. In situ</label>
+                        <label><input type="radio" name="q17" value="c"> C. Reboisasi</label>
+                        <label><input type="radio" name="q17" value="d"> D. Konservasi total</label>
+                        <label><input type="radio" name="q17" value="e"> E. Eksploitasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">18. <span class="hots-badge">HOTS</span> Dalam sebuah proyek IPAS tentang pengelolaan sampah di sekolah, siswa menerapkan prinsip 3R. Tindakan "membawa tas belanja kain sendiri dari rumah" merupakan penerapan prinsip...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Recycle (Mendaur ulang)</label>
+                        <label><input type="radio" name="q18" value="b"> B. Reuse (Menggunakan kembali)</label>
+                        <label><input type="radio" name="q18" value="c"> C. Reduce (Mengurangi)</label>
+                        <label><input type="radio" name="q18" value="d"> D. Replace (Mengganti)</label>
+                        <label><input type="radio" name="q18" value="e"> E. Repair (Memperbaiki)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">19. Ciri makhluk hidup yang ditunjukkan oleh daun putri malu yang menguncup saat disentuh adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Tumbuh dan berkembang</label>
+                        <label><input type="radio" name="q19" value="b"> B. Berkembang biak</label>
+                        <label><input type="radio" name="q19" value="c"> C. Iritabilitas (peka terhadap rangsang)</label>
+                        <label><input type="radio" name="q19" value="d"> D. Adaptasi morfologi</label>
+                        <label><input type="radio" name="q19" value="e"> E. Respirasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">20. <span class="hots-badge">HOTS</span> Jika suhu global terus meningkat akibat emisi Gas Rumah Kaca yang tidak terkendali, dampak yang paling langsung dan mengancam bagi negara kepulauan seperti Indonesia adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Perluasan daratan akibat sedimentasi</label>
+                        <label><input type="radio" name="q20" value="b"> B. Penurunan permukaan laut secara drastis</label>
+                        <label><input type="radio" name="q20" value="c"> C. Kenaikan permukaan laut dan ancaman tenggelamnya pulau-pulau kecil</label>
+                        <label><input type="radio" name="q20" value="d"> D. Meningkatnya luas hutan hujan tropis secara alami</label>
+                        <label><input type="radio" name="q20" value="e"> E. Menurunnya suhu rata-rata di daerah khatulistiwa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">21. Metode pemisahan campuran yang didasarkan pada perbedaan titik didih komponen-komponennya disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. Filtrasi</label>
+                        <label><input type="radio" name="q21" value="b"> B. Distilasi</label>
+                        <label><input type="radio" name="q21" value="c"> C. Kromatografi</label>
+                        <label><input type="radio" name="q21" value="d"> D. Sublimasi</label>
+                        <label><input type="radio" name="q21" value="e"> E. Sentrifugasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">22. <span class="hots-badge">HOTS</span> Sebuah daerah memiliki potensi wisata alam yang indah, namun masyarakatnya masih terbiasa membuang sampah sembarangan ke sungai. Sebagai siswa SMK, solusi berbasis Projek IPAS yang paling tepat dan berkelanjutan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Melarang seluruh wisatawan untuk datang ke daerah tersebut</label>
+                        <label><input type="radio" name="q22" value="b"> B. Membuat kampanye edukasi lingkungan dan menyediakan bank sampah berbasis masyarakat</label>
+                        <label><input type="radio" name="q22" value="c"> C. Membiarkan saja karena bukan merupakan tanggung jawab siswa</label>
+                        <label><input type="radio" name="q22" value="d"> D. Membakar sampah di tepi sungai agar cepat habis</label>
+                        <label><input type="radio" name="q22" value="e"> E. Menutup akses ke sungai secara permanen dengan pagar beton</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">23. Sumber energi yang tidak dapat diperbaharui dan akan habis jika dieksploitasi terus-menerus adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. Energi matahari</label>
+                        <label><input type="radio" name="q23" value="b"> B. Energi angin</label>
+                        <label><input type="radio" name="q23" value="c"> C. Batu bara</label>
+                        <label><input type="radio" name="q23" value="d"> D. Energi air (hidro)</label>
+                        <label><input type="radio" name="q23" value="e"> E. Panas bumi (geotermal)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">24. <span class="hots-badge">HOTS</span> Perhatikan rantai makanan: Padi → Tikus → Ular → Elang. Jika petani menggunakan pestisida berlebihan yang membunuh hampir seluruh populasi tikus, apa dampak berantai yang paling logis terhadap populasi elang dalam jangka pendek?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. Populasi elang meningkat pesat karena tidak ada saingan</label>
+                        <label><input type="radio" name="q24" value="b"> B. Populasi elang menurun karena kekurangan sumber makanan utama</label>
+                        <label><input type="radio" name="q24" value="c"> C. Populasi elang dan padi sama-sama meningkat</label>
+                        <label><input type="radio" name="q24" value="d"> D. Tidak ada perubahan pada populasi elang</label>
+                        <label><input type="radio" name="q24" value="e"> E. Populasi ular meningkat pesat karena tidak dimangsa elang</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">25. Contoh sumber daya alam hayati (biotik) yang dapat dimanfaatkan untuk kebutuhan manusia adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. Emas dan perak</label>
+                        <label><input type="radio" name="q25" value="b"> B. Minyak bumi dan gas alam</label>
+                        <label><input type="radio" name="q25" value="c"> C. Flora, fauna, dan mikroorganisme</label>
+                        <label><input type="radio" name="q25" value="d"> D. Batu bara dan nikel</label>
+                        <label><input type="radio" name="q25" value="e"> E. Tanah liat dan pasir kuarsa</label>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Total Skor Ujian Tengah Semester</h3>
+                    <div class="score-number" id="skorTotal">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban (25 Soal: 4 poin per soal = 100)
+        const kunciJawaban = {
+            q1: 'b', q2: 'b', q3: 'c', q4: 'b', q5: 'c',
+            q6: 'a', q7: 'c', q8: 'b', q9: 'c', q10: 'c',
+            q11: 'b', q12: 'b', q13: 'a', q14: 'c', q15: 'c',
+            q16: 'c', q17: 'b', q18: 'c', q19: 'c', q20: 'c',
+            q21: 'b', q22: 'b', q23: 'c', q24: 'b', q25: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let allAnswered = true;
+            let correctCount = 0;
+            
+            for (let i = 1; i <= 25; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    correctCount++;
+                }
+            }
+
+            if (!allAnswered) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            const totalScore = correctCount * 4; // 25 soal x 4 = 100
+            document.getElementById('skorTotal').textContent = totalScore;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

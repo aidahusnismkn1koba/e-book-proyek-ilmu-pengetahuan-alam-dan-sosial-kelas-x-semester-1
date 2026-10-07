@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 15: Projek IPAS - Produk dan Implementasi Solusi - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .template-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Montserrat', monospace;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            border: 2px solid var(--bg-dark);
+        }
+
+        .timeline-title {
+            color: var(--gold-primary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 15</span>
+            <h1>Projek IPAS: Produk dan Implementasi Solusi</h1>
+            <p class="subtitle">Tahap keempat projek IPAS: merancang produk/model/kampanye sebagai solusi, melaksanakan solusi secara kolaboratif, menguji kebermanfaatan solusi, serta melakukan perbaikan berdasarkan hasil evaluasi.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="14.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="16.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Setelah pada Pertemuan 14 siswa berhasil menganalisis data dan menentukan solusi terbaik, pada Pertemuan 15 ini siswa memasuki tahap paling menantang sekaligus paling membanggakan: <strong>Produk dan Implementasi Solusi</strong>. Tahap ini adalah "pembuktian" dari seluruh proses projek—di mana ide yang telah dirumuskan diwujudkan menjadi produk, model, kampanye, atau tindakan nyata yang memberikan dampak langsung bagi masyarakat.</p>
+                <br>
+                <p>Implementasi solusi bukan sekadar "melakukan sesuatu", melainkan sebuah proses kolaboratif yang terencana, terukur, dan dapat dipertanggungjawabkan. Siswa SMK dituntut untuk tidak hanya menjadi pemikir, tetapi juga <strong>pelaksana yang kompeten</strong>—mampu merancang produk, bekerja dalam tim, menguji kebermanfaatan, dan melakukan perbaikan berkelanjutan. Kompetensi ini adalah fondasi bagi profesionalisme di dunia kerja: seorang wirausahawan, teknisi, atau manajer harus mampu mengubah ide menjadi produk nyata yang bernilai.</p>
+                <br>
+                <p>Oleh karena itu, materi ini dirancang agar siswa mampu: (1) merancang produk/model/kampanye/tindakan sebagai solusi, (2) melaksanakan solusi secara kolaboratif dengan melibatkan berbagai pihak, (3) menguji kebermanfaatan solusi melalui evaluasi yang objektif, serta (4) melakukan perbaikan berdasarkan hasil evaluasi untuk menghasilkan solusi yang lebih baik.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Produk Solusi:</strong> Hasil nyata dari projek yang dapat berupa benda fisik, sistem, model, program, atau kampanye.</li>
+                    <li><strong>Prototipe:</strong> Versi awal produk yang dibuat untuk diuji sebelum produksi/diluncurkan secara penuh.</li>
+                    <li><strong>Implementasi:</strong> Proses mewujudkan rencana solusi menjadi tindakan nyata.</li>
+                    <li><strong>Kolaborasi:</strong> Kerja sama antar anggota tim dan dengan pihak eksternal untuk mencapai tujuan bersama.</li>
+                    <li><strong>Evaluasi:</strong> Penilaian sistematis terhadap kebermanfaatan dan efektivitas solusi yang telah diimplementasikan.</li>
+                    <li><strong>Indikator Keberhasilan:</strong> Tolok ukur yang digunakan untuk menilai apakah solusi telah mencapai tujuan.</li>
+                    <li><strong>Perbaikan Berkelanjutan (Continuous Improvement):</strong> Proses iteratif untuk menyempurnakan solusi berdasarkan umpan balik.</li>
+                    <li><strong>PDCA Cycle:</strong> Metode Plan-Do-Check-Act untuk perbaikan berkelanjutan.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Implementasi Bank Sampah SMKN 1 Koto Balingka</h3>
+                <p>Melanjutkan projek dari Pertemuan 12-14, tim siswa SMKN 1 Koto Balingka telah menentukan solusi terbaik: <strong>"Program Bank Sampah + 5 Titik Tempat Sampah Terpilah + Kampanye Peer-to-Peer"</strong>. Kini saatnya implementasi.</p>
+                <br>
+                <p>Mereka merancang prototipe: membuat 5 tempat sampah terpilah dari bahan daur ulang, menyusun SOP bank sampah, dan merancang poster kampanye. Sebelum diluncurkan penuh, mereka menguji coba selama 1 minggu di satu kantin (pilot project). Hasilnya:</p>
+                <br>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                    <li>Partisipasi siswa mencapai 65% (di bawah target 70%).</li>
+                    <li>Siswa bingung membedakan jenis plastik dan non-plastik.</li>
+                    <li>Pedagang kantin belum terbiasa memilah sampah dari sumber.</li>
+                </ul>
+                <br>
+                <p>Berdasarkan evaluasi, tim melakukan perbaikan: (1) menambahkan label visual berwarna pada tempat sampah, (2) melatih 10 siswa sebagai "duta sampah" untuk mendampingi, (3) memberikan insentif kecil bagi pedagang kantin. Setelah perbaikan, partisipasi naik menjadi 82% dan timbulan sampah plastik turun 38% dalam 3 bulan—melebihi target 30%.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Implementasi yang baik selalu diawali dengan uji coba, dievaluasi secara objektif, dan diperbaiki berdasarkan temuan. Solusi yang "sempurna" di atas kertas belum tentu efektif di lapangan—evaluasi dan perbaikan adalah kunci.</p>
+            </div>
+
+            <h2>15.1 Merancang Produk, Model, Kampanye, atau Tindakan sebagai Solusi</h2>
+            <div class="card">
+                <h3>15.1.1 Jenis-Jenis Produk Solusi</h3>
+                <p>Berdasarkan hasil analisis pada Pertemuan 14, siswa merancang produk solusi yang sesuai dengan akar masalah. Produk solusi dapat berupa:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Produk</th>
+                            <th>Deskripsi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Produk Fisik</strong></td>
+                            <td>Benda nyata yang dapat dilihat dan digunakan</td>
+                            <td>Tempat sampah terpilah, alat penjernih air, komposter, produk daur ulang</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Model/Sistem</strong></td>
+                            <td>Kerangka kerja atau prosedur yang terstruktur</td>
+                            <td>Sistem bank sampah, SOP pengelolaan limbah, alur kerja efisien</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kampanye</strong></td>
+                            <td>Gerakan sosial untuk mengubah perilaku</td>
+                            <td>Kampanye "Bawa Tumbler Sendiri", "Hemat Energi", "Stop Bullying"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tindakan/Program</strong></td>
+                            <td>Aktivitas terencana yang dilakukan secara berkala</td>
+                            <td>Program Jumat Bersih, pelatihan kewirausahaan, bakti sosial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Media Edukasi</strong></td>
+                            <td>Alat bantu untuk menyampaikan informasi</td>
+                            <td>Poster, video, brosur, infografis, media sosial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Teknologi Tepat Guna</strong></td>
+                            <td>Alat sederhana yang memecahkan masalah spesifik</td>
+                            <td>Alat pengolah sampah organik, penjernih air sederhana, kompor biomassa</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>15.1.2 Prinsip Perancangan Produk Solusi</h3>
+                <p>Perancangan produk solusi yang baik harus memperhatikan prinsip-prinsip berikut:</p>
+
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>User-Centered Design:</strong> Produk harus dirancang berdasarkan kebutuhan pengguna (siswa, pedagang, warga).</li>
+                    <li><strong>Simplicity:</strong> Sederhana, mudah digunakan, tidak rumit.</li>
+                    <li><strong>Affordability:</strong> Terjangkau dari segi biaya dan sumber daya.</li>
+                    <li><strong>Sustainability:</strong> Ramah lingkungan dan berkelanjutan.</li>
+                    <li><strong>Scalability:</strong> Dapat diperluas jika berhasil.</li>
+                    <li><strong>Evidence-Based:</strong> Berdasarkan temuan analisis data, bukan asumsi.</li>
+                </ul>
+
+                <h3>15.1.3 Tahapan Perancangan Produk</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Definisi Masalah:</strong> Rumuskan kembali masalah yang akan dipecahkan oleh produk.</li>
+                    <li><strong>Riset Pengguna:</strong> Pahami kebutuhan, kebiasaan, dan kendala calon pengguna.</li>
+                    <li><strong>Ideation (Curah Ide):</strong> Kumpulkan sebanyak mungkin ide solusi.</li>
+                    <li><strong>Seleksi Ide:</strong> Pilih ide terbaik berdasarkan kriteria.</li>
+                    <li><strong>Prototipe:</strong> Buat versi awal produk dalam skala kecil.</li>
+                    <li><strong>Uji Prototipe:</strong> Uji coba ke sekelompok kecil pengguna.</li>
+                    <li><strong>Revisi:</strong> Perbaiki berdasarkan umpan balik.</li>
+                    <li><strong>Finalisasi:</strong> Produk siap diluncurkan.</li>
+                </ol>
+
+                <div class="template-box">
+                    <strong>📝 Template Spesifikasi Produk Solusi:</strong><br><br>
+                    <strong>Nama Produk:</strong> [Nama yang menarik dan deskriptif]<br>
+                    <strong>Jenis Produk:</strong> [Produk fisik / Model / Kampanye / Program / Media / Teknologi]<br>
+                    <strong>Deskripsi:</strong> [Penjelasan singkat tentang produk]<br>
+                    <strong>Masalah yang Dipecahkan:</strong> [Rumusan masalah]<br>
+                    <strong>Target Pengguna:</strong> [Siapa yang akan menggunakan]<br>
+                    <strong>Spesifikasi Teknis:</strong> [Ukuran, bahan, fitur, dll.]<br>
+                    <strong>Estimasi Biaya:</strong> [Rincian biaya produksi]<br>
+                    <strong>Keunggulan:</strong> [Apa yang membuat produk ini unik/efektif]<br>
+                    <strong>Dokumentasi:</strong> [Sketsa, foto prototipe, video demo]
+                </div>
+
+                <h3>15.1.4 Membuat Prototipe</h3>
+                <p><strong>Prototipe</strong> adalah versi awal produk yang dibuat untuk diuji sebelum produksi/diluncurkan penuh. Tujuan prototipe:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Menguji kelayakan ide.</li>
+                    <li>Mengidentifikasi kelemahan desain.</li>
+                    <li>Mendapatkan umpan balik dari pengguna.</li>
+                    <li>Meminimalkan risiko kegagalan saat peluncuran penuh.</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>Jenis Prototipe:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Low-Fidelity:</strong> Sketsa kertas, mockup sederhana, cerita peran (role-play).</li>
+                    <li><strong>Mid-Fidelity:</strong> Model 3D sederhana, sampel produk, poster draf.</li>
+                    <li><strong>High-Fidelity:</strong> Produk yang hampir identik dengan versi final, berfungsi penuh.</li>
+                </ul>
+            </div>
+
+            <h2>15.2 Melaksanakan Solusi secara Kolaboratif</h2>
+            <div class="card">
+                <h3>15.2.1 Apa Itu Implementasi Kolaboratif?</h3>
+                <p><strong>Implementasi kolaboratif</strong> adalah proses mewujudkan solusi dengan melibatkan berbagai pihak—anggota tim, stakeholder, dan penerima manfaat—dalam kerja sama yang terkoordinasi. Tidak ada solusi besar yang dapat diimplementasikan oleh satu orang; kolaborasi adalah kunci.</p>
+
+                <h3>15.2.2 Prinsip Kolaborasi yang Efektif</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prinsip</th>
+                            <th>Penjelasan</th>
+                            <th>Implementasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tujuan Bersama</strong></td>
+                            <td>Semua pihak memahami dan berkomitmen pada tujuan yang sama</td>
+                            <td>Sosialisasi tujuan projek kepada seluruh pihak terlibat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pembagian Peran Jelas</strong></td>
+                            <td>Setiap orang tahu tugas dan tanggung jawabnya</td>
+                            <td>Matriks RACI (Responsible, Accountable, Consulted, Informed)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Komunikasi Terbuka</strong></td>
+                            <td>Informasi mengalir lancar antar pihak</td>
+                            <td>Rapat rutin, grup chat, laporan progres</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saling Percaya</strong></td>
+                            <td>Membangun kepercayaan antar anggota tim dan stakeholder</td>
+                            <td>Transparansi, integritas, saling menghargai</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fleksibilitas</strong></td>
+                            <td>Mampu beradaptasi dengan perubahan situasi</td>
+                            <td>Rencana cadangan, respons cepat terhadap kendala</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akuntabilitas</strong></td>
+                            <td>Setiap pihak bertanggung jawab atas tugasnya</td>
+                            <td>Laporan berkala, evaluasi kinerja individu dan tim</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>15.2.3 Tahapan Implementasi</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">1. Persiapan (Pre-Implementation)</div>
+                        <p style="color: var(--text-secondary);">Finalisasi produk, siapkan logistik, urus izin, sosialisasikan kepada stakeholder, bentuk tim pelaksana.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">2. Uji Coba (Pilot Project)</div>
+                        <p style="color: var(--text-secondary);">Implementasi skala kecil di lokasi/periode terbatas untuk menguji efektivitas.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">3. Evaluasi Pilot</div>
+                        <p style="color: var(--text-secondary);">Kumpulkan umpan balik, identifikasi kendala, lakukan perbaikan.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">4. Peluncuran Penuh (Full Implementation)</div>
+                        <p style="color: var(--text-secondary);">Implementasi di seluruh target lokasi/periode sesuai rencana.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">5. Monitoring</div>
+                        <p style="color: var(--text-secondary);">Pantau pelaksanaan harian/mingguan, catat kendala dan keberhasilan.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">6. Evaluasi Akhir</div>
+                        <p style="color: var(--text-secondary);">Ukur keberhasilan berdasarkan indikator, dokumentasikan hasil.</p>
+                    </div>
+                </div>
+
+                <h3>15.2.4 Matriks RACI untuk Pembagian Peran</h3>
+                <p><strong>RACI</strong> adalah alat bantu untuk memperjelas peran setiap pihak dalam implementasi:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>R (Responsible):</strong> Yang melaksanakan tugas.</li>
+                    <li><strong>A (Accountable):</strong> Yang bertanggung jawab atas hasil akhir (satu orang per tugas).</li>
+                    <li><strong>C (Consulted):</strong> Yang dimintai pendapat sebelum keputusan.</li>
+                    <li><strong>I (Informed):</strong> Yang diberitahu setelah keputusan diambil.</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Matriks RACI untuk Projek Bank Sampah:</strong><br><br>
+                    <strong>Aktivitas</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <strong>Ketua</strong> | <strong>Anggota</strong> | <strong>Guru</strong> | <strong>Kepsek</strong> | <strong>Pedagang</strong><br>
+                    Pembuatan tempat sampah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    Sosialisasi ke siswa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    Pelatihan pedagang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    Monitoring harian&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    Evaluasi akhir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+
+                <h3>15.2.5 Mengelola Kendala Implementasi</h3>
+                <p>Setiap implementasi pasti menghadapi kendala. Berikut strategi pengelolaannya:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Kendala</th>
+                            <th>Contoh</th>
+                            <th>Strategi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Teknis</strong></td>
+                            <td>Produk rusak, bahan habis, alat tidak berfungsi</td>
+                            <td>Siapkan cadangan, pelajari keterampilan teknis, minta bantuan ahli</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SDM</strong></td>
+                            <td>Anggota tim tidak aktif, konflik internal</td>
+                            <td>Komunikasi terbuka, mediasi, pembagian tugas ulang</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Waktu</strong></td>
+                            <td>Terlambat dari jadwal</td>
+                            <td>Revisi jadwal, prioritaskan tugas kritis, kerja lembur terukur</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Biaya</strong></td>
+                            <td>Dana tidak cukup</td>
+                            <td>Cari sponsor, kurangi biaya non-esensial, fundraising</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Partisipasi</strong></td>
+                            <td>Masyarakat/siswa tidak antusias</td>
+                            <td>Sosialisasi ulang, libatkan tokoh berpengaruh, berikan insentif</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>15.3 Menguji dan Mengevaluasi Kebermanfaatan Solusi</h2>
+            <div class="card">
+                <h3>15.3.1 Apa Itu Evaluasi Solusi?</h3>
+                <p><strong>Evaluasi solusi</strong> adalah proses penilaian sistematis terhadap kebermanfaatan, efektivitas, dan dampak solusi yang telah diimplementasikan. Evaluasi menjawab pertanyaan: <em>"Apakah solusi ini berhasil memecahkan masalah? Seberapa besar dampaknya? Apa yang perlu diperbaiki?"</em></p>
+
+                <h3>15.3.2 Tujuan Evaluasi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Mengukur keberhasilan solusi terhadap indikator yang ditetapkan.</li>
+                    <li>Mengidentifikasi dampak positif dan negatif.</li>
+                    <li>Menemukan area yang perlu diperbaiki.</li>
+                    <li>Memberikan akuntabilitas kepada stakeholder.</li>
+                    <li>Menjadi dasar pembelajaran untuk projek selanjutnya.</li>
+                </ul>
+
+                <h3>15.3.3 Jenis-Jenis Evaluasi</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Evaluasi</th>
+                            <th>Waktu</th>
+                            <th>Tujuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Evaluasi Formatif</strong></td>
+                            <td>Saat implementasi berlangsung</td>
+                            <td>Memantau progres, identifikasi masalah dini, perbaikan segera</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evaluasi Sumatif</strong></td>
+                            <td>Di akhir implementasi</td>
+                            <td>Menilai keberhasilan akhir, mengukur dampak total</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evaluasi Proses</strong></td>
+                            <td>Setiap tahap implementasi</td>
+                            <td>Menilai apakah proses berjalan sesuai rencana</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evaluasi Dampak</strong></td>
+                            <td>Beberapa waktu setelah implementasi</td>
+                            <td>Mengukur dampak jangka panjang</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>15.3.4 Indikator Keberhasilan</h3>
+                <p>Indikator keberhasilan harus <strong>SMART</strong> dan terukur. Berikut contoh indikator untuk berbagai jenis solusi:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Solusi</th>
+                            <th>Indikator Keberhasilan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Produk Fisik</strong></td>
+                            <td>Jumlah produk terjual/terpakai, kepuasan pengguna, daya tahan produk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Program/Kampanye</strong></td>
+                            <td>Tingkat partisipasi, perubahan perilaku, jangkauan audiens</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sistem/Model</strong></td>
+                            <td>Efisiensi waktu/biaya, tingkat adopsi, kepuasan stakeholder</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Teknologi Tepat Guna</strong></td>
+                            <td>Kinerja teknis, kemudahan penggunaan, dampak lingkungan</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>15.3.5 Metode Pengumpulan Data Evaluasi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Observasi:</strong> Mengamati langsung pelaksanaan dan dampaknya.</li>
+                    <li><strong>Angket:</strong> Mengukur kepuasan dan persepsi pengguna.</li>
+                    <li><strong>Wawancara:</strong> Mendapatkan umpan balik mendalam dari stakeholder.</li>
+                    <li><strong>Dokumentasi:</strong> Foto before-after, data kuantitatif (timbangan sampah, tagihan listrik, dll).</li>
+                    <li><strong>Focus Group Discussion (FGD):</strong> Diskusi kelompok untuk evaluasi komprehensif.</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Template Laporan Evaluasi:</strong><br><br>
+                    <strong>1. Ringkasan Eksekutif:</strong> [Ringkasan singkat hasil evaluasi]<br><br>
+                    <strong>2. Tujuan Evaluasi:</strong> [Apa yang ingin dinilai]<br><br>
+                    <strong>3. Metodologi:</strong> [Metode pengumpulan data, responden, periode]<br><br>
+                    <strong>4. Hasil Evaluasi:</strong><br>
+                    &nbsp;&nbsp;• Indikator 1: [Target vs Realisasi]<br>
+                    &nbsp;&nbsp;• Indikator 2: [Target vs Realisasi]<br>
+                    &nbsp;&nbsp;• Indikator 3: [Target vs Realisasi]<br><br>
+                    <strong>5. Dampak Positif:</strong> [Manfaat yang dirasakan]<br><br>
+                    <strong>6. Dampak Negatif/Kendala:</strong> [Masalah yang muncul]<br><br>
+                    <strong>7. Kesimpulan:</strong> [Apakah solusi berhasil?]<br><br>
+                    <strong>8. Rekomendasi:</strong> [Saran perbaikan dan tindak lanjut]
+                </div>
+
+                <h3>15.3.6 Contoh Evaluasi Projek Bank Sampah</h3>
+                <div class="template-box">
+                    <strong>📊 Hasil Evaluasi Bank Sampah SMKN 1 Koto Balingka (3 Bulan):</strong><br><br>
+                    <strong>Indikator 1:</strong> Penurunan timbulan sampah plastik<br>
+                    &nbsp;&nbsp;→ Target: 30% | Realisasi: <span style="color: var(--success);">38%</span> ✓ MELEBIHI TARGET<br><br>
+                    <strong>Indikator 2:</strong> Partisipasi siswa<br>
+                    &nbsp;&nbsp;→ Target: 70% | Realisasi: <span style="color: var(--success);">82%</span> ✓ MELEBIHI TARGET<br><br>
+                    <strong>Indikator 3:</strong> Pendapatan bank sampah<br>
+                    &nbsp;&nbsp;→ Target: Rp 500.000/bulan | Realisasi: <span style="color: var(--success);">Rp 720.000/bulan</span> ✓ MELEBIHI TARGET<br><br>
+                    <strong>Kesimpulan:</strong> Solusi berhasil dan berkelanjutan. Rekomendasi: perluas ke seluruh sekolah dan libatkan nagari.
+                </div>
+            </div>
+
+            <h2>15.4 Melakukan Perbaikan Berdasarkan Hasil Evaluasi</h2>
+            <div class="card">
+                <h3>15.4.1 Siklus Perbaikan Berkelanjutan (PDCA)</h3>
+                <p>Perbaikan solusi tidak dilakukan sekali, melainkan melalui siklus berkelanjutan yang dikenal dengan <strong>PDCA Cycle</strong> (Plan-Do-Check-Act) atau <strong>Siklus Deming</strong>:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tahap</th>
+                            <th>Aktivitas</th>
+                            <th>Output</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Plan (Rencana)</strong></td>
+                            <td>Identifikasi area perbaikan, tetapkan target baru</td>
+                            <td>Rencana perbaikan yang terukur</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Do (Lakukan)</strong></td>
+                            <td>Implementasi perbaikan dalam skala kecil</td>
+                            <td>Perubahan yang diterapkan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check (Periksa)</strong></td>
+                            <td>Evaluasi hasil perbaikan</td>
+                            <td>Data efektivitas perbaikan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Act (Tindak Lanjut)</strong></td>
+                            <td>Standarisasi jika berhasil, atau ulangi siklus jika belum</td>
+                            <td>Solusi yang lebih baik atau siklus baru</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>15.4.2 Langkah-Langkah Perbaikan</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Identifikasi area perbaikan:</strong> Berdasarkan hasil evaluasi, apa yang belum optimal?</li>
+                    <li><strong>Analisis akar masalah:</strong> Gunakan metode 5 Why atau Fishbone Diagram untuk menemukan penyebab.</li>
+                    <li><strong>Brainstorming solusi perbaikan:</strong> Kumpulkan ide dari tim dan stakeholder.</li>
+                    <li><strong>Pilih solusi terbaik:</strong> Gunakan matriks keputusan seperti pada Pertemuan 14.</li>
+                    <li><strong>Rencanakan perbaikan:</strong> Buat rencana rinci (siapa, kapan, bagaimana).</li>
+                    <li><strong>Implementasi perbaikan:</strong> Lakukan perubahan sesuai rencana.</li>
+                    <li><strong>Evaluasi hasil perbaikan:</strong> Ukur apakah perbaikan memberikan dampak.</li>
+                    <li><strong>Standarisasi atau iterasi:</strong> Jika berhasil, jadikan standar; jika belum, ulangi siklus.</li>
+                </ol>
+
+                <h3>15.4.3 Teknik Analisis Akar Masalah</h3>
+                <p>Dua teknik populer untuk menemukan akar masalah:</p>
+
+                <div class="template-box">
+                    <strong>🔍 Teknik 1: 5 Why (5 Mengapa)</strong><br><br>
+                    Tanyakan "Mengapa?" sebanyak 5 kali untuk menemukan akar masalah.<br><br>
+                    <strong>Masalah:</strong> Partisipasi siswa rendah di minggu pertama.<br>
+                    1. Mengapa? → Siswa tidak tahu cara memilah sampah.<br>
+                    2. Mengapa? → Tidak ada edukasi yang memadai.<br>
+                    3. Mengapa? → Kampanye hanya berupa poster, tidak interaktif.<br>
+                    4. Mengapa? → Tim tidak melibatkan peer educator.<br>
+                    5. Mengapa? → Tidak ada perencanaan untuk duta sampah.<br><br>
+                    <strong>Akar Masalah:</strong> Tidak adanya peer educator yang mendampingi siswa.<br>
+                    <strong>Solusi Perbaikan:</strong> Rekrut dan latih 10 duta sampah dari OSIS.
+                </div>
+
+                <div class="template-box">
+                    <strong>🐟 Teknik 2: Fishbone Diagram (Diagram Tulang Ikan)</strong><br><br>
+                    Identifikasi akar masalah dari 6 kategori (6M):<br>
+                    &nbsp;&nbsp;• <strong>Man (Manusia):</strong> Keterampilan, motivasi, pemahaman<br>
+                    &nbsp;&nbsp;• <strong>Method (Metode):</strong> SOP, prosedur, alur kerja<br>
+                    &nbsp;&nbsp;• <strong>Machine (Mesin/Alat):</strong> Ketersediaan, kondisi alat<br>
+                    &nbsp;&nbsp;• <strong>Material (Bahan):</strong> Kualitas bahan, ketersediaan<br>
+                    &nbsp;&nbsp;• <strong>Measurement (Pengukuran):</strong> Indikator, cara ukur<br>
+                    &nbsp;&nbsp;• <strong>Environment (Lingkungan):</strong> Kondisi fisik, sosial, budaya<br><br>
+                    Teknik ini membantu melihat masalah secara holistik.
+                </div>
+
+                <h3>15.4.4 Dokumentasi dan Pembelajaran</h3>
+                <p>Setiap perbaikan harus didokumentasikan untuk pembelajaran di masa depan:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Lessons Learned:</strong> Apa yang berhasil, apa yang gagal, mengapa.</li>
+                    <li><strong>Best Practices:</strong> Praktik terbaik yang dapat direplikasi.</li>
+                    <li><strong>Knowledge Base:</strong> Kumpulan pengetahuan untuk projek selanjutnya.</li>
+                    <li><strong>Sharing Session:</strong> Bagikan pembelajaran kepada siswa lain, guru, dan masyarakat.</li>
+                </ul>
+
+                <h3>15.4.5 Keberlanjutan Solusi</h3>
+                <p>Solusi yang baik harus berkelanjutan—tidak berhenti saat projek selesai. Strategi keberlanjutan:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Regenerasi:</strong> Siapkan kader penerus dari adik kelas.</li>
+                    <li><strong>Institusionalisasi:</strong> Masukkan ke dalam kebijakan sekolah (SK Kepala Sekolah).</li>
+                    <li><strong>Kemitraan:</strong> Jalin kerja sama dengan pihak eksternal (nagari, perusahaan, LSM).</li>
+                    <li><strong>Model Bisnis:</strong> Jika ada produk, kembangkan model bisnis yang mandiri.</li>
+                    <li><strong>Monitoring Berkala:</strong> Tetap pantau meski projek telah selesai.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum pada Tahap Implementasi dan Evaluasi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Langsung implementasi penuh tanpa uji coba (pilot project).</li>
+                    <li>Tidak melibatkan stakeholder sejak awal, sehingga ditolak di tengah jalan.</li>
+                    <li>Produk dirancang tanpa memahami kebutuhan pengguna.</li>
+                    <li>Indikator keberhasilan tidak terukur atau tidak realistis.</li>
+                    <li>Evaluasi dilakukan hanya di akhir, tanpa monitoring berkala.</li>
+                    <li>Tidak melakukan perbaikan meskipun ada temuan negatif.</li>
+                    <li>Dokumentasi buruk, sehingga pembelajaran tidak tertangkap.</li>
+                    <li>Solusi berhenti saat projek selesai (tidak berkelanjutan).</li>
+                    <li>Kolaborasi tim lemah: ada anggota yang mendominasi, yang lain pasif.</li>
+                    <li>Tidak mengelola konflik internal tim dengan baik.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Tahap produk dan implementasi solusi adalah puncak dari projek IPAS—di mana ide diwujudkan menjadi dampak nyata. Produk solusi dapat berupa benda fisik, model/sistem, kampanye, program, media edukasi, atau teknologi tepat guna, yang dirancang dengan prinsip user-centered, sederhana, terjangkau, berkelanjutan, dan berbasis bukti. Implementasi dilakukan secara kolaboratif dengan pembagian peran yang jelas (matriks RACI), komunikasi terbuka, dan pengelolaan kendala yang proaktif. Evaluasi dilakukan secara formatif dan sumatif menggunakan indikator SMART, dengan metode pengumpulan data yang beragam. Berdasarkan hasil evaluasi, perbaikan dilakukan melalui siklus PDCA (Plan-Do-Check-Act) dengan analisis akar masalah menggunakan 5 Why atau Fishbone Diagram. Yang tak kalah penting adalah dokumentasi pembelajaran dan strategi keberlanjutan—agar solusi tidak berhenti saat projek selesai, tetapi terus memberikan manfaat bagi masyarakat. Dengan menguasai tahap ini, siswa SMK tidak hanya menyelesaikan projek IPAS dengan sukses, tetapi juga membangun kompetensi profesional yang sangat dibutuhkan di dunia kerja: kemampuan mewujudkan ide menjadi produk, bekerja dalam tim, mengevaluasi secara objektif, dan melakukan perbaikan berkelanjutan.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Ries, E. (2011). <em>The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses</em>. New York: Crown Business.</li>
+                    <li>Deming, W. E. (1986). <em>Out of the Crisis</em>. Cambridge: MIT Press.</li>
+                    <li>Kelly, T., & Littman, J. (2001). <em>The Art of Innovation: Lessons in Creativity from IDEO, America's Leading Design Firm</em>. New York: Doubleday.</li>
+                    <li>Supriadi. (2024). <em>Panduan Projek IPAS Berbasis Potensi Lokal untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="14.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="16.html" class="btn">Bab 16: Presentasi, Refleksi, dan Pelaporan →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 15: Projek IPAS - Produk dan Implementasi Solusi</h2>
+                <p style="color: var(--text-secondary);">Materi: Perancangan Produk, Implementasi Kolaboratif, Evaluasi Kebermanfaatan, Perbaikan Berkelanjutan</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="2" selected>Semester 2 (Genap)</option>
+                        <option value="1">Semester 1 (Ganjil)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Versi awal produk yang dibuat untuk diuji sebelum produksi/diluncurkan penuh disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Produk final</label>
+                        <label><input type="radio" name="q1" value="b"> b. Prototipe</label>
+                        <label><input type="radio" name="q1" value="c"> c. Mockup</label>
+                        <label><input type="radio" name="q1" value="d"> d. Sketsa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Metode perbaikan berkelanjutan yang terdiri dari Plan-Do-Check-Act disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. SWOT Analysis</label>
+                        <label><input type="radio" name="q2" value="b"> b. PDCA Cycle (Siklus Deming)</label>
+                        <label><input type="radio" name="q2" value="c"> c. Matriks RACI</label>
+                        <label><input type="radio" name="q2" value="d"> d. Fishbone Diagram</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Alat bantu untuk memperjelas peran setiap pihak dalam implementasi (Responsible, Accountable, Consulted, Informed) disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Matriks SWOT</label>
+                        <label><input type="radio" name="q3" value="b"> b. Matriks RACI</label>
+                        <label><input type="radio" name="q3" value="c"> c. Matriks Keputusan</label>
+                        <label><input type="radio" name="q3" value="d"> d. Matriks Eisenhower</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Evaluasi yang dilakukan saat implementasi berlangsung untuk memantau progres dan identifikasi masalah dini disebut evaluasi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Sumatif</label>
+                        <label><input type="radio" name="q4" value="b"> b. Formatif</label>
+                        <label><input type="radio" name="q4" value="c"> c. Dampak</label>
+                        <label><input type="radio" name="q4" value="d"> d. Akhir</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Teknik analisis akar masalah dengan menanyakan "mengapa" sebanyak 5 kali disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Fishbone Diagram</label>
+                        <label><input type="radio" name="q5" value="b"> b. 5 Why Analysis</label>
+                        <label><input type="radio" name="q5" value="c"> c. SWOT Analysis</label>
+                        <label><input type="radio" name="q5" value="d"> d. PDCA Cycle</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Prinsip perancangan produk yang menekankan bahwa produk harus dirancang berdasarkan kebutuhan pengguna disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Affordability</label>
+                        <label><input type="radio" name="q6" value="b"> b. User-Centered Design</label>
+                        <label><input type="radio" name="q6" value="c"> c. Scalability</label>
+                        <label><input type="radio" name="q6" value="d"> d. Sustainability</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Implementasi skala kecil di lokasi/periode terbatas untuk menguji efektivitas sebelum peluncuran penuh disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Full implementation</label>
+                        <label><input type="radio" name="q7" value="b"> b. Pilot project (uji coba)</label>
+                        <label><input type="radio" name="q7" value="c"> c. Monitoring</label>
+                        <label><input type="radio" name="q7" value="d"> d. Evaluasi akhir</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Dalam matriks RACI, pihak yang bertanggung jawab atas hasil akhir (satu orang per tugas) dilambangkan dengan huruf...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. R (Responsible)</label>
+                        <label><input type="radio" name="q8" value="b"> b. A (Accountable)</label>
+                        <label><input type="radio" name="q8" value="c"> c. C (Consulted)</label>
+                        <label><input type="radio" name="q8" value="d"> d. I (Informed)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Strategi keberlanjutan solusi yang memasukkan program ke dalam kebijakan resmi sekolah disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Regenerasi</label>
+                        <label><input type="radio" name="q9" value="b"> b. Institusionalisasi</label>
+                        <label><input type="radio" name="q9" value="c"> c. Kemitraan</label>
+                        <label><input type="radio" name="q9" value="d"> d. Model bisnis</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. [HOTS] Sebuah tim projek menemukan bahwa partisipasi siswa dalam program bank sampah hanya 45% di minggu pertama, padahal target 70%. Setelah dianalisis dengan 5 Why, akar masalahnya adalah: siswa bingung membedakan jenis sampah karena tidak ada label visual. Perbaikan yang PALING TEPAT dan sesuai prinsip PDCA adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Memaksa semua siswa berpartisipasi dengan sanksi</label>
+                        <label><input type="radio" name="q10" value="b"> b. Menurunkan target partisipasi menjadi 45%</label>
+                        <label><input type="radio" name="q10" value="c"> c. Menambahkan label visual berwarna pada tempat sampah + latih duta sampah pendamping (Plan-Do-Check-Act)</label>
+                        <label><input type="radio" name="q10" value="d"> d. Menghentikan program karena dianggap gagal</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan 6 jenis produk solusi (produk fisik, model/sistem, kampanye, program, media edukasi, teknologi tepat guna)! Berikan masing-masing 2 contoh konkret dalam projek IPAS tentang "penghematan energi listrik di sekolah"!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Uraikan 8 tahapan perancangan produk solusi (definisi masalah, riset pengguna, ideation, seleksi ide, prototipe, uji prototipe, revisi, finalisasi)! Berikan contoh konkret penerapan setiap tahapan dalam projek pembuatan "komposter dari sampah organik sekolah"!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Jelaskan 6 prinsip kolaborasi yang efektif (tujuan bersama, pembagian peran, komunikasi terbuka, saling percaya, fleksibilitas, akuntabilitas)! Berikan contoh konkret penerapan setiap prinsip dalam implementasi program bank sampah di sekolah, lengkap dengan matriks RACI untuk 4 aktivitas utama!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Bandingkan 4 jenis evaluasi (formatif, sumatif, proses, dampak)! Untuk setiap jenis, jelaskan waktu pelaksanaan, tujuan, metode yang digunakan, dan berikan contoh penerapannya dalam projek IPAS tentang "kampanye anti-bullying di sekolah"!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Anda adalah ketua tim projek IPAS dengan solusi: "Program Duta Lingkungan SMKN 1 Koto Balingka". Setelah 1 bulan implementasi, hasil evaluasi menunjukkan: (a) baru 30% siswa yang aktif berpartisipasi, (b) duta lingkungan belum memiliki keterampilan komunikasi yang baik, (c) tidak ada SOP yang jelas untuk kegiatan duta. Lakukan analisis akar masalah menggunakan teknik 5 Why, rumuskan minimal 3 perbaikan konkret, terapkan siklus PDCA untuk setiap perbaikan, dan jelaskan strategi keberlanjutan program ini agar tetap berjalan meski tim projek telah lulus!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 15
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'b',
+            q4: 'b',
+            q5: 'b',
+            q6: 'b',
+            q7: 'b',
+            q8: 'b',
+            q9: 'b',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            document.getElementById('skorPG').textContent = pgScore;
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

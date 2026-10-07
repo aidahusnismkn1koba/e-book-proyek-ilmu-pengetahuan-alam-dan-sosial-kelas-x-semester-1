@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 4: Energi dan Perubahannya - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 4</span>
+            <h1>Energi dan Perubahannya</h1>
+            <p class="subtitle">Memahami konsep energi, berbagai bentuk energi, hukum kekekalan energi, sumber energi terbarukan dan tidak terbarukan, serta strategi penghematan energi di sekolah, rumah, dan dunia kerja.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="3.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="5.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Energi adalah konsep fundamental dalam sains yang menjadi penggerak seluruh aktivitas di alam semesta—mulai dari pergerakan planet, pertumbuhan tumbuhan, hingga operasi mesin-mesin industri modern. Dalam konteks Projek IPAS, pemahaman tentang energi dan perubahannya sangat penting untuk menjawab tantangan global seperti krisis energi, perubahan iklim, dan kebutuhan akan pembangunan berkelanjutan.</p>
+                <br>
+                <p>Bagi peserta didik SMK, penguasaan konsep energi bukan hanya bersifat akademis, tetapi juga sangat aplikatif. Pengetahuan ini menjadi dasar dalam memahami efisiensi mesin, sistem kelistrikan, teknologi energi terbarukan, hingga manajemen energi di dunia industri. Oleh karena itu, materi ini dirancang agar siswa mampu mengidentifikasi berbagai bentuk energi, memahami hukum kekekalan energi, membedakan sumber energi terbarukan dan tidak terbarukan, serta menerapkan prinsip penghematan energi secara kontekstual.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Energi:</strong> Kemampuan untuk melakukan usaha atau kerja. Satuan SI energi adalah Joule (J).</li>
+                    <li><strong>Bentuk Energi:</strong> Energi kinetik, energi potensial, energi panas (kalor), energi kimia, energi listrik, energi cahaya, energi nuklir, dan energi bunyi.</li>
+                    <li><strong>Hukum Kekekalan Energi:</strong> Energi tidak dapat diciptakan atau dimusnahkan, tetapi hanya dapat berubah dari satu bentuk ke bentuk lain.</li>
+                    <li><strong>Energi Terbarukan:</strong> Sumber energi yang dapat diperbaharui secara alami dan tidak akan habis (matahari, angin, air, panas bumi, biomassa).</li>
+                    <li><strong>Energi Tidak Terbarukan:</strong> Sumber energi yang jumlahnya terbatas dan akan habis jika dieksploitasi terus-menerus (minyak bumi, batu bara, gas alam).</li>
+                    <li><strong>Efisiensi Energi:</strong> Perbandingan antara energi yang digunakan untuk melakukan kerja dengan energi total yang tersedia.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Krisis Energi dan Transisi ke Energi Terbarukan</h3>
+                <p>Di sebuah kawasan industri di Jawa, ketergantungan pada listrik dari PLTU batu bara menyebabkan polusi udara yang parah dan biaya produksi yang tinggi. Ketika harga batu bara dunia melonjak, banyak pabrik yang mengalami kesulitan finansial. Sebuah perusahaan tekstil kemudian memutuskan untuk memasang panel surya di atap pabriknya dan menggunakan biogas dari limbah organik sebagai sumber energi tambahan. Dalam tiga tahun, biaya energi turun 40%, emisi karbon berkurang signifikan, dan perusahaan mendapat sertifikat ramah lingkungan yang meningkatkan daya saing di pasar global.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Transisi dari energi tidak terbarukan ke energi terbarukan bukan hanya solusi lingkungan, tetapi juga strategi ekonomi yang cerdas. Pemahaman tentang energi dan perubahannya menjadi kunci bagi lulusan SMK untuk beradaptasi dengan dunia kerja yang semakin menghargai keberlanjutan.</p>
+            </div>
+
+            <h2>4.1 Pengertian dan Bentuk-Bentuk Energi</h2>
+            <div class="card">
+                <p><strong>Energi</strong> didefinisikan sebagai kemampuan untuk melakukan usaha atau kerja. Dalam Sistem Internasional (SI), energi diukur dalam satuan <strong>Joule (J)</strong>, meskipun dalam kehidupan sehari-hari sering juga digunakan satuan kalori (kal), kilowatt-hour (kWh), dan British Thermal Unit (BTU).</p>
+                
+                <h3>Bentuk-Bentuk Energi</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Energi</th>
+                            <th>Definisi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Energi Kinetik</strong></td>
+                            <td>Energi yang dimiliki benda karena gerakannya</td>
+                            <td>Mobil yang melaju, angin yang bertiup</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Potensial</strong></td>
+                            <td>Energi yang dimiliki benda karena posisi atau keadaannya</td>
+                            <td>Batu di atas tebing, air di bendungan, pegas yang diregangkan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Panas (Kalor)</strong></td>
+                            <td>Energi yang dihasilkan oleh gerakan partikel dalam suatu benda</td>
+                            <td>Api, matahari, uap air panas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Kimia</strong></td>
+                            <td>Energi yang tersimpan dalam ikatan kimia suatu zat</td>
+                            <td>Makanan, bahan bakar (bensin, batu bara), baterai</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Listrik</strong></td>
+                            <td>Energi yang dihasilkan oleh aliran muatan listrik</td>
+                            <td>Arus listrik dari PLN, listrik dari baterai</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Cahaya</strong></td>
+                            <td>Energi yang dibawa oleh gelombang elektromagnetik</td>
+                            <td>Cahaya matahari, cahaya lampu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Nuklir</strong></td>
+                            <td>Energi yang tersimpan dalam inti atom</td>
+                            <td>Reaksi fisi di PLTN, reaksi fusi di matahari</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energi Bunyi</strong></td>
+                            <td>Energi yang dihasilkan oleh getaran</td>
+                            <td>Suara musik, ledakan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>4.2 Perubahan Bentuk Energi dan Hukum Kekekalan Energi</h2>
+            <div class="card">
+                <h3>4.2.1 Hukum Kekekalan Energi</h3>
+                <p>Hukum kekekalan energi menyatakan bahwa <strong>energi tidak dapat diciptakan atau dimusnahkan, tetapi hanya dapat berubah dari satu bentuk ke bentuk lain</strong>. Total energi dalam sistem tertutup selalu tetap. Hukum ini dirumuskan oleh James Prescott Joule dan menjadi fondasi bagi seluruh ilmu fisika modern.</p>
+
+                <h3>4.2.2 Contoh Perubahan Bentuk Energi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Lampu pijar:</strong> Energi listrik → Energi cahaya + Energi panas</li>
+                    <li><strong>Kipas angin:</strong> Energi listrik → Energi kinetik (gerak) + Energi bunyi</li>
+                    <li><strong>Mesin mobil:</strong> Energi kimia (bensin) → Energi panas → Energi kinetik</li>
+                    <li><strong>Fotosintesis:</strong> Energi cahaya → Energi kimia</li>
+                    <li><strong>Baterai:</strong> Energi kimia → Energi listrik</li>
+                    <li><strong>Panel surya:</strong> Energi cahaya → Energi listrik</li>
+                    <li><strong>Tubuh manusia:</strong> Energi kimia (makanan) → Energi kinetik (gerak) + Energi panas</li>
+                </ul>
+
+                <h3>4.2.3 Efisiensi Energi</h3>
+                <p>Tidak semua energi yang diubah dapat digunakan untuk melakukan kerja yang berguna. Sebagian energi selalu "hilang" dalam bentuk panas yang tidak diinginkan. <strong>Efisiensi energi</strong> didefinisikan sebagai perbandingan antara energi yang berguna dengan energi total yang dimasukkan, dinyatakan dalam persentase:</p>
+                <p style="text-align: center; font-size: 1.2rem; color: var(--gold-primary); margin: 1rem 0; font-family: 'Cinzel', serif;">
+                    Efisiensi = (Energi Berguna / Energi Total) × 100%
+                </p>
+                <p>Contoh: Lampu LED memiliki efisiensi sekitar 80-90%, sedangkan lampu pijar hanya 5-10% (sebagian besar energi berubah menjadi panas, bukan cahaya).</p>
+            </div>
+
+            <h2>4.3 Sumber Energi Terbarukan dan Tidak Terbarukan</h2>
+            <div class="card">
+                <h3>4.3.1 Energi Tidak Terbarukan</h3>
+                <p>Sumber energi tidak terbarukan adalah sumber energi yang berasal dari bahan bakar fosil dan bahan nuklir yang jumlahnya terbatas di bumi dan akan habis jika dieksploitasi terus-menerus. Proses pembentukannya membutuhkan jutaan tahun.</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Minyak Bumi:</strong> Bahan bakar kendaraan, plastik, aspal.</li>
+                    <li><strong>Batu Bara:</strong> Pembangkit listrik (PLTU), industri semen.</li>
+                    <li><strong>Gas Alam:</strong> Bahan bakar kompor, PLTG.</li>
+                    <li><strong>Bahan Bakar Nuklir:</strong> Uranium untuk PLTN.</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Dampak negatif:</strong> Emisi gas rumah kaca, polusi udara, perubahan iklim, dan potensi kecelakaan (seperti kebocoran nuklir).</p>
+
+                <h3>4.3.2 Energi Terbarukan</h3>
+                <p>Sumber energi terbarukan adalah sumber energi yang berasal dari proses alam yang berkelanjutan dan tidak akan habis meskipun digunakan terus-menerus.</p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary);">
+                    <li><strong>Energi Matahari:</strong> Panel surya (fotovoltaik), pemanas air tenaga surya.</li>
+                    <li><strong>Energi Angin:</strong> Turbin angin (kincir angin) untuk pembangkit listrik.</li>
+                    <li><strong>Energi Air (Hidro):</strong> Pembangkit listrik tenaga air (PLTA), mikrohidro.</li>
+                    <li><strong>Energi Panas Bumi (Geotermal):</strong> PLTP, pemanas ruangan.</li>
+                    <li><strong>Biomassa dan Biogas:</strong> Dari limbah organik, kotoran hewan, tanaman.</li>
+                    <li><strong>Energi Gelombang dan Pasang Surut:</strong> Pembangkit listrik tenaga ombak.</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Keunggulan:</strong> Ramah lingkungan, tidak menghasilkan emisi karbon, berkelanjutan, dan semakin ekonomis seiring perkembangan teknologi.</p>
+            </div>
+
+            <h2>4.4 Penghematan dan Pemanfaatan Energi Secara Efisien</h2>
+            <div class="card">
+                <p>Penghematan energi bukan hanya tentang mengurangi biaya, tetapi juga tentang menjaga kelestarian lingkungan dan memastikan ketersediaan energi untuk generasi mendatang. Prinsip penghematan energi dapat diterapkan di berbagai lingkungan:</p>
+
+                <h3>4.4.1 Di Lingkungan Sekolah</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Mematikan lampu dan AC saat kelas tidak digunakan.</li>
+                    <li>Menggunakan lampu LED yang lebih hemat energi.</li>
+                    <li>Memanfaatkan cahaya matahari alami dengan membuka tirai.</li>
+                    <li>Mengadakan kampanye "Satu Jam Tanpa Listrik" sebagai edukasi.</li>
+                </ul>
+
+                <h3>4.4.2 Di Lingkungan Rumah</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Mencabut charger dari stop kontak saat tidak digunakan (menghindari "vampire power").</li>
+                    <li>Menggunakan peralatan elektronik berlabel hemat energi.</li>
+                    <li>Menjemur pakaian secara alami daripada menggunakan mesin pengering.</li>
+                    <li>Memasang panel surya atap jika memungkinkan.</li>
+                </ul>
+
+                <h3>4.4.3 Di Dunia Kerja (Industri)</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Melakukan audit energi secara berkala untuk mengidentifikasi pemborosan.</li>
+                    <li>Mengganti mesin tua dengan mesin yang lebih efisien.</li>
+                    <li>Memanfaatkan limbah panas (waste heat recovery) untuk proses lain.</li>
+                    <li>Menerapkan sistem manajemen energi ISO 50001.</li>
+                    <li>Beralih ke sumber energi terbarukan seperti panel surya atau biogas.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Energi</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Mengira energi dapat "diciptakan" dari ketiadaan (melanggar hukum kekekalan energi).</li>
+                    <li>Menyamakan "energi terbarukan" dengan "energi bersih" (meskipun sebagian besar terbarukan itu bersih, ada juga yang memiliki dampak lingkungan, misalnya PLTA besar yang mengganggu ekosistem sungai).</li>
+                    <li>Menganggap efisiensi 100% mungkin dicapai (selalu ada energi yang terbuang sebagai panas).</li>
+                    <li>Tidak menyadari bahwa "vampire power" (standby mode) pada peralatan elektronik tetap mengonsumsi energi.</li>
+                    <li>Beranggapan bahwa energi tidak terbarukan akan segera habis (faktanya, cadangan masih ada, tetapi semakin mahal dan merusak lingkungan).</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Energi adalah kemampuan untuk melakukan usaha, yang dapat berupa berbagai bentuk (kinetik, potensial, panas, kimia, listrik, cahaya, nuklir, bunyi) dan dapat berubah dari satu bentuk ke bentuk lain sesuai dengan hukum kekekalan energi. Sumber energi terbagi menjadi dua: energi tidak terbarukan (fosil dan nuklir) yang akan habis dan merusak lingkungan, serta energi terbarukan (matahari, angin, air, panas bumi, biomassa) yang berkelanjutan dan ramah lingkungan. Penghematan dan pemanfaatan energi secara efisien di sekolah, rumah, dan dunia kerja merupakan tanggung jawab bersama untuk menjaga keberlanjutan bumi. Sebagai calon tenaga kerja profesional, siswa SMK harus menjadi agen perubahan dalam transisi menuju masa depan energi yang bersih dan berkelanjutan.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Halliday, D., Resnick, R., & Walker, J. (2013). <em>Fundamentals of Physics (10th ed.)</em>. New York: Wiley.</li>
+                    <li>Boyle, G. (2012). <em>Renewable Energy: Power for a Sustainable Future (3rd ed.)</em>. Oxford: Oxford University Press.</li>
+                    <li>Supriadi. (2024). <em>Konsep Dasar Fisika Terapan untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="3.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="5.html" class="btn">Bab 5: Bumi, Cuaca, dan Perubahan Iklim →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 4: Energi dan Perubahannya</h2>
+                <p style="color: var(--text-secondary);">Materi: Pengertian Energi, Bentuk Energi, Hukum Kekekalan, Sumber Energi Terbarukan/Tidak Terbarukan, dan Penghematan Energi</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Definisi yang paling tepat untuk energi adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Kemampuan untuk menciptakan materi baru</label>
+                        <label><input type="radio" name="q1" value="b"> b. Kemampuan untuk melakukan usaha atau kerja</label>
+                        <label><input type="radio" name="q1" value="c"> c. Gaya yang bekerja pada suatu benda</label>
+                        <label><input type="radio" name="q1" value="d"> d. Massa yang dimiliki suatu benda</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Satuan energi dalam Sistem Internasional (SI) adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Newton (N)</label>
+                        <label><input type="radio" name="q2" value="b"> b. Watt (W)</label>
+                        <label><input type="radio" name="q2" value="c"> c. Joule (J)</label>
+                        <label><input type="radio" name="q2" value="d"> d. Pascal (Pa)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Sebuah batu yang berada di atas tebing memiliki energi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Kinetik</label>
+                        <label><input type="radio" name="q3" value="b"> b. Kimia</label>
+                        <label><input type="radio" name="q3" value="c"> c. Potensial gravitasi</label>
+                        <label><input type="radio" name="q3" value="d"> d. Listrik</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Perubahan energi yang terjadi pada kipas angin yang menyala adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Energi kinetik → energi listrik</label>
+                        <label><input type="radio" name="q4" value="b"> b. Energi listrik → energi kinetik + energi bunyi</label>
+                        <label><input type="radio" name="q4" value="c"> c. Energi kimia → energi panas</label>
+                        <label><input type="radio" name="q4" value="d"> d. Energi panas → energi cahaya</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Hukum kekekalan energi menyatakan bahwa...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Energi dapat diciptakan dari ketiadaan</label>
+                        <label><input type="radio" name="q5" value="b"> b. Energi dapat dimusnahkan sepenuhnya</label>
+                        <label><input type="radio" name="q5" value="c"> c. Energi tidak dapat diciptakan atau dimusnahkan, hanya dapat berubah bentuk</label>
+                        <label><input type="radio" name="q5" value="d"> d. Energi selalu berkurang setiap kali berubah bentuk</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Berikut yang termasuk sumber energi terbarukan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Batu bara</label>
+                        <label><input type="radio" name="q6" value="b"> b. Minyak bumi</label>
+                        <label><input type="radio" name="q6" value="c"> c. Gas alam</label>
+                        <label><input type="radio" name="q6" value="d"> d. Energi matahari</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Contoh sumber energi tidak terbarukan yang banyak digunakan di PLTU adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Batu bara</label>
+                        <label><input type="radio" name="q7" value="b"> b. Air</label>
+                        <label><input type="radio" name="q7" value="c"> c. Angin</label>
+                        <label><input type="radio" name="q7" value="d"> d. Panas bumi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Salah satu prinsip penghematan energi di lingkungan rumah adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Membiarkan charger tetap tertancap di stop kontak</label>
+                        <label><input type="radio" name="q8" value="b"> b. Mencabut charger dari stop kontak saat tidak digunakan</label>
+                        <label><input type="radio" name="q8" value="c"> c. Menggunakan lampu pijar daripada LED</label>
+                        <label><input type="radio" name="q8" value="d"> d. Menyalakan AC dengan suhu serendah mungkin</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Efisiensi energi didefinisikan sebagai...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Total energi yang dikonsumsi oleh suatu alat</label>
+                        <label><input type="radio" name="q9" value="b"> b. Jumlah energi yang terbuang sebagai panas</label>
+                        <label><input type="radio" name="q9" value="c"> c. Perbandingan antara energi berguna dengan energi total yang dimasukkan</label>
+                        <label><input type="radio" name="q9" value="d"> d. Kecepatan suatu alat dalam mengonsumsi energi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Dampak negatif utama dari penggunaan energi fosil secara berlebihan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Meningkatkan kualitas udara</label>
+                        <label><input type="radio" name="q10" value="b"> b. Menyebabkan emisi gas rumah kaca dan perubahan iklim</label>
+                        <label><input type="radio" name="q10" value="c"> c. Menambah cadangan energi masa depan</label>
+                        <label><input type="radio" name="q10" value="d"> d. Mengurangi biaya produksi secara permanen</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan pengertian energi dan sebutkan 6 bentuk energi beserta contoh penerapannya dalam kehidupan sehari-hari!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Rumuskan Hukum Kekekalan Energi! Berikan 3 contoh perubahan bentuk energi yang terjadi di lingkungan sekitar Anda, dan jelaskan mengapa tidak ada energi yang benar-benar "hilang" dalam proses tersebut!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Bandingkan sumber energi terbarukan dan tidak terbarukan! Berikan masing-masing 4 contoh, serta jelaskan kelebihan dan kekurangan dari masing-masing jenis sumber energi tersebut!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Jelaskan konsep efisiensi energi! Mengapa efisiensi 100% tidak mungkin dicapai dalam perubahan bentuk energi? Berikan contoh alat yang memiliki efisiensi tinggi dan rendah!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Rancang sebuah program penghematan energi yang dapat diterapkan di sekolah Anda! Sebutkan minimal 5 langkah konkret, target penghematan yang ingin dicapai, dan bagaimana cara mengukur keberhasilannya!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 4
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'c',
+            q4: 'b',
+            q5: 'c',
+            q6: 'd',
+            q7: 'a',
+            q8: 'b',
+            q9: 'c',
+            q10: 'b'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

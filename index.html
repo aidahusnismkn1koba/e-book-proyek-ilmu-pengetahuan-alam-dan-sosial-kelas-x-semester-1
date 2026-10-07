@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projek IPAS Kelas X - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts untuk nuansa Luxury & Modern -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           VARIABEL WARNA & PENGATURAN DASAR (GANTI DI SINI UNTUK UBAH TEMA)
+           ========================================= */
+        :root {
+            --bg-dark: #0f172a;        /* Deep Navy Background */
+            --bg-card: rgba(30, 41, 59, 0.7); /* Glassmorphism Card */
+            --gold-primary: #d4af37;   /* Luxury Gold */
+            --gold-light: #f3e5ab;     /* Light Gold Accent */
+            --text-primary: #f8fafc;   /* Crisp White */
+            --text-secondary: #cbd5e1; /* Soft Gray */
+            --border-gold: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           HEADER & HERO SECTION
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* AREA GAMBAR - SANGAT MUDAH DIGANTI */
+        .book-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cover-frame {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--border-gold);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .cover-frame:hover {
+            transform: translateY(-10px) rotateY(-5deg);
+            box-shadow: 
+                0 35px 60px -15px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(212, 175, 55, 0.3);
+        }
+
+        /* GANTI NAMA FILE DI SINI: cover-buku.png */
+        .cover-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .author-frame {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            position: relative;
+            top: -40px; /* Overlap effect */
+            background: var(--bg-dark);
+        }
+
+        /* GANTI NAMA FILE DI SINI: photo-penulis.png */
+        .author-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border-radius: 50px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .author-info {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--gold-primary);
+        }
+
+        .author-info h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .author-info a:hover {
+            color: var(--gold-primary);
+            text-decoration: underline;
+        }
+
+        .scroll-indicator {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* =========================================
+           CONTENT / BAB SECTION
+           ========================================= */
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem 8rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--gold-primary);
+            margin: 1rem auto 0;
+        }
+
+        .bab-container {
+            margin-bottom: 3rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bab-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--gold-primary);
+        }
+
+        .bab-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bab-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--bg-dark);
+            background: var(--gold-primary);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
+        .bab-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .pertemuan-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .pertemuan-item {
+            position: relative;
+        }
+
+        .pertemuan-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pertemuan-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--gold-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .pertemuan-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--text-primary);
+            border-color: var(--border-gold);
+            padding-left: 2rem;
+        }
+
+        .pertemuan-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .pertemuan-link.uts {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .pertemuan-link.uas {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .pertemuan-number {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            margin-right: 1rem;
+            color: var(--gold-primary);
+            min-width: 30px;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .author-info {
+                border-left: none;
+                border-top: 3px solid var(--gold-primary);
+                padding-left: 0;
+                padding-top: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .book-visual {
+                order: -1;
+            }
+            
+            .cover-frame {
+                width: 280px;
+                height: 420px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .pertemuan-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="book-visual">
+                <!-- 
+                    PETUNJUK PENGGANTIAN GAMBAR:
+                    1. Simpan file gambar cover buku Anda dengan nama: cover-buku.png
+                    2. Simpan file foto penulis Anda dengan nama: photo-penulis.png
+                    3. Letakkan kedua file tersebut di folder yang sama dengan file HTML ini.
+                -->
+                <div class="cover-frame">
+                    <img src="cover-buku.png" alt="Cover Buku Projek IPAS Kelas X">
+                </div>
+                <div class="author-frame">
+                    <img src="photo-penulis.png" alt="Foto Penulis Aida Husni, S.Pd">
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <span class="badge">Tahun Pelajaran 2026/2027</span>
+                <h1>Proyek Ilmu Pengetahuan Alam dan Sosial</h1>
+                <div class="author-info">
+                    <h2>Aida Husni, S.Pd</h2>
+                    <p>SMKN 1 Koto Balingka</p>
+                    <p>
+                        <a href="mailto:aidahusni1406@gmail.com">aidahusni1406@gmail.com</a>
+                    </p>
+                </div>
+                <p style="color: var(--text-secondary); max-width: 500px; margin-bottom: 2rem;">
+                    Sebuah panduan komprehensif yang dirancang untuk membekali peserta didik Kelas X dengan pemahaman ilmiah, kesadaran sosial, dan keterampilan proyek yang relevan dengan dunia kerja dan kehidupan abad ke-21.
+                </p>
+                <div class="scroll-indicator">
+                    <span>JELAJAHI MATERI</span>
+                    <span>↓</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT SECTION -->
+    <main class="content-section">
+        <h2 class="section-title">Daftar Pertemuan & Bab</h2>
+
+        <!-- BAB 1 -->
+        <div class="bab-container">
+            <div class="bab-header">
+                <div class="bab-number">I</div>
+                <h3 class="bab-title">Fondasi Sains dan Sistem Kehidupan</h3>
+            </div>
+            <ul class="pertemuan-list">
+                <li class="pertemuan-item">
+                    <a href="1.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">01</span>
+                        Hakikat Sains dan Projek IPAS
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="2.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">02</span>
+                        Makhluk Hidup dan Interaksi Lingkungan
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- BAB 2 -->
+        <div class="bab-container">
+            <div class="bab-header">
+                <div class="bab-number">II</div>
+                <h3 class="bab-title">Materi, Energi, dan Dinamika Bumi</h3>
+            </div>
+            <ul class="pertemuan-list">
+                <li class="pertemuan-item">
+                    <a href="3.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">03</span>
+                        Materi dan Transformasinya
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="4.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">04</span>
+                        Energi: Sumber, Perubahan, dan Efisiensi
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="5.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">05</span>
+                        Bumi, Cuaca, dan Perubahan Iklim
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- BAB 3 -->
+        <div class="bab-container">
+            <div class="bab-header">
+                <div class="bab-number">III</div>
+                <h3 class="bab-title">Lingkungan, Sumber Daya, dan Evaluasi</h3>
+            </div>
+            <ul class="pertemuan-list">
+                <li class="pertemuan-item">
+                    <a href="6.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">06</span>
+                        Dinamika Pencemaran Lingkungan
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="7.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">07</span>
+                        Keanekaragaman Hayati dan Sumber Daya Alam
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="8.html" target="_blank" class="pertemuan-link uts">
+                        <span class="pertemuan-number">08</span>
+                        Ujian Tengah Semester (UTS)
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- BAB 4 -->
+        <div class="bab-container">
+            <div class="bab-header">
+                <div class="bab-number">IV</div>
+                <h3 class="bab-title">Interaksi Sosial dan Ekonomi Kreatif</h3>
+            </div>
+            <ul class="pertemuan-list">
+                <li class="pertemuan-item">
+                    <a href="9.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">09</span>
+                        Individu, Masyarakat, dan Interaksi Sosial
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="10.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">10</span>
+                        Kegiatan Ekonomi dan Kebutuhan Manusia
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="11.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">11</span>
+                        Potensi dan Permasalahan Lingkungan Sosial
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- BAB 5 -->
+        <div class="bab-container">
+            <div class="bab-header">
+                <div class="bab-number">V</div>
+                <h3 class="bab-title">Projek IPAS: Inovasi dan Evaluasi Akhir</h3>
+            </div>
+            <ul class="pertemuan-list">
+                <li class="pertemuan-item">
+                    <a href="12.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">12</span>
+                        Projek IPAS: Identifikasi Masalah Nyata
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="13.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">13</span>
+                        Projek IPAS: Perencanaan dan Pengumpulan Data
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="14.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">14</span>
+                        Projek IPAS: Analisis Data dan Pemecahan Masalah
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="15.html" target="_blank" class="pertemuan-link">
+                        <span class="pertemuan-number">15</span>
+                        Projek IPAS: Produk dan Implementasi Solusi
+                    </a>
+                </li>
+                <li class="pertemuan-item">
+                    <a href="16.html" target="_blank" class="pertemuan-link uas">
+                        <span class="pertemuan-number">16</span>
+                        Ujian Akhir Semester (UAS) & Pelaporan Projek
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+</body>
+</html>

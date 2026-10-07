@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 12: Projek IPAS - Identifikasi Masalah - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .template-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Montserrat', monospace;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 12</span>
+            <h1>Projek IPAS: Identifikasi Masalah</h1>
+            <p class="subtitle">Tahap pertama projek IPAS: menentukan masalah nyata, menyusun latar belakang dan rumusan masalah, menetapkan tujuan-manfaat-batasan, serta mengidentifikasi sumber informasi dan data yang diperlukan.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="11.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="13.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Setelah pada Pertemuan 11 siswa mempelajari cara mengidentifikasi potensi dan permasalahan lingkungan sosial, pada Pertemuan 12 ini siswa mulai memasuki tahap <strong>praktik projek IPAS</strong> yang sesungguhnya. Tahap pertama dalam sebuah projek—yaitu <strong>Identifikasi Masalah</strong>—merupakan fondasi yang menentukan keberhasilan seluruh rangkaian projek selanjutnya.</p>
+                <br>
+                <p>Mengidentifikasi masalah bukan sekadar "menemukan sesuatu yang salah", melainkan sebuah proses analitis yang sistematis: mengamati fenomena, memahami akar penyebab, merumuskan masalah secara spesifik, dan menentukan batasan serta tujuan projek. Kesalahan pada tahap ini akan berakibat domino: masalah yang salah dirumuskan akan menghasilkan solusi yang tidak tepat, data yang terkumpul tidak relevan, dan produk akhir tidak memberikan manfaat nyata.</p>
+                <br>
+                <p>Bagi peserta didik SMK, kemampuan identifikasi masalah merupakan kompetensi kunci yang sangat dihargai di dunia kerja. Seorang teknisi, wirausahawan, atau profesional harus mampu mengenali masalah di lingkungannya, merumuskannya dengan tepat, dan merancang solusi berbasis data. Oleh karena itu, materi ini dirancang agar siswa mampu menerapkan proses identifikasi masalah secara sistematis, terstruktur, dan kontekstual.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Masalah Nyata:</strong> Kesenjangan antara kondisi ideal (harapan) dengan kondisi faktual (kenyataan) yang dialami oleh individu atau masyarakat.</li>
+                    <li><strong>Latar Belakang:</strong> Uraian kontekstual yang menjelaskan mengapa masalah tersebut penting untuk dikaji.</li>
+                    <li><strong>Rumusan Masalah:</strong> Pertanyaan spesifik yang akan dijawab melalui projek.</li>
+                    <li><strong>Tujuan Projek:</strong> Hasil konkret yang ingin dicapai (harus SMART: Specific, Measurable, Achievable, Relevant, Time-bound).</li>
+                    <li><strong>Manfaat Projek:</strong> Dampak positif bagi siswa, sekolah, masyarakat, dan ilmu pengetahuan.</li>
+                    <li><strong>Batasan Projek:</strong> Ruang lingkup yang membatasi fokus kajian agar projek tetap terarah dan realistis.</li>
+                    <li><strong>Sumber Data:</strong> Informasi yang diperlukan untuk menjawab rumusan masalah (primer dan sekunder).</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Projek IPAS "Sampah Plastik di Sungai Koto Balingka"</h3>
+                <p>Sekelompok siswa SMKN 1 Koto Balingka mengamati bahwa Sungai Koto Balingka semakin tercemar oleh sampah plastik. Awalnya, mereka hanya ingin "membersihkan sungai". Namun, setelah mengikuti tahap identifikasi masalah yang sistematis, mereka menyadari bahwa masalah sebenarnya bukan sekadar sampah, melainkan:</p>
+                <br>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li>Tidak adanya tempat sampah terpilah di bantaran sungai.</li>
+                    <li>Rendahnya kesadaran masyarakat tentang dampak sampah plastik.</li>
+                    <li>Tidak ada sistem pengumpulan sampah rutin di nagari.</li>
+                </ul>
+                <br>
+                <p>Dengan identifikasi yang tepat, mereka merumuskan masalah: <em>"Bagaimana cara mengurangi timbulan sampah plastik di Sungai Koto Balingka melalui edukasi dan sistem bank sampah nagari?"</em> Rumusan ini lebih spesifik, terukur, dan solutif dibanding sekadar "membersihkan sungai". Projek mereka kemudian berhasil membangun 3 titik bank sampah dan mengurangi volume sampah plastik di sungai hingga 35% dalam 3 bulan.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Identifikasi masalah yang tepat adalah kunci keberhasilan projek. Masalah yang dirumuskan secara spesifik dan berbasis data akan menghasilkan solusi yang efektif dan berkelanjutan.</p>
+            </div>
+
+            <h2>12.1 Menentukan Masalah Nyata</h2>
+            <div class="card">
+                <h3>12.1.1 Apa Itu Masalah Nyata?</h3>
+                <p><strong>Masalah nyata</strong> adalah kesenjangan (gap) antara <strong>kondisi ideal</strong> (harapan/teori/standar) dengan <strong>kondisi faktual</strong> (kenyataan yang terjadi di lapangan). Masalah nyata memiliki ciri-ciri:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Objektif:</strong> Berdasarkan fakta dan data, bukan asumsi atau opini pribadi.</li>
+                    <li><strong>Signifikan:</strong> Memengaruhi kehidupan banyak orang atau memiliki dampak penting.</li>
+                    <li><strong>Spesifik:</strong> Terfokus pada satu isu yang jelas, bukan umum dan abstrak.</li>
+                    <li><strong>Dapat dikaji:</strong> Dapat dipecahkan atau dikurangi melalui projek yang realistis.</li>
+                    <li><strong>Relevan:</strong> Sesuai dengan kompetensi siswa dan konteks lokal.</li>
+                </ul>
+
+                <h3>12.1.2 Sumber Masalah Nyata</h3>
+                <p>Masalah nyata dapat ditemukan di berbagai lingkungan:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Lingkungan</th>
+                            <th>Contoh Masalah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sekolah</strong></td>
+                            <td>Sampah kantin tidak terpilah, pemborosan air dan listrik, bullying, rendahnya minat baca</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rumah Tangga</strong></td>
+                            <td>Pemborosan energi, limbah rumah tangga, pola makan tidak sehat, konflik keluarga</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Masyarakat/Nagari</strong></td>
+                            <td>Pencemaran sungai, pengangguran pemuda, alih fungsi lahan, kenakalan remaja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dunia Kerja/Industri</strong></td>
+                            <td>Limbah produksi, efisiensi energi rendah, K3 belum optimal, produktivitas menurun</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>12.1.3 Teknik Menemukan Masalah Nyata</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Observasi Langsung:</strong> Mengamati lingkungan sekitar dengan cermat dan kritis.</li>
+                    <li><strong>Wawancara:</strong> Berdialog dengan warga, tokoh masyarakat, atau pelaku usaha.</li>
+                    <li><strong>Studi Dokumentasi:</strong> Membaca berita lokal, data BPS, laporan pemerintah nagari.</li>
+                    <li><strong>Curah Pendapat (Brainstorming):</strong> Diskusi kelompok untuk menggali isu-isu yang muncul.</li>
+                    <li><strong>Analisis SWOT Sederhana:</strong> Mengidentifikasi Strengths, Weaknesses, Opportunities, Threats di lingkungan.</li>
+                </ul>
+
+                <h3>12.1.4 Kriteria Masalah yang Baik untuk Projek IPAS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kriteria</th>
+                            <th>Penjelasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Urgent</strong></td>
+                            <td>Mendesak untuk diselesaikan karena dampaknya signifikan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feasible</strong></td>
+                            <td>Dapat diselesaikan dengan sumber daya yang dimiliki siswa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relevant</strong></td>
+                            <td>Sesuai dengan kompetensi kejuruan dan materi IPAS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Specific</strong></td>
+                            <td>Spesifik, tidak terlalu luas atau terlalu sempit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Measurable</strong></td>
+                            <td>Dapat diukur keberhasilannya dengan indikator jelas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>12.2 Menyusun Latar Belakang dan Rumusan Masalah</h2>
+            <div class="card">
+                <h3>12.2.1 Latar Belakang Projek</h3>
+                <p><strong>Latar belakang</strong> adalah uraian yang menjelaskan mengapa masalah tersebut penting untuk dikaji. Latar belakang yang baik disusun dengan pola <strong>Segitiga Terbalik</strong>: dari hal umum ke hal khusus.</p>
+
+                <div class="template-box">
+                    <strong>📝 Struktur Latar Belakang yang Baik:</strong><br><br>
+                    <strong>1. Paragraf Pembuka (Konteks Umum):</strong><br>
+                    &nbsp;&nbsp;&nbsp;→ Menjelaskan kondisi ideal atau fenomena global/nasional terkait topik.<br><br>
+                    <strong>2. Paragraf Tengah (Kondisi Faktual):</strong><br>
+                    &nbsp;&nbsp;&nbsp;→ Menyajikan data/fakta tentang kondisi nyata di lokasi projek.<br>
+                    &nbsp;&nbsp;&nbsp;→ Menunjukkan kesenjangan antara ideal dan faktual.<br><br>
+                    <strong>3. Paragraf Penutup (Urgensi):</strong><br>
+                    &nbsp;&nbsp;&nbsp;→ Menjelaskan mengapa masalah ini penting untuk dikaji.<br>
+                    &nbsp;&nbsp;&nbsp;→ Menegaskan alasan pemilihan topik dan kontribusi projek.
+                </div>
+
+                <h3>12.2.2 Rumusan Masalah</h3>
+                <p><strong>Rumusan masalah</strong> adalah pertanyaan spesifik yang akan dijawab melalui projek. Rumusan masalah yang baik harus:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Dinyatakan dalam bentuk <strong>pertanyaan</strong> (diakhiri tanda tanya).</li>
+                    <li><strong>Spesifik</strong> dan <strong>terukur</strong>.</li>
+                    <li>Dapat dijawab melalui <strong>pengumpulan dan analisis data</strong>.</li>
+                    <li>Sesuai dengan <strong>tujuan dan batasan</strong> projek.</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Rumusan Masalah yang Baik:</strong><br><br>
+                    ❌ <strong>Buruk:</strong> "Bagaimana cara mengatasi sampah?"<br>
+                    &nbsp;&nbsp;&nbsp;(Terlalu umum, tidak spesifik, sulit diukur)<br><br>
+                    ✅ <strong>Baik:</strong> "Bagaimana cara mengurangi timbulan sampah plastik di kantin SMKN 1 Koto Balingka melalui program 3R dan bank sampah sekolah?"<br>
+                    &nbsp;&nbsp;&nbsp;(Spesifik, terukur, solutif, kontekstual)<br><br>
+                    ✅ <strong>Baik:</strong> "Seberapa efektif penggunaan lampu LED dalam menghemat konsumsi listrik di ruang kelas SMKN 1 Koto Balingka?"<br>
+                    &nbsp;&nbsp;&nbsp;(Spesifik, terukur, berbasis data)
+                </div>
+
+                <h3>12.2.3 Kesalahan Umum dalam Merumuskan Masalah</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Rumusan terlalu luas (misalnya: "Bagaimana mengatasi kemiskinan di Indonesia?").</li>
+                    <li>Rumusan bukan dalam bentuk pertanyaan.</li>
+                    <li>Rumusan tidak dapat dijawab dengan data (misalnya: "Apakah Tuhan ada?").</li>
+                    <li>Rumusan bersifat subjektif atau mengandung nilai moral yang tidak terukur.</li>
+                    <li>Rumusan tidak selaras dengan tujuan dan batasan projek.</li>
+                </ul>
+            </div>
+
+            <h2>12.3 Tujuan, Manfaat, dan Batasan Projek</h2>
+            <div class="card">
+                <h3>12.3.1 Tujuan Projek</h3>
+                <p><strong>Tujuan projek</strong> adalah hasil konkret yang ingin dicapai. Tujuan harus dirumuskan dengan prinsip <strong>SMART</strong>:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prinsip</th>
+                            <th>Arti</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>S - Specific</strong></td>
+                            <td>Spesifik, jelas, tidak ambigu</td>
+                            <td>"Mengurangi sampah plastik di kantin"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>M - Measurable</strong></td>
+                            <td>Dapat diukur dengan indikator</td>
+                            <td>"...sebanyak 30% dalam 3 bulan"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>A - Achievable</strong></td>
+                            <td>Dapat dicapai dengan sumber daya yang ada</td>
+                            <td>"...melalui program bank sampah sekolah"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R - Relevant</strong></td>
+                            <td>Relevan dengan kompetensi dan konteks</td>
+                            <td>"...sesuai materi IPAS tentang pencemaran"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>T - Time-bound</strong></td>
+                            <td>Memiliki batas waktu yang jelas</td>
+                            <td>"...dalam periode 3 bulan (Jan-Mar 2027)"</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Tujuan Projek (SMART):</strong><br><br>
+                    "Mengurangi timbulan sampah plastik di kantin SMKN 1 Koto Balingka sebanyak 30% dalam waktu 3 bulan (Januari-Maret 2027) melalui penerapan program bank sampah sekolah dan edukasi 3R kepada siswa."
+                </div>
+
+                <h3>12.3.2 Manfaat Projek</h3>
+                <p>Manfaat projek menjelaskan siapa yang akan mendapat keuntungan dari hasil projek. Manfaat biasanya dibagi menjadi beberapa aspek:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Bagi Siswa:</strong> Meningkatkan kompetensi, keterampilan penelitian, dan kepedulian sosial.</li>
+                    <li><strong>Bagi Sekolah:</strong> Menjadi model sekolah adiwiyata, meningkatkan citra sekolah.</li>
+                    <li><strong>Bagi Masyarakat:</strong> Lingkungan lebih bersih, kesadaran meningkat, ekonomi lokal tumbuh.</li>
+                    <li><strong>Bagi Ilmu Pengetahuan:</strong> Menambah referensi tentang solusi berbasis projek IPAS.</li>
+                    <li><strong>Bagi Dunia Kerja:</strong> Menghasilkan lulusan yang terbiasa memecahkan masalah secara sistematis.</li>
+                </ul>
+
+                <h3>12.3.3 Batasan Projek</h3>
+                <p><strong>Batasan projek</strong> (scope) adalah ruang lingkup yang membatasi fokus kajian agar projek tetap terarah dan realistis. Batasan mencakup:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Lokasi:</strong> Di mana projek dilaksanakan (misalnya: hanya di SMKN 1 Koto Balingka).</li>
+                    <li><strong>Subjek:</strong> Siapa yang terlibat (misalnya: siswa kelas X, pedagang kantin).</li>
+                    <li><strong>Objek:</strong> Apa yang dikaji (misalnya: hanya sampah plastik, bukan semua jenis sampah).</li>
+                    <li><strong>Waktu:</strong> Kapan projek dilaksanakan (misalnya: Januari-Maret 2027).</li>
+                    <li><strong>Variabel:</strong> Aspek apa saja yang diukur (misalnya: volume sampah, partisipasi siswa).</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Batasan Projek:</strong><br><br>
+                    "Projek ini dibatasi pada:<br>
+                    1. Lokasi: Area kantin dan lingkungan SMKN 1 Koto Balingka.<br>
+                    2. Subjek: Siswa kelas X dan pedagang kantin.<br>
+                    3. Objek: Hanya sampah plastik (botol, kemasan, sedotan).<br>
+                    4. Waktu: Januari-Maret 2027 (3 bulan).<br>
+                    5. Variabel: Volume sampah plastik (kg/hari) dan tingkat partisipasi siswa (%)."
+                </div>
+            </div>
+
+            <h2>12.4 Sumber Informasi dan Data yang Diperlukan</h2>
+            <div class="card">
+                <h3>12.4.1 Jenis Sumber Data</h3>
+                <p>Untuk menjawab rumusan masalah, siswa perlu mengidentifikasi sumber data yang diperlukan. Sumber data dibagi menjadi dua:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis</th>
+                            <th>Definisi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Primer</strong></td>
+                            <td>Data yang dikumpulkan langsung oleh peneliti dari sumber pertama</td>
+                            <td>Hasil observasi, wawancara, angket, pengukuran langsung</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Sekunder</strong></td>
+                            <td>Data yang sudah dikumpulkan oleh pihak lain dan dapat diakses</td>
+                            <td>Data BPS, laporan sekolah, berita, jurnal, statistik nagari</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>12.4.2 Mengidentifikasi Kebutuhan Data</h3>
+                <p>Untuk setiap rumusan masalah, siswa harus menentukan:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Data apa yang dibutuhkan?</strong> (misalnya: volume sampah plastik per hari)</li>
+                    <li><strong>Dari mana data diperoleh?</strong> (misalnya: timbangan di kantin, wawancara pedagang)</li>
+                    <li><strong>Bagaimana cara mengumpulkannya?</strong> (misalnya: observasi harian selama 2 minggu)</li>
+                    <li><strong>Siapa narasumbernya?</strong> (misalnya: pedagang kantin, siswa, petugas kebersihan)</li>
+                    <li><strong>Kapan data dikumpulkan?</strong> (misalnya: setiap pagi pukul 07.00-08.00)</li>
+                </ul>
+
+                <h3>12.4.3 Matriks Kebutuhan Data</h3>
+                <p>Matriks ini membantu siswa memetakan kebutuhan data secara sistematis:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rumusan Masalah</th>
+                            <th>Data yang Dibutuhkan</th>
+                            <th>Sumber</th>
+                            <th>Teknik Pengumpulan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Berapa volume sampah plastik di kantin per hari?</td>
+                            <td>Berat sampah plastik (kg)</td>
+                            <td>Petugas kebersihan kantin</td>
+                            <td>Observasi + penimbangan</td>
+                        </tr>
+                        <tr>
+                            <td>Bagaimana kesadaran siswa terhadap 3R?</td>
+                            <td>Tingkat pengetahuan dan perilaku 3R</td>
+                            <td>Siswa kelas X</td>
+                            <td>Angket/kuesioner</td>
+                        </tr>
+                        <tr>
+                            <td>Apa kendala pedagang dalam memilah sampah?</td>
+                            <td>Faktor penghambat pemilahan</td>
+                            <td>Pedagang kantin</td>
+                            <td>Wawancara mendalam</td>
+                        </tr>
+                        <tr>
+                            <td>Apakah ada kebijakan sekolah tentang sampah?</td>
+                            <td>Peraturan/tata tertib sekolah</td>
+                            <td>Dokumen sekolah</td>
+                            <td>Studi dokumentasi</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>12.4.4 Etika Pengumpulan Data</h3>
+                <p>Dalam mengumpulkan data, siswa harus menjunjung tinggi etika:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Izin:</strong> Meminta izin kepada pihak terkait (guru, kepala sekolah, tokoh masyarakat).</li>
+                    <li><strong>Kerahasiaan:</strong> Menjaga privasi narasumber, tidak menyebarkan data pribadi.</li>
+                    <li><strong>Kejujuran:</strong> Melaporkan data apa adanya, tidak memanipulasi.</li>
+                    <li><strong>Objektivitas:</strong> Tidak membiarkan opini pribadi memengaruhi data.</li>
+                    <li><strong>Keselamatan:</strong> Mengutamakan keselamatan diri dan orang lain saat mengambil data.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum pada Tahap Identifikasi Masalah</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Memilih masalah yang terlalu luas sehingga tidak dapat diselesaikan dalam waktu projek.</li>
+                    <li>Merumuskan masalah berdasarkan asumsi, bukan fakta dan data.</li>
+                    <li>Latar belakang tidak memiliki data pendukung (hanya opini).</li>
+                    <li>Tujuan tidak SMART (abstrak, tidak terukur, tanpa batas waktu).</li>
+                    <li>Batasan projek tidak jelas, sehingga kajian melebar ke mana-mana.</li>
+                    <li>Tidak mengidentifikasi sumber data sejak awal, sehingga kesulitan di tahap pengumpulan.</li>
+                    <li>Mengabaikan etika pengumpulan data (misalnya: mengambil data tanpa izin).</li>
+                    <li>Rumusan masalah tidak selaras dengan tujuan dan batasan projek.</li>
+                </ul>
+            </div>
+
+            <h2>12.5 Langkah Praktis Menyusun Proposal Projek IPAS</h2>
+            <div class="card">
+                <p>Berikut langkah praktis yang dapat diikuti siswa untuk menyusun proposal projek IPAS tahap identifikasi masalah:</p>
+
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Bentuk kelompok</strong> (3-5 orang) dengan pembagian peran yang jelas.</li>
+                    <li><strong>Lakukan observasi</strong> di lingkungan sekolah, rumah, atau nagari.</li>
+                    <li><strong>Identifikasi 3-5 masalah potensial</strong> yang ditemukan.</li>
+                    <li><strong>Diskusi kelompok</strong> untuk memilih 1 masalah terbaik berdasarkan kriteria URGENT-FEASIBLE-RELEVANT.</li>
+                    <li><strong>Kumpulkan data awal</strong> (foto, berita, data statistik) sebagai bukti masalah nyata.</li>
+                    <li><strong>Susun latar belakang</strong> dengan pola segitiga terbalik.</li>
+                    <li><strong>Rumuskan masalah</strong> dalam bentuk pertanyaan spesifik.</li>
+                    <li><strong>Tetapkan tujuan SMART</strong>, manfaat, dan batasan projek.</li>
+                    <li><strong>Buat matriks kebutuhan data</strong> untuk tahap selanjutnya.</li>
+                    <li><strong>Konsultasikan</strong> dengan guru pembimbing untuk perbaikan.</li>
+                </ol>
+
+                <div class="template-box">
+                    <strong>📝 Template Proposal Projek IPAS (Tahap Identifikasi):</strong><br><br>
+                    <strong>JUDUL PROJEK:</strong> [Judul yang spesifik dan menarik]<br><br>
+                    <strong>A. Latar Belakang</strong><br>
+                    &nbsp;&nbsp;&nbsp;- Paragraf 1: Konteks umum<br>
+                    &nbsp;&nbsp;&nbsp;- Paragraf 2: Kondisi faktual + data pendukung<br>
+                    &nbsp;&nbsp;&nbsp;- Paragraf 3: Urgensi dan alasan pemilihan topik<br><br>
+                    <strong>B. Rumusan Masalah</strong><br>
+                    &nbsp;&nbsp;&nbsp;1. ...<br>
+                    &nbsp;&nbsp;&nbsp;2. ...<br>
+                    &nbsp;&nbsp;&nbsp;3. ...<br><br>
+                    <strong>C. Tujuan Projek</strong><br>
+                    &nbsp;&nbsp;&nbsp;- Tujuan Umum: ...<br>
+                    &nbsp;&nbsp;&nbsp;- Tujuan Khusus: ...<br><br>
+                    <strong>D. Manfaat Projek</strong><br>
+                    &nbsp;&nbsp;&nbsp;- Bagi siswa: ...<br>
+                    &nbsp;&nbsp;&nbsp;- Bagi sekolah: ...<br>
+                    &nbsp;&nbsp;&nbsp;- Bagi masyarakat: ...<br><br>
+                    <strong>E. Batasan Projek</strong><br>
+                    &nbsp;&nbsp;&nbsp;- Lokasi: ...<br>
+                    &nbsp;&nbsp;&nbsp;- Subjek: ...<br>
+                    &nbsp;&nbsp;&nbsp;- Objek: ...<br>
+                    &nbsp;&nbsp;&nbsp;- Waktu: ...<br><br>
+                    <strong>F. Kebutuhan Data</strong><br>
+                    &nbsp;&nbsp;&nbsp;(Matriks kebutuhan data seperti contoh di atas)
+                </div>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Tahap identifikasi masalah merupakan fondasi krusial dalam projek IPAS. Masalah nyata adalah kesenjangan antara kondisi ideal dan faktual yang bersifat objektif, signifikan, spesifik, dapat dikaji, dan relevan. Latar belakang yang baik disusun dengan pola segitiga terbalik (umum → khusus → urgensi). Rumusan masalah harus spesifik, terukur, dan dapat dijawab melalui data. Tujuan projek harus memenuhi prinsip SMART (Specific, Measurable, Achievable, Relevant, Time-bound), manfaat harus jelas bagi berbagai pihak, dan batasan harus membatasi ruang lingkup agar projek tetap fokus. Sumber data (primer dan sekunder) harus diidentifikasi sejak awal dengan matriks yang sistematis, serta etika pengumpulan data harus dijunjung tinggi. Dengan mengikuti langkah-langkah ini, siswa SMK tidak hanya menyelesaikan projek IPAS dengan baik, tetapi juga melatih kompetensi pemecahan masalah yang sangat dibutuhkan di dunia kerja.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Creswell, J. W. (2014). <em>Research Design: Qualitative, Quantitative, and Mixed Methods Approaches (4th ed.)</em>. Thousand Oaks: SAGE.</li>
+                    <li>Sugiyono. (2019). <em>Metode Penelitian Kuantitatif, Kualitatif, dan R&D</em>. Bandung: Alfabeta.</li>
+                    <li>Doran, G. T. (1981). There's a S.M.A.R.T. way to write management's goals and objectives. <em>Management Review</em>, 70(11), 35-36.</li>
+                    <li>Supriadi. (2024). <em>Panduan Projek IPAS Berbasis Potensi Lokal untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="11.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="13.html" class="btn">Bab 13: Projek IPAS - Perencanaan & Pengumpulan Data →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 12: Projek IPAS - Identifikasi Masalah</h2>
+                <p style="color: var(--text-secondary);">Materi: Menentukan Masalah Nyata, Latar Belakang & Rumusan Masalah, Tujuan-Manfaat-Batasan, Sumber Data</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="2" selected>Semester 2 (Genap)</option>
+                        <option value="1">Semester 1 (Ganjil)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Kesenjangan antara kondisi ideal dengan kondisi faktual yang dialami masyarakat disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Hipotesis</label>
+                        <label><input type="radio" name="q1" value="b"> b. Masalah</label>
+                        <label><input type="radio" name="q1" value="c"> c. Teori</label>
+                        <label><input type="radio" name="q1" value="d"> d. Kesimpulan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Pola penyusunan latar belakang yang bergerak dari hal umum ke hal khusus disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Segitiga Terbalik</label>
+                        <label><input type="radio" name="q2" value="b"> b. Piramida Terbalik</label>
+                        <label><input type="radio" name="q2" value="c"> c. Diagram Alir</label>
+                        <label><input type="radio" name="q2" value="d"> d. Peta Konsep</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Rumusan masalah yang baik harus dinyatakan dalam bentuk...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Pernyataan</label>
+                        <label><input type="radio" name="q3" value="b"> b. Pertanyaan</label>
+                        <label><input type="radio" name="q3" value="c"> c. Perintah</label>
+                        <label><input type="radio" name="q3" value="d"> d. Larangan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Dalam prinsip SMART, huruf "M" menunjukkan...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Meaningful</label>
+                        <label><input type="radio" name="q4" value="b"> b. Measurable</label>
+                        <label><input type="radio" name="q4" value="c"> c. Motivational</label>
+                        <label><input type="radio" name="q4" value="d"> d. Massive</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Data yang dikumpulkan langsung oleh peneliti dari sumber pertama disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Data sekunder</label>
+                        <label><input type="radio" name="q5" value="b"> b. Data primer</label>
+                        <label><input type="radio" name="q5" value="c"> c. Data kualitatif</label>
+                        <label><input type="radio" name="q5" value="d"> d. Data historis</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Berikut yang termasuk contoh data sekunder adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Hasil wawancara dengan pedagang kantin</label>
+                        <label><input type="radio" name="q6" value="b"> b. Hasil observasi langsung di lapangan</label>
+                        <label><input type="radio" name="q6" value="c"> c. Data BPS tentang jumlah penduduk nagari</label>
+                        <label><input type="radio" name="q6" value="d"> d. Hasil angket yang dibagikan kepada siswa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Ruang lingkup yang membatasi fokus kajian agar projek tetap terarah disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Tujuan projek</label>
+                        <label><input type="radio" name="q7" value="b"> b. Manfaat projek</label>
+                        <label><input type="radio" name="q7" value="c"> c. Batasan projek</label>
+                        <label><input type="radio" name="q7" value="d"> d. Latar belakang</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Ciri masalah yang baik untuk projek IPAS, KECUALI...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Spesifik dan terukur</label>
+                        <label><input type="radio" name="q8" value="b"> b. Berdasarkan fakta dan data</label>
+                        <label><input type="radio" name="q8" value="c"> c. Terlalu luas dan abstrak</label>
+                        <label><input type="radio" name="q8" value="d"> d. Relevan dengan kompetensi siswa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Teknik yang TIDAK tepat digunakan untuk menemukan masalah nyata adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Observasi lapangan</label>
+                        <label><input type="radio" name="q9" value="b"> b. Wawancara dengan warga</label>
+                        <label><input type="radio" name="q9" value="c"> c. Mengarang tanpa dasar fakta</label>
+                        <label><input type="radio" name="q9" value="d"> d. Studi dokumentasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. [HOTS] Sebuah kelompok siswa ingin membuat projek tentang "lingkungan sekolah". Setelah diskusi, mereka menemukan bahwa kantin sekolah menghasilkan 15 kg sampah plastik per hari, dan 80% siswa tidak membawa tempat makan sendiri. Rumusan masalah yang PALING TEPAT dan SMART untuk projek mereka adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. "Bagaimana cara mengatasi masalah lingkungan di sekolah?"</label>
+                        <label><input type="radio" name="q10" value="b"> b. "Mengapa sampah plastik menjadi masalah di Indonesia?"</label>
+                        <label><input type="radio" name="q10" value="c"> c. "Bagaimana mengurangi timbulan sampah plastik di kantin SMKN 1 Koto Balingka sebanyak 30% dalam 3 bulan melalui program bawa tempat makan sendiri?"</label>
+                        <label><input type="radio" name="q10" value="d"> d. "Apakah siswa suka membawa tempat makan dari rumah?"</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan apa yang dimaksud dengan masalah nyata dalam projek IPAS! Uraikan 5 ciri masalah yang baik untuk dijadikan topik projek, dan berikan masing-masing 1 contoh konkret di lingkungan sekolah!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Uraikan struktur latar belakang yang baik dengan pola segitiga terbalik! Berikan contoh konkret latar belakang untuk sebuah projek IPAS tentang penghematan energi listrik di sekolah, lengkap dengan data pendukung fiktif!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Jelaskan prinsip SMART dalam merumuskan tujuan projek! Berikan 1 contoh tujuan projek yang memenuhi prinsip SMART, dan analisis mengapa tujuan tersebut memenuhi kelima prinsip tersebut!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Bandingkan data primer dan data sekunder! Berikan masing-masing 3 contoh, serta jelaskan kelebihan dan kekurangan dari masing-masing jenis data dalam konteks projek IPAS!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Identifikasi satu masalah nyata di lingkungan sekolah atau nagari Anda. Susunlah proposal projek IPAS sederhana yang mencakup: (a) judul projek, (b) latar belakang singkat (3 paragraf), (c) 2 rumusan masalah, (d) 1 tujuan SMART, (e) 3 manfaat projek, (f) batasan projek, dan (g) matriks kebutuhan data untuk menjawab rumusan masalah!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 12
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'a',
+            q3: 'b',
+            q4: 'b',
+            q5: 'b',
+            q6: 'c',
+            q7: 'c',
+            q8: 'c',
+            q9: 'c',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            document.getElementById('skorPG').textContent = pgScore;
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

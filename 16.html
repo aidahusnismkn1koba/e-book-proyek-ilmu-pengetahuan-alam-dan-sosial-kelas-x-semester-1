@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAS: Ujian Akhir Semester - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+        
+        .hots-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            font-weight: 700;
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+
+        .options label {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"],
+        .options input[type="checkbox"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; color: black; }
+            .question-text, .options label { color: black; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 16 — UJIAN AKHIR SEMESTER</span>
+            <h1>Ujian Akhir Semester (UAS)</h1>
+            <p class="subtitle">Materi: Pertemuan 1-7 & 9-15 | Total: 40 Soal | Waktu: 90 Menit | Bobot: 100 Poin</p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="15.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#uji-formatif" class="btn btn-primary">Mulai Ujian</a>
+            <a href="index.html" class="btn">🏠 Kembali ke Beranda</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <section id="uji-formatif">
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawab seluruh 40 soal terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0; color: var(--gold-primary);">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="2" selected>Semester 2 (Genap)</option>
+                        <option value="1">Semester 1 (Ganjil)</option>
+                    </select>
+                </div>
+
+                <!-- BAGIAN A: PILIHAN GANDA (20 SOAL) -->
+                <h3>📋 Bagian A – Pilihan Ganda (20 Soal, Skor 2/Soal = 40 Poin)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Pilih SATU jawaban yang paling tepat (A, B, C, D, atau E).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Langkah pertama dalam metode ilmiah adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg1" value="a"> A. Mengumpulkan data</label>
+                        <label><input type="radio" name="pg1" value="b"> B. Mengamati dan merumuskan masalah</label>
+                        <label><input type="radio" name="pg1" value="c"> C. Membuat hipotesis</label>
+                        <label><input type="radio" name="pg1" value="d"> D. Melakukan eksperimen</label>
+                        <label><input type="radio" name="pg1" value="e"> E. Menarik kesimpulan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Organisme yang berperan sebagai pengurai dalam ekosistem disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg2" value="a"> A. Produsen</label>
+                        <label><input type="radio" name="pg2" value="b"> B. Konsumen</label>
+                        <label><input type="radio" name="pg2" value="c"> C. Dekomposer</label>
+                        <label><input type="radio" name="pg2" value="d"> D. Karnivora</label>
+                        <label><input type="radio" name="pg2" value="e"> E. Herbivora</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Contoh perubahan kimia dalam kehidupan sehari-hari adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg3" value="a"> A. Es batu mencair</label>
+                        <label><input type="radio" name="pg3" value="b"> B. Gula dilarutkan dalam air</label>
+                        <label><input type="radio" name="pg3" value="c"> C. Besi berkarat</label>
+                        <label><input type="radio" name="pg3" value="d"> D. Kertas disobek</label>
+                        <label><input type="radio" name="pg3" value="e"> E. Air menguap</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Sumber energi yang tidak dapat diperbaharui adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg4" value="a"> A. Energi matahari</label>
+                        <label><input type="radio" name="pg4" value="b"> B. Batu bara</label>
+                        <label><input type="radio" name="pg4" value="c"> C. Energi angin</label>
+                        <label><input type="radio" name="pg4" value="d"> D. Panas bumi</label>
+                        <label><input type="radio" name="pg4" value="e"> E. Energi air</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. <span class="hots-badge">HOTS</span> Sebuah daerah pesisir mengalami kenaikan suhu rata-rata dan frekuensi badai yang meningkat dalam 10 tahun terakhir. Dampak paling langsung terhadap kegiatan ekonomi masyarakat setempat adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg5" value="a"> A. Meningkatnya hasil tangkapan ikan secara drastis</label>
+                        <label><input type="radio" name="pg5" value="b"> B. Menurunnya produktivitas pertanian pesisir dan risiko kerusakan infrastruktur nelayan</label>
+                        <label><input type="radio" name="pg5" value="c"> C. Meningkatnya jumlah wisatawan karena cuaca yang lebih hangat</label>
+                        <label><input type="radio" name="pg5" value="d"> D. Tidak ada dampak signifikan terhadap ekonomi lokal</label>
+                        <label><input type="radio" name="pg5" value="e"> E. Meningkatnya kesuburan tanah pesisir</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Gas yang menyebabkan penipisan lapisan ozon adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg6" value="a"> A. Karbon dioksida</label>
+                        <label><input type="radio" name="pg6" value="b"> B. Oksigen</label>
+                        <label><input type="radio" name="pg6" value="c"> C. CFC (Chlorofluorocarbon)</label>
+                        <label><input type="radio" name="pg6" value="d"> D. Nitrogen</label>
+                        <label><input type="radio" name="pg6" value="e"> E. Hidrogen</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Perbedaan varietas padi seperti IR64 dan Ciherang merupakan contoh keanekaragaman hayati tingkat...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg7" value="a"> A. Gen</label>
+                        <label><input type="radio" name="pg7" value="b"> B. Jenis</label>
+                        <label><input type="radio" name="pg7" value="c"> C. Ekosistem</label>
+                        <label><input type="radio" name="pg7" value="d"> D. Populasi</label>
+                        <label><input type="radio" name="pg7" value="e"> E. Komunitas</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Norma yang bersumber dari hati nurani dan sanksinya berupa rasa malu disebut norma...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg8" value="a"> A. Agama</label>
+                        <label><input type="radio" name="pg8" value="b"> B. Hukum</label>
+                        <label><input type="radio" name="pg8" value="c"> C. Kesopanan</label>
+                        <label><input type="radio" name="pg8" value="d"> D. Kesusilaan</label>
+                        <label><input type="radio" name="pg8" value="e"> E. Adat</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Kondisi di mana sumber daya terbatas sementara kebutuhan manusia tidak terbatas disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg9" value="a"> A. Inflasi</label>
+                        <label><input type="radio" name="pg9" value="b"> B. Kelangkaan</label>
+                        <label><input type="radio" name="pg9" value="c"> C. Distribusi</label>
+                        <label><input type="radio" name="pg9" value="d"> D. Konsumsi</label>
+                        <label><input type="radio" name="pg9" value="e"> E. Produksi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. <span class="hots-badge">HOTS</span> Data menunjukkan 80% siswa di sebuah sekolah membuang sampah plastik sembarangan. Wawancara mengungkap bahwa 75% dari mereka sebenarnya ingin memilah sampah, tetapi tidak ada tempat sampah terpilah di sekolah. Akar masalah utama dari fenomena ini adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg10" value="a"> A. Rendahnya kesadaran lingkungan siswa</label>
+                        <label><input type="radio" name="pg10" value="b"> B. Kurangnya fasilitas pendukung (tempat sampah terpilah)</label>
+                        <label><input type="radio" name="pg10" value="c"> C. Tidak adanya hukuman bagi pembuang sampah</label>
+                        <label><input type="radio" name="pg10" value="d"> D. Siswa terlalu malas untuk belajar</label>
+                        <label><input type="radio" name="pg10" value="e"> E. Guru tidak pernah mengajarkan tentang sampah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">11. Pertanyaan spesifik yang akan dijawab melalui projek disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg11" value="a"> A. Latar belakang</label>
+                        <label><input type="radio" name="pg11" value="b"> B. Tujuan projek</label>
+                        <label><input type="radio" name="pg11" value="c"> C. Rumusan masalah</label>
+                        <label><input type="radio" name="pg11" value="d"> D. Batasan projek</label>
+                        <label><input type="radio" name="pg11" value="e"> E. Manfaat projek</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">12. Teknik pengumpulan data melalui tanya jawab lisan dengan narasumber disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg12" value="a"> A. Observasi</label>
+                        <label><input type="radio" name="pg12" value="b"> B. Wawancara</label>
+                        <label><input type="radio" name="pg12" value="c"> C. Angket</label>
+                        <label><input type="radio" name="pg12" value="d"> D. Dokumentasi</label>
+                        <label><input type="radio" name="pg12" value="e"> E. Studi pustaka</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">13. <span class="hots-badge">HOTS</span> Sebuah tim projek menemukan data: penggunaan listrik di ruang kelas sangat tinggi karena lampu menyala saat kosong. Solusi yang paling efektif dan berkelanjutan berdasarkan data tersebut adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg13" value="a"> A. Mematikan aliran listrik seluruh sekolah</label>
+                        <label><input type="radio" name="pg13" value="b"> B. Mengganti semua lampu dengan lampu hemat energi dan menunjuk "duta energi" per kelas</label>
+                        <label><input type="radio" name="pg13" value="c"> C. Menghukum siswa yang menyalakan lampu</label>
+                        <label><input type="radio" name="pg13" value="d"> D. Menambah jumlah lampu agar lebih terang</label>
+                        <label><input type="radio" name="pg13" value="e"> E. Mengabaikan data karena listrik sudah dibayar</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">14. Versi awal produk yang dibuat untuk diuji sebelum diluncurkan penuh disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg14" value="a"> A. Produk final</label>
+                        <label><input type="radio" name="pg14" value="b"> B. Prototipe</label>
+                        <label><input type="radio" name="pg14" value="c"> C. Mockup</label>
+                        <label><input type="radio" name="pg14" value="d"> D. Sketsa</label>
+                        <label><input type="radio" name="pg14" value="e"> E. Blueprint</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">15. <span class="hots-badge">HOTS</span> Dalam siklus PDCA, jika hasil evaluasi (Check) menunjukkan bahwa solusi yang diterapkan tidak mencapai target, langkah selanjutnya yang harus dilakukan (Act) adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg15" value="a"> A. Menghentikan projek sepenuhnya</label>
+                        <label><input type="radio" name="pg15" value="b"> B. Menyalahkan anggota tim yang terlibat</label>
+                        <label><input type="radio" name="pg15" value="c"> C. Melakukan analisis akar masalah dan merencanakan perbaikan (iterasi)</label>
+                        <label><input type="radio" name="pg15" value="d"> D. Memalsukan data agar terlihat berhasil</label>
+                        <label><input type="radio" name="pg15" value="e"> E. Melanjutkan tanpa perubahan apapun</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">16. Sikap ilmiah yang berarti tidak memihak dan berdasarkan fakta disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg16" value="a"> A. Subjektif</label>
+                        <label><input type="radio" name="pg16" value="b"> B. Objektif</label>
+                        <label><input type="radio" name="pg16" value="c"> C. Spekulatif</label>
+                        <label><input type="radio" name="pg16" value="d"> D. Apatis</label>
+                        <label><input type="radio" name="pg16" value="e"> E. Emosional</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">17. Prinsip "Reduce" dalam pengelolaan sampah berarti...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg17" value="a"> A. Mendaur ulang sampah</label>
+                        <label><input type="radio" name="pg17" value="b"> B. Menggunakan kembali barang</label>
+                        <label><input type="radio" name="pg17" value="c"> C. Mengurangi penggunaan barang yang dapat mencemari</label>
+                        <label><input type="radio" name="pg17" value="d"> D. Membakar sampah</label>
+                        <label><input type="radio" name="pg17" value="e"> E. Menimbun sampah</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">18. Interaksi sosial yang mengarah pada persatuan dan kerja sama disebut interaksi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg18" value="a"> A. Disosiatif</label>
+                        <label><input type="radio" name="pg18" value="b"> B. Asosiatif</label>
+                        <label><input type="radio" name="pg18" value="c"> C. Konflik</label>
+                        <label><input type="radio" name="pg18" value="d"> D. Kontravensi</label>
+                        <label><input type="radio" name="pg18" value="e"> E. Kompetisi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">19. Daftar kebutuhan yang diurutkan berdasarkan tingkat kepentingan disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg19" value="a"> A. Daftar belanja</label>
+                        <label><input type="radio" name="pg19" value="b"> B. Skala prioritas</label>
+                        <label><input type="radio" name="pg19" value="c"> C. Anggaran</label>
+                        <label><input type="radio" name="pg19" value="d"> D. Neraca</label>
+                        <label><input type="radio" name="pg19" value="e"> E. Laporan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">20. <span class="hots-badge">HOTS</span> Sebuah grafik menunjukkan penurunan tajam partisipasi siswa dalam program bank sampah pada minggu ke-3. Data kualitatif menunjukkan siswa bingung cara memilah. Tindakan perbaikan (Act) yang paling tepat adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="pg20" value="a"> A. Menghentikan program bank sampah</label>
+                        <label><input type="radio" name="pg20" value="b"> B. Menambah label visual yang jelas dan melatih "duta sampah" untuk mendampingi</label>
+                        <label><input type="radio" name="pg20" value="c"> C. Memaksa siswa berpartisipasi dengan sanksi</label>
+                        <label><input type="radio" name="pg20" value="d"> D. Mengabaikan data karena hanya sementara</label>
+                        <label><input type="radio" name="pg20" value="e"> E. Mengganti seluruh anggota tim projek</label>
+                    </div>
+                </div>
+
+                <!-- BAGIAN B: PILIHAN GANDA KOMPLEKS (10 SOAL) -->
+                <h3>📋 Bagian B – Pilihan Ganda Kompleks (10 Soal, Skor 3/Soal = 30 Poin)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Pilih LEBIH DARI SATU jawaban yang benar untuk setiap soal.</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Ciri-ciri makhluk hidup meliputi... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk1" value="a"> A. Bergerak</label>
+                        <label><input type="checkbox" name="pgk1" value="b"> B. Tumbuh dan berkembang</label>
+                        <label><input type="checkbox" name="pgk1" value="c"> C. Berkembang biak</label>
+                        <label><input type="checkbox" name="pgk1" value="d"> D. Tidak memerlukan nutrisi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Contoh perubahan kimia dalam kehidupan sehari-hari adalah... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk2" value="a"> A. Besi berkarat</label>
+                        <label><input type="checkbox" name="pgk2" value="b"> B. Kayu dibakar menjadi arang</label>
+                        <label><input type="checkbox" name="pgk2" value="c"> C. Makanan membusuk</label>
+                        <label><input type="checkbox" name="pgk2" value="d"> D. Es batu mencair</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Upaya pelestarian keanekaragaman hayati secara in situ meliputi... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk3" value="a"> A. Taman Nasional</label>
+                        <label><input type="checkbox" name="pgk3" value="b"> B. Cagar Alam</label>
+                        <label><input type="checkbox" name="pgk3" value="c"> C. Kebun Binatang</label>
+                        <label><input type="checkbox" name="pgk3" value="d"> D. Suaka Margasatwa</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Bentuk interaksi sosial yang bersifat asosiatif (menyatukan) adalah... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk4" value="a"> A. Kerja sama</label>
+                        <label><input type="checkbox" name="pgk4" value="b"> B. Akomodasi</label>
+                        <label><input type="checkbox" name="pgk4" value="c"> C. Akulturasi</label>
+                        <label><input type="checkbox" name="pgk4" value="d"> D. Konflik</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Faktor yang memengaruhi kebutuhan manusia meliputi... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk5" value="a"> A. Umur dan jenis kelamin</label>
+                        <label><input type="checkbox" name="pgk5" value="b"> B. Pendidikan dan pekerjaan</label>
+                        <label><input type="checkbox" name="pgk5" value="c"> C. Adat istiadat</label>
+                        <label><input type="checkbox" name="pgk5" value="d"> D. Warna kesukaan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Teknik pengumpulan data yang valid dalam projek IPAS meliputi... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk6" value="a"> A. Observasi</label>
+                        <label><input type="checkbox" name="pgk6" value="b"> B. Wawancara</label>
+                        <label><input type="checkbox" name="pgk6" value="c"> C. Angket</label>
+                        <label><input type="checkbox" name="pgk6" value="d"> D. Mengarang data (fabrikasi)</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Ciri-ciri rumusan masalah yang baik adalah... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk7" value="a"> A. Dinyatakan dalam bentuk pertanyaan</label>
+                        <label><input type="checkbox" name="pgk7" value="b"> B. Spesifik dan terukur</label>
+                        <label><input type="checkbox" name="pgk7" value="c"> C. Dapat dijawab melalui pengumpulan data</label>
+                        <label><input type="checkbox" name="pgk7" value="d"> D. Berdasarkan opini pribadi tanpa data</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Prinsip etika dalam pengumpulan data meliputi... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk8" value="a"> A. Meminta izin (Informed Consent)</label>
+                        <label><input type="checkbox" name="pgk8" value="b"> B. Menjaga kerahasiaan narasumber</label>
+                        <label><input type="checkbox" name="pgk8" value="c"> C. Kejujuran dalam melaporkan data</label>
+                        <label><input type="checkbox" name="pgk8" value="d"> D. Memaksa responden untuk mengisi angket</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Pasangan jenis visualisasi data dan fungsinya yang tepat adalah... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk9" value="a"> A. Grafik batang: membandingkan antar kategori</label>
+                        <label><input type="checkbox" name="pgk9" value="b"> B. Grafik garis: menunjukkan tren dari waktu ke waktu</label>
+                        <label><input type="checkbox" name="pgk9" value="c"> C. Diagram lingkaran: menunjukkan proporsi/persentase</label>
+                        <label><input type="checkbox" name="pgk9" value="d"> D. Peta: menunjukkan distribusi geografis</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Strategi keberlanjutan projek agar tidak berhenti setelah tim lulus meliputi... (Pilih semua yang benar)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="pgk10" value="a"> A. Regenerasi kader</label>
+                        <label><input type="checkbox" name="pgk10" value="b"> B. Institusionalisasi (menjadi kebijakan sekolah)</label>
+                        <label><input type="checkbox" name="pgk10" value="c"> C. Kemitraan dengan pihak luar</label>
+                        <label><input type="checkbox" name="pgk10" value="d"> D. Menghancurkan dokumentasi agar tidak ditiru</label>
+                    </div>
+                </div>
+
+                <!-- BAGIAN C: BENAR/SALAH (5 SOAL) -->
+                <h3>📋 Bagian C – Benar/Salah (5 Soal, Skor 2/Soal = 10 Poin)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Pilih BENAR atau SALAH untuk setiap pernyataan.</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Energi tidak dapat diciptakan atau dimusnahkan, tetapi hanya dapat berubah bentuk (Hukum Kekekalan Energi).</p>
+                    <div class="options">
+                        <label><input type="radio" name="bs1" value="benar"> A. BENAR</label>
+                        <label><input type="radio" name="bs1" value="salah"> B. SALAH</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Eutrofikasi adalah ledakan populasi alga yang disebabkan oleh kekurangan nutrisi di perairan.</p>
+                    <div class="options">
+                        <label><input type="radio" name="bs2" value="benar"> A. BENAR</label>
+                        <label><input type="radio" name="bs2" value="salah"> B. SALAH</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Tujuan projek harus dirumuskan dengan prinsip SMART (Specific, Measurable, Achievable, Relevant, Time-bound).</p>
+                    <div class="options">
+                        <label><input type="radio" name="bs3" value="benar"> A. BENAR</label>
+                        <label><input type="radio" name="bs3" value="salah"> B. SALAH</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Data primer adalah data yang diperoleh dari literatur, buku, atau laporan yang sudah diterbitkan pihak lain.</p>
+                    <div class="options">
+                        <label><input type="radio" name="bs4" value="benar"> A. BENAR</label>
+                        <label><input type="radio" name="bs4" value="salah"> B. SALAH</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Refleksi dalam projek IPAS hanya perlu dilakukan sekali di akhir projek, tidak perlu dilakukan secara berkala selama proses berlangsung.</p>
+                    <div class="options">
+                        <label><input type="radio" name="bs5" value="benar"> A. BENAR</label>
+                        <label><input type="radio" name="bs5" value="salah"> B. SALAH</label>
+                    </div>
+                </div>
+
+                <!-- BAGIAN D: MENJODOHKAN (5 SOAL) -->
+                <h3>📋 Bagian D – Menjodohkan (5 Soal, Skor 4/Soal = 20 Poin)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Pasangkan setiap pernyataan di sebelah kiri dengan jawaban yang tepat di sebelah kanan.</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Kerangka konseptual yang diberikan sebelum pembelajaran dimulai untuk membantu mengintegrasikan informasi baru</p>
+                    <select name="jodoh1" class="form-control" style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-gold); color: var(--text-primary); border-radius: 6px;" required>
+                        <option value="">Pilih Jawaban</option>
+                        <option value="a">A. Eutrofikasi</option>
+                        <option value="b">B. Akulturasi</option>
+                        <option value="c">C. Matriks RACI</option>
+                        <option value="d">D. Advance Organizer</option>
+                        <option value="e">E. PDCA Cycle</option>
+                    </select>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Ledakan populasi alga di perairan akibat kelebihan nutrisi (pupuk) yang menyebabkan kematian ikan</p>
+                    <select name="jodoh2" class="form-control" style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-gold); color: var(--text-primary); border-radius: 6px;" required>
+                        <option value="">Pilih Jawaban</option>
+                        <option value="a">A. Eutrofikasi</option>
+                        <option value="b">B. Akulturasi</option>
+                        <option value="c">C. Matriks RACI</option>
+                        <option value="d">D. Advance Organizer</option>
+                        <option value="e">E. PDCA Cycle</option>
+                    </select>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Penerimaan unsur budaya asing tanpa menghilangkan ciri khas budaya asli</p>
+                    <select name="jodoh3" class="form-control" style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-gold); color: var(--text-primary); border-radius: 6px;" required>
+                        <option value="">Pilih Jawaban</option>
+                        <option value="a">A. Eutrofikasi</option>
+                        <option value="b">B. Akulturasi</option>
+                        <option value="c">C. Matriks RACI</option>
+                        <option value="d">D. Advance Organizer</option>
+                        <option value="e">E. PDCA Cycle</option>
+                    </select>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Alat bantu untuk memperjelas pembagian peran dalam tim (Responsible, Accountable, Consulted, Informed)</p>
+                    <select name="jodoh4" class="form-control" style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-gold); color: var(--text-primary); border-radius: 6px;" required>
+                        <option value="">Pilih Jawaban</option>
+                        <option value="a">A. Eutrofikasi</option>
+                        <option value="b">B. Akulturasi</option>
+                        <option value="c">C. Matriks RACI</option>
+                        <option value="d">D. Advance Organizer</option>
+                        <option value="e">E. PDCA Cycle</option>
+                    </select>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Siklus perbaikan berkelanjutan yang terdiri dari Plan, Do, Check, Act</p>
+                    <select name="jodoh5" class="form-control" style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-gold); color: var(--text-primary); border-radius: 6px;" required>
+                        <option value="">Pilih Jawaban</option>
+                        <option value="a">A. Eutrofikasi</option>
+                        <option value="b">B. Akulturasi</option>
+                        <option value="c">C. Matriks RACI</option>
+                        <option value="d">D. Advance Organizer</option>
+                        <option value="e">E. PDCA Cycle</option>
+                    </select>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Total Skor Ujian Akhir Semester</h3>
+                    <div class="score-number" id="skorTotal">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div id="breakdownSkor" style="margin-top: 2rem;">
+                    <h3>📊 Rincian Skor:</h3>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                        <li>Bagian A (Pilihan Ganda): <span id="skorPG" style="color: var(--gold-primary);">0</span> / 40</li>
+                        <li>Bagian B (Pilihan Ganda Kompleks): <span id="skorPGK" style="color: var(--gold-primary);">0</span> / 30</li>
+                        <li>Bagian C (Benar/Salah): <span id="skorBS" style="color: var(--gold-primary);">0</span> / 10</li>
+                        <li>Bagian D (Menjodohkan): <span id="skorJodoh" style="color: var(--gold-primary);">0</span> / 20</li>
+                    </ul>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+        <p style="margin-top: 1rem; color: var(--gold-primary); font-style: italic;">
+            "Alam takambang jadi guru" — Selamat belajar, selamat berkarya! 🌟
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban
+        const kunciPG = {
+            pg1: 'b', pg2: 'c', pg3: 'c', pg4: 'b', pg5: 'b',
+            pg6: 'c', pg7: 'a', pg8: 'd', pg9: 'b', pg10: 'b',
+            pg11: 'c', pg12: 'b', pg13: 'b', pg14: 'b', pg15: 'c',
+            pg16: 'b', pg17: 'c', pg18: 'b', pg19: 'b', pg20: 'b'
+        };
+
+        const kunciPGK = {
+            pgk1: ['a', 'b', 'c'],
+            pgk2: ['a', 'b', 'c'],
+            pgk3: ['a', 'b', 'd'],
+            pgk4: ['a', 'b', 'c'],
+            pgk5: ['a', 'b', 'c'],
+            pgk6: ['a', 'b', 'c'],
+            pgk7: ['a', 'b', 'c'],
+            pgk8: ['a', 'b', 'c'],
+            pgk9: ['a', 'b', 'c', 'd'],
+            pgk10: ['a', 'b', 'c']
+        };
+
+        const kunciBS = {
+            bs1: 'benar', bs2: 'salah', bs3: 'benar', bs4: 'salah', bs5: 'salah'
+        };
+
+        const kunciJodoh = {
+            jodoh1: 'd', jodoh2: 'a', jodoh3: 'b', jodoh4: 'c', jodoh5: 'e'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let skorPG = 0;
+            let skorPGK = 0;
+            let skorBS = 0;
+            let skorJodoh = 0;
+            
+            // Validasi dan hitung PG
+            for (let i = 1; i <= 20; i++) {
+                const selected = document.querySelector(`input[name="pg${i}"]:checked`);
+                if (!selected) {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                if (selected.value === kunciPG[`pg${i}`]) {
+                    skorPG += 2;
+                }
+            }
+
+            // Validasi dan hitung PGK
+            for (let i = 1; i <= 10; i++) {
+                const checked = document.querySelectorAll(`input[name="pgk${i}"]:checked`);
+                if (checked.length === 0) {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                const userAnswers = Array.from(checked).map(cb => cb.value).sort();
+                const correctAnswers = [...kunciPGK[`pgk${i}`]].sort();
+                if (JSON.stringify(userAnswers) === JSON.stringify(correctAnswers)) {
+                    skorPGK += 3;
+                }
+            }
+
+            // Validasi dan hitung BS
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="bs${i}"]:checked`);
+                if (!selected) {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                if (selected.value === kunciBS[`bs${i}`]) {
+                    skorBS += 2;
+                }
+            }
+
+            // Validasi dan hitung Jodoh
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`select[name="jodoh${i}"]`).value;
+                if (!selected) {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                if (selected === kunciJodoh[`jodoh${i}`]) {
+                    skorJodoh += 4;
+                }
+            }
+
+            // Jika semua valid
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            const totalSkor = skorPG + skorPGK + skorBS + skorJodoh;
+            document.getElementById('skorTotal').textContent = totalSkor;
+            document.getElementById('skorPG').textContent = skorPG;
+            document.getElementById('skorPGK').textContent = skorPGK;
+            document.getElementById('skorBS').textContent = skorBS;
+            document.getElementById('skorJodoh').textContent = skorJodoh;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

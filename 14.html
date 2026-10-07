@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 14: Projek IPAS - Analisis Data dan Pemecahan Masalah - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-primary); }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .template-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Montserrat', monospace;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .visual-demo {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            margin: 1rem 0;
+            border-bottom: 2px solid var(--gold-primary);
+            border-left: 2px solid var(--gold-primary);
+            padding: 0 1rem;
+        }
+
+        .bar {
+            width: 60px;
+            background: linear-gradient(to top, var(--gold-primary), var(--gold-light));
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 0.5rem;
+            color: var(--bg-dark);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary { background: var(--gold-primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--gold-light); font-weight: 500; font-size: 0.95rem; }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid var(--error); color: #fca5a5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: #6ee7b7; }
+
+        #hasilUjian { display: none; margin-top: 2rem; }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+            .bar { width: 40px; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 14</span>
+            <h1>Projek IPAS: Analisis Data dan Pemecahan Masalah</h1>
+            <p class="subtitle">Tahap ketiga projek IPAS: mengolah dan mengelompokkan data, menyajikan data dalam bentuk visual, menganalisis hubungan antara data dan masalah, serta menyusun alternatif solusi untuk menentukan solusi yang paling sesuai.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="13.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="15.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Setelah pada Pertemuan 13 siswa berhasil mengumpulkan data secara sistematis, pada Pertemuan 14 ini siswa memasuki tahap <strong>Analisis Data dan Pemecahan Masalah</strong>—tahap di mana data "berbicara" dan mengungkapkan makna di balik angka-angka serta fakta yang terkumpul. Tahap ini merupakan jantung intelektual dari sebuah projek: di sinilah siswa belajar berpikir kritis, menghubungkan fakta dengan teori, dan merumuskan solusi yang berbasis bukti (<em>evidence-based</em>).</p>
+                <br>
+                <p>Data yang banyak tanpa analisis yang tepat ibarat bahan mentah yang tidak diolah—tidak memberikan nilai apa-apa. Sebaliknya, analisis yang tajam terhadap data yang sederhana dapat menghasilkan insight yang sangat berharga. Dalam dunia kerja, kompetensi ini sangat dihargai: seorang analis data, quality control, manajer, atau wirausahawan harus mampu membaca data, menemukan pola, dan mengambil keputusan strategis berdasarkan temuan tersebut.</p>
+                <br>
+                <p>Oleh karena itu, materi ini dirancang agar siswa mampu: (1) mengolah dan mengelompokkan data secara sistematis, (2) menyajikan data dalam bentuk visual yang informatif, (3) menganalisis hubungan antara data dan masalah yang dikaji, serta (4) menyusun alternatif solusi dan menentukan solusi terbaik berdasarkan kriteria yang jelas.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Pengolahan Data (Data Processing):</strong> Proses mengorganisasi, membersihkan, dan mengelompokkan data mentah menjadi data yang siap dianalisis.</li>
+                    <li><strong>Tabulasi:</strong> Penyusunan data dalam bentuk tabel agar mudah dibaca dan dianalisis.</li>
+                    <li><strong>Visualisasi Data:</strong> Penyajian data dalam bentuk grafik, diagram, atau infografis untuk memudahkan pemahaman.</li>
+                    <li><strong>Analisis Deskriptif:</strong> Analisis yang menggambarkan karakteristik data (frekuensi, persentase, rata-rata).</li>
+                    <li><strong>Analisis Hubungan:</strong> Analisis yang mencari keterkaitan antara variabel atau fenomena.</li>
+                    <li><strong>Alternatif Solusi:</strong> Berbagai pilihan cara penyelesaian masalah yang disusun berdasarkan temuan analisis.</li>
+                    <li><strong>Matriks Keputusan:</strong> Alat bantu untuk memilih solusi terbaik berdasarkan beberapa kriteria.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Dari Data ke Solusi — Projek Sampah Plastik SMKN 1 Koto Balingka</h3>
+                <p>Melanjutkan projek dari Pertemuan 12-13, tim siswa SMKN 1 Koto Balingka berhasil mengumpulkan data selama 2 minggu tentang sampah plastik di kantin sekolah. Data mentah yang terkumpul sangat banyak: 14 lembar hasil observasi, 15 transkrip wawancara, 120 angket terisi, dan puluhan foto dokumentasi.</p>
+                <br>
+                <p>Pada tahap analisis, mereka:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                    <li>Mengolah data kuantitatif: menghitung rata-rata timbulan sampah (12,5 kg/hari), jenis sampah terbanyak (botol plastik 45%, kemasan 35%, sedotan 20%).</li>
+                    <li>Menganalisis data kualitatif: mengelompokkan jawaban wawancara menjadi 3 tema utama (ketidaktahuan, tidak ada fasilitas, kebiasaan).</li>
+                    <li>Menyajikan data dalam grafik batang dan diagram lingkaran.</li>
+                    <li>Menemukan pola: 78% siswa sebenarnya ingin memilah sampah, tetapi tidak ada tempat sampah terpilah.</li>
+                    <li>Menyusun 3 alternatif solusi dan memilih yang terbaik menggunakan matriks keputusan.</li>
+                </ul>
+                <br>
+                <p>Hasilnya, mereka merekomendasikan solusi: <strong>"Pembangunan 5 titik tempat sampah terpilah + kampanye edukasi peer-to-peer oleh siswa"</strong>—solusi yang realistis, berbasis data, dan partisipatif.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Analisis data yang sistematis mengubah data mentah menjadi insight yang actionable. Solusi yang berbasis data jauh lebih efektif dan dapat dipertanggungjawabkan dibanding solusi berdasarkan asumsi.</p>
+            </div>
+
+            <h2>14.1 Mengolah dan Mengelompokkan Data Hasil Pengamatan</h2>
+            <div class="card">
+                <h3>14.1.1 Apa Itu Pengolahan Data?</h3>
+                <p><strong>Pengolahan data</strong> adalah proses mengubah data mentah (<em>raw data</em>) menjadi informasi yang bermakna dan siap dianalisis. Data mentah yang belum diolah ibarat bahan mentah di dapur—belum bisa disajikan sebagai hidangan yang enak.</p>
+
+                <h3>14.1.2 Tahapan Pengolahan Data</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Pengecekan Data (Data Checking):</strong> Memeriksa kelengkapan dan konsistensi data. Buang data yang rusak atau tidak valid.</li>
+                    <li><strong>Pengkodean (Coding):</strong> Memberi kode pada data kualitatif untuk memudahkan analisis. Contoh: "Sangat Setuju" = 5, "Setuju" = 4, dst.</li>
+                    <li><strong>Tabulasi (Tabulating):</strong> Menyusun data dalam tabel yang sistematis.</li>
+                    <li><strong>Entriy Data (Data Entry):</strong> Memasukkan data ke dalam spreadsheet (Excel/Google Sheets) atau aplikasi statistik.</li>
+                    <li><strong>Pembersihan Data (Data Cleaning):</strong> Mengoreksi kesalahan, menghapus duplikat, mengisi data yang kosong.</li>
+                    <li><strong>Pengelompokan (Categorizing):</strong> Mengelompokkan data berdasarkan kategori atau tema.</li>
+                </ol>
+
+                <h3>14.1.3 Mengelompokkan Data</h3>
+                <p>Pengelompokan data membantu siswa melihat pola dan struktur. Berikut cara mengelompokkan data berdasarkan jenisnya:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Data</th>
+                            <th>Cara Mengelompokkan</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Kuantitatif</strong></td>
+                            <td>Berdasarkan rentang nilai, kategori numerik</td>
+                            <td>Kelompok usia, rentang berat sampah, skor angket</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Kualitatif</strong></td>
+                            <td>Berdasarkan tema, kategori, pola</td>
+                            <td>Tema jawaban wawancara: "Faktor pengetahuan", "Faktor fasilitas", "Faktor kebiasaan"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Waktu</strong></td>
+                            <td>Berdasarkan periode (harian, mingguan, bulanan)</td>
+                            <td>Timbulan sampah per hari selama 2 minggu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Spasial</strong></td>
+                            <td>Berdasarkan lokasi</td>
+                            <td>Jumlah sampah di kantin A, kantin B, halaman</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Tabulasi Data Timbulan Sampah Plastik:</strong><br><br>
+                    <strong>Tabel 1. Timbulan Sampah Plastik di Kantin SMKN 1 Koto Balingka (10 Hari Observasi)</strong><br><br>
+                    Hari&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Botol (kg) | Kemasan (kg) | Sedotan (kg) | Total (kg)<br>
+                    Senin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;5,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4,2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;2,3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;12,0<br>
+                    Selasa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;5,8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;2,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;12,8<br>
+                    ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                    <strong>Rata-rata</strong>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;5,6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4,4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;2,5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;12,5<br><br>
+                    <em>Sumber: Data Primer, Observasi 1-10 Februari 2027</em>
+                </div>
+            </div>
+
+            <h2>14.2 Menyajikan Data dalam Bentuk Visual</h2>
+            <div class="card">
+                <p>Visualisasi data adalah seni menyampaikan informasi kompleks dalam bentuk yang mudah dipahami. Visual yang baik dapat menggantikan ribuan kata dan membantu pembaca menangkap insight dengan cepat.</p>
+
+                <h3>14.2.1 Jenis-Jenis Visualisasi Data</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Visual</th>
+                            <th>Fungsi</th>
+                            <th>Kapan Digunakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tabel</strong></td>
+                            <td>Menyajikan data numerik secara rinci</td>
+                            <td>Ketika pembaca butuh angka pasti dan perbandingan detail</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grafik Batang</strong></td>
+                            <td>Membandingkan antar kategori</td>
+                            <td>Membandingkan jumlah sampah per jenis, per lokasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grafik Garis</strong></td>
+                            <td>Menunjukkan tren dari waktu ke waktu</td>
+                            <td>Perubahan timbulan sampah selama 2 minggu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diagram Lingkaran</strong></td>
+                            <td>Menunjukkan proporsi/komposisi</td>
+                            <td>Persentase jenis sampah dari total</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Peta</strong></td>
+                            <td>Menunjukkan distribusi geografis</td>
+                            <td>Sebaran titik sampah di sekolah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infografis</strong></td>
+                            <td>Kombinasi visual, teks, dan angka</td>
+                            <td>Poster kampanye, laporan eksekutif</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>14.2.2 Contoh Visualisasi Data</h3>
+                
+                <div class="visual-demo">
+                    <p style="color: var(--gold-primary); font-weight: 600; margin-bottom: 1rem;">📊 Grafik Batang: Rata-rata Timbulan Sampah Plastik per Jenis</p>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 90%;">
+                            5,6 kg
+                            <span class="bar-label">Botol</span>
+                        </div>
+                        <div class="bar" style="height: 70%;">
+                            4,4 kg
+                            <span class="bar-label">Kemasan</span>
+                        </div>
+                        <div class="bar" style="height: 40%;">
+                            2,5 kg
+                            <span class="bar-label">Sedotan</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 2rem;"><em>Insight: Botol plastik menyumbang timbulan terbesar (45%)</em></p>
+                </div>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Diagram Lingkaran (Komposisi Sampah):</strong><br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┌─────────────────┐<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;╭──────╮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;45%&nbsp;&nbsp;│ Botol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;35%&nbsp;&nbsp;│ Kemasan&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;20%&nbsp;&nbsp;│ Sedotan&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;╰──────╯&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─────────────────┘<br><br>
+                    <em>Tip: Gunakan warna berbeda untuk setiap kategori agar mudah dibedakan.</em>
+                </div>
+
+                <h3>14.2.3 Prinsip Visualisasi Data yang Efektif</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Sederhana:</strong> Jangan memvisualisasikan terlalu banyak data sekaligus.</li>
+                    <li><strong>Jelas:</strong> Beri judul, label sumbu, legenda, dan sumber data.</li>
+                    <li><strong>Akurat:</strong> Skala harus proporsional, tidak menyesatkan.</li>
+                    <li><strong>Relevan:</strong> Pilih jenis visual yang sesuai dengan pesan yang ingin disampaikan.</li>
+                    <li><strong>Estetik:</strong> Gunakan warna dan font yang konsisten dan mudah dibaca.</li>
+                </ul>
+
+                <h3>14.2.4 Alat Bantu Visualisasi</h3>
+                <p>Siswa dapat menggunakan berbagai alat untuk membuat visualisasi data:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Microsoft Excel / Google Sheets:</strong> Untuk grafik dasar (batang, garis, lingkaran).</li>
+                    <li><strong>Canva:</strong> Untuk infografis yang menarik dan mudah dibuat.</li>
+                    <li><strong>Datawrapper:</strong> Untuk visualisasi data online yang interaktif.</li>
+                    <li><strong>Draw.io / Diagram.net:</strong> Untuk diagram alir dan peta konsep.</li>
+                    <li><strong>Manual (kertas & spidol):</strong> Untuk presentasi cepat di kelas.</li>
+                </ul>
+            </div>
+
+            <h2>14.3 Menganalisis Hubungan antara Data dan Masalah</h2>
+            <div class="card">
+                <h3>14.3.1 Apa Itu Analisis Data?</h3>
+                <p><strong>Analisis data</strong> adalah proses menginterpretasi data yang telah diolah untuk menemukan pola, hubungan, makna, dan insight yang dapat menjawab rumusan masalah. Analisis yang baik mengubah data menjadi <strong>informasi</strong>, lalu menjadi <strong>pengetahuan</strong>, dan akhirnya menjadi <strong>kebijakan/solusi</strong>.</p>
+
+                <h3>14.3.2 Jenis-Jenis Analisis untuk Projek IPAS SMK</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Analisis</th>
+                            <th>Tujuan</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Analisis Deskriptif</strong></td>
+                            <td>Menggambarkan karakteristik data</td>
+                            <td>Menghitung rata-rata, persentase, frekuensi timbulan sampah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analisis Komparatif</strong></td>
+                            <td>Membandingkan dua atau lebih kelompok</td>
+                            <td>Membandingkan timbulan sampah sebelum dan sesudah intervensi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analisis Tren</strong></td>
+                            <td>Melihat perubahan dari waktu ke waktu</td>
+                            <td>Apakah timbulan sampah meningkat atau menurun selama 2 minggu?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analisis Hubungan (Korelasi)</strong></td>
+                            <td>Mencari keterkaitan antar variabel</td>
+                            <td>Apakah kesadaran siswa berkorelasi dengan jumlah sampah yang dibuang sembarangan?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analisis Tematik (Kualitatif)</strong></td>
+                            <td>Mengidentifikasi tema dari data kualitatif</td>
+                            <td>Mengelompokkan jawaban wawancara menjadi tema-tema utama</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analisis SWOT Sederhana</strong></td>
+                            <td>Memetakan kekuatan, kelemahan, peluang, ancaman</td>
+                            <td>Analisis potensi sekolah untuk program bank sampah</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>14.3.3 Langkah-Langkah Analisis Data</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Kembalikan ke rumusan masalah:</strong> Analisis harus menjawab pertanyaan yang telah dirumuskan di tahap identifikasi.</li>
+                    <li><strong>Pilih jenis analisis yang sesuai:</strong> Berdasarkan jenis data dan rumusan masalah.</li>
+                    <li><strong>Lakukan analisis:</strong> Hitung, bandingkan, cari pola, identifikasi tema.</li>
+                    <li><strong>Interpretasi hasil:</strong> Apa makna dari angka/pola yang ditemukan?</li>
+                    <li><strong>Hubungkan dengan teori/literatur:</strong> Apakah temuan sesuai dengan teori yang ada?</li>
+                    <li><strong>Tarik kesimpulan:</strong> Apa jawaban atas rumusan masalah berdasarkan data?</li>
+                </ol>
+
+                <div class="template-box">
+                    <strong>📝 Contoh Analisis Hubungan Data-Masalah:</strong><br><br>
+                    <strong>Rumusan Masalah:</strong> "Mengapa siswa masih membuang sampah sembarangan meskipun ada tempat sampah?"<br><br>
+                    <strong>Data Temuan:</strong><br>
+                    &nbsp;&nbsp;• 78% siswa menyatakan "ingin memilah sampah" (angket)<br>
+                    &nbsp;&nbsp;• Hanya ada 2 tempat sampah di area kantin (observasi)<br>
+                    &nbsp;&nbsp;• Tempat sampah tidak terpilah (observasi)<br>
+                    &nbsp;&nbsp;• 65% siswa tidak tahu cara memilah sampah (wawancara)<br><br>
+                    <strong>Analisis:</strong><br>
+                    &nbsp;&nbsp;→ Ada kesenjangan antara <em>niat</em> (78% ingin) dan <em>fasilitas</em> (hanya 2 tempat sampah).<br>
+                    &nbsp;&nbsp;→ Masalah utama BUKAN kesadaran, melainkan <strong>ketiadaan fasilitas dan pengetahuan</strong>.<br><br>
+                    <strong>Insight:</strong> Solusi harus fokus pada penyediaan fasilitas dan edukasi, bukan sekadar kampanye kesadaran.
+                </div>
+
+                <h3>14.3.4 Menghubungkan Data dengan Masalah</h3>
+                <p>Setiap temuan analisis harus dikaitkan kembali dengan masalah yang dikaji. Gunakan pola berikut:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>"Data menunjukkan bahwa..."</strong> → menyajikan temuan.</li>
+                    <li><strong>"Hal ini berarti..."</strong> → interpretasi makna.</li>
+                    <li><strong>"Dengan demikian, masalah utama adalah..."</strong> → kesimpulan terkait masalah.</li>
+                    <li><strong>"Oleh karena itu, solusi yang diperlukan adalah..."</strong> → arah solusi.</li>
+                </ul>
+            </div>
+
+            <h2>14.4 Menyusun Alternatif Solusi dan Menentukan Solusi Terbaik</h2>
+            <div class="card">
+                <h3>14.4.1 Menyusun Alternatif Solusi</h3>
+                <p>Berdasarkan hasil analisis, siswa menyusun beberapa alternatif solusi. Prinsipnya: <strong>jangan langsung memilih satu solusi</strong>, tetapi pertimbangkan beberapa opsi terlebih dahulu.</p>
+
+                <p style="margin-top: 1rem;"><strong>Kriteria alternatif solusi yang baik:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Berbasis bukti (evidence-based):</strong> Solusi harus didasarkan pada temuan analisis data.</li>
+                    <li><strong>Realistis:</strong> Dapat dilaksanakan dengan sumber daya yang ada.</li>
+                    <li><strong>Efektif:</strong> Mampu menyelesaikan akar masalah, bukan hanya gejala.</li>
+                    <li><strong>Berkelanjutan:</strong> Memberikan dampak jangka panjang.</li>
+                    <li><strong>Partisipatif:</strong> Melibatkan pihak-pihak terkait.</li>
+                </ul>
+
+                <div class="template-box">
+                    <strong>📝 Contoh 3 Alternatif Solusi untuk Kasus Sampah Plastik:</strong><br><br>
+                    <strong>Alternatif 1:</strong> Pembangunan 5 titik tempat sampah terpilah di kantin.<br>
+                    <strong>Alternatif 2:</strong> Kampanye edukasi "Bawa Botol Minum Sendiri" oleh OSIS.<br>
+                    <strong>Alternatif 3:</strong> Program bank sampah sekolah + pelatihan daur ulang untuk siswa.<br>
+                </div>
+
+                <h3>14.4.2 Matriks Keputusan untuk Memilih Solusi Terbaik</h3>
+                <p><strong>Matriks keputusan</strong> adalah alat bantu untuk membandingkan beberapa alternatif solusi berdasarkan beberapa kriteria. Setiap alternatif diberi skor untuk setiap kriteria, lalu dijumlahkan untuk mendapatkan skor total.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kriteria (Bobot)</th>
+                            <th>Alt 1: Tempat Sampah (Skor 1-5)</th>
+                            <th>Alt 2: Kampanye (Skor 1-5)</th>
+                            <th>Alt 3: Bank Sampah (Skor 1-5)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Realistis (Bobot 3)</strong></td>
+                            <td>4 (12)</td>
+                            <td>5 (15)</td>
+                            <td>3 (9)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Efektif (Bobot 3)</strong></td>
+                            <td>5 (15)</td>
+                            <td>3 (9)</td>
+                            <td>4 (12)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Berkelanjutan (Bobot 2)</strong></td>
+                            <td>3 (6)</td>
+                            <td>2 (4)</td>
+                            <td>5 (10)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Partisipatif (Bobot 2)</strong></td>
+                            <td>3 (6)</td>
+                            <td>4 (8)</td>
+                            <td>5 (10)</td>
+                        </tr>
+                        <tr>
+                            <td style="background: rgba(212, 175, 55, 0.3);"><strong>TOTAL SKOR</strong></td>
+                            <td style="background: rgba(212, 175, 55, 0.3);"><strong>39</strong></td>
+                            <td style="background: rgba(212, 175, 55, 0.3);"><strong>36</strong></td>
+                            <td style="background: rgba(212, 175, 55, 0.3);"><strong>41 ✓</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 1rem;"><strong>Keputusan:</strong> Alternatif 3 (Program Bank Sampah) dipilih sebagai solusi terbaik dengan skor tertinggi (41). Namun, Alternatif 1 (Tempat Sampah) juga penting sebagai pendukung. Maka, solusi final adalah <strong>kombinasi Alt 1 + Alt 3</strong>.</p>
+
+                <h3>14.4.3 Langkah-Langkah Menyusun Solusi</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary); line-height: 2;">
+                    <li><strong>Identifikasi akar masalah</strong> berdasarkan analisis data.</li>
+                    <li><strong>Brainstorming</strong> minimal 3 alternatif solusi.</li>
+                    <li><strong>Tentukan kriteria evaluasi</strong> (realistis, efektif, berkelanjutan, partisipatif).</li>
+                    <li><strong>Beri bobot</strong> pada setiap kriteria sesuai prioritas.</li>
+                    <li><strong>Beri skor</strong> untuk setiap alternatif pada setiap kriteria.</li>
+                    <li><strong>Hitung skor total</strong> (skor × bobot).</li>
+                    <li><strong>Pilih solusi terbaik</strong> berdasarkan skor tertinggi.</li>
+                    <li><strong>Susun rencana implementasi</strong> untuk solusi terpilih (siapa, kapan, di mana, bagaimana).</li>
+                </ol>
+
+                <div class="template-box">
+                    <strong>📝 Template Rencana Implementasi Solusi:</strong><br><br>
+                    <strong>Judul Solusi:</strong> Program Bank Sampah SMKN 1 Koto Balingka<br><br>
+                    <strong>Tujuan:</strong> Mengurangi timbulan sampah plastik di kantin sebesar 30% dalam 3 bulan.<br><br>
+                    <strong>Langkah-langkah:</strong><br>
+                    &nbsp;&nbsp;1. Sosialisasi program ke seluruh siswa dan pedagang kantin (Minggu 1)<br>
+                    &nbsp;&nbsp;2. Pembangunan 5 titik tempat sampah terpilah (Minggu 2)<br>
+                    &nbsp;&nbsp;3. Pelatihan pemilahan sampah untuk kader bank sampah (Minggu 3)<br>
+                    &nbsp;&nbsp;4. Operasional bank sampah (Minggu 4-12)<br>
+                    &nbsp;&nbsp;5. Monitoring dan evaluasi bulanan<br><br>
+                    <strong>Pihak yang Terlibat:</strong><br>
+                    &nbsp;&nbsp;• Tim projek IPAS (koordinator)<br>
+                    &nbsp;&nbsp;• OSIS (kampanye)<br>
+                    &nbsp;&nbsp;• Pedagang kantin (partisipasi)<br>
+                    &nbsp;&nbsp;• Kepala sekolah (dukung kebijakan)<br><br>
+                    <strong>Indikator Keberhasilan:</strong><br>
+                    &nbsp;&nbsp;• Volume sampah plastik menurun 30%<br>
+                    &nbsp;&nbsp;• Partisipasi siswa ≥ 70%<br>
+                    &nbsp;&nbsp;• Pendapatan bank sampah ≥ Rp 500.000/bulan
+                </div>
+
+                <h3>14.4.4 Validasi Solusi dengan Stakeholder</h3>
+                <p>Sebelum implementasi, solusi sebaiknya divalidasi dengan pihak terkait:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Diskusi dengan guru pembimbing:</strong> Untuk memastikan solusi sesuai dengan kompetensi dan kurikulum.</li>
+                    <li><strong>FGD dengan calon penerima manfaat:</strong> Untuk memastikan solusi sesuai kebutuhan mereka.</li>
+                    <li><strong>Konsultasi dengan ahli/praktisi:</strong> Untuk validasi teknis (misalnya: ahli lingkungan untuk program bank sampah).</li>
+                    <li><strong>Uji coba skala kecil (pilot):</strong> Untuk menguji efektivitas sebelum implementasi penuh.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum pada Tahap Analisis dan Pemecahan Masalah</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Menganalisis data tanpa mengaitkan kembali dengan rumusan masalah.</li>
+                    <li>Langsung memilih solusi tanpa mempertimbangkan alternatif lain.</li>
+                    <li>Visualisasi data yang menyesatkan (skala tidak proporsional, tidak ada label).</li>
+                    <li>Kesimpulan tidak didukung oleh data (over-generalization).</li>
+                    <li>Mengabaikan data yang tidak sesuai dengan harapan (confirmation bias).</li>
+                    <li>Solusi tidak realistis atau tidak mempertimbangkan sumber daya yang ada.</li>
+                    <li>Tidak melibatkan stakeholder dalam validasi solusi.</li>
+                    <li>Rencana implementasi tidak jelas (siapa melakukan apa, kapan, di mana).</li>
+                    <li>Tidak menetapkan indikator keberhasilan yang terukur.</li>
+                    <li>Terburu-buru, sehingga analisis dangkal dan solusi tidak komprehensif.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Tahap analisis data dan pemecahan masalah adalah tahap intelektual tertinggi dalam projek IPAS. Pengolahan data yang sistematis—meliputi pengecekan, pengkodean, tabulasi, dan pengelompokan—mengubah data mentah menjadi informasi yang siap dianalisis. Visualisasi data (tabel, grafik batang, garis, diagram lingkaran, infografis) membantu menyampaikan insight secara efektif. Analisis data—baik deskriptif, komparatif, tren, hubungan, tematik, maupun SWOT—mengungkap pola dan makna di balik angka. Berdasarkan analisis, siswa menyusun alternatif solusi yang berbasis bukti, lalu memilih solusi terbaik menggunakan matriks keputusan yang objektif. Solusi yang terpilih kemudian disusun rencana implementasinya secara rinci, melibatkan stakeholder, dan ditetapkan indikator keberhasilannya. Dengan menguasai tahap ini, siswa SMK tidak hanya menyelesaikan projek IPAS dengan baik, tetapi juga membangun kompetensi berpikir analitis dan pemecahan masalah yang sangat dibutuhkan di dunia kerja abad ke-21.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Creswell, J. W. (2014). <em>Research Design: Qualitative, Quantitative, and Mixed Methods Approaches (4th ed.)</em>. Thousand Oaks: SAGE.</li>
+                    <li>Sugiyono. (2019). <em>Metode Penelitian Kuantitatif, Kualitatif, dan R&D</em>. Bandung: Alfabeta.</li>
+                    <li>Knaflic, C. N. (2015). <em>Storytelling with Data: A Data Visualization Guide for Business Professionals</em>. Hoboken: Wiley.</li>
+                    <li>Supriadi. (2024). <em>Panduan Projek IPAS Berbasis Potensi Lokal untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="13.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="15.html" class="btn">Bab 15: Projek IPAS - Produk dan Implementasi Solusi →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 14: Projek IPAS - Analisis Data dan Pemecahan Masalah</h2>
+                <p style="color: var(--text-secondary);">Materi: Pengolahan Data, Visualisasi Data, Analisis Hubungan Data-Masalah, Alternatif Solusi</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="2" selected>Semester 2 (Genap)</option>
+                        <option value="1">Semester 1 (Ganjil)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Proses mengubah data mentah menjadi informasi yang bermakna disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Pengumpulan data</label>
+                        <label><input type="radio" name="q1" value="b"> b. Pengolahan data (data processing)</label>
+                        <label><input type="radio" name="q1" value="c"> c. Visualisasi data</label>
+                        <label><input type="radio" name="q1" value="d"> d. Implementasi solusi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Penyusunan data dalam bentuk tabel yang sistematis disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Coding</label>
+                        <label><input type="radio" name="q2" value="b"> b. Tabulasi</label>
+                        <label><input type="radio" name="q2" value="c"> c. Cleaning</label>
+                        <label><input type="radio" name="q2" value="d"> d. Entry</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Jenis visualisasi data yang paling tepat untuk menunjukkan proporsi/komposisi adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Grafik batang</label>
+                        <label><input type="radio" name="q3" value="b"> b. Grafik garis</label>
+                        <label><input type="radio" name="q3" value="c"> c. Diagram lingkaran (pie chart)</label>
+                        <label><input type="radio" name="q3" value="d"> d. Peta</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Analisis yang menggambarkan karakteristik data (rata-rata, persentase, frekuensi) disebut analisis...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Deskriptif</label>
+                        <label><input type="radio" name="q4" value="b"> b. Komparatif</label>
+                        <label><input type="radio" name="q4" value="c"> c. Korelasi</label>
+                        <label><input type="radio" name="q4" value="d"> d. Inferensial</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Alat bantu untuk memilih solusi terbaik berdasarkan beberapa kriteria disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Logbook</label>
+                        <label><input type="radio" name="q5" value="b"> b. Matriks keputusan</label>
+                        <label><input type="radio" name="q5" value="c"> c. Transkrip</label>
+                        <label><input type="radio" name="q5" value="d"> d. Angket</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Jenis visualisasi data yang paling tepat untuk menunjukkan tren dari waktu ke waktu adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Grafik batang</label>
+                        <label><input type="radio" name="q6" value="b"> b. Grafik garis</label>
+                        <label><input type="radio" name="q6" value="c"> c. Diagram lingkaran</label>
+                        <label><input type="radio" name="q6" value="d"> d. Peta</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Proses memberi kode pada data kualitatif untuk memudahkan analisis disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Tabulasi</label>
+                        <label><input type="radio" name="q7" value="b"> b. Coding (pengkodean)</label>
+                        <label><input type="radio" name="q7" value="c"> c. Cleaning</label>
+                        <label><input type="radio" name="q7" value="d"> d. Entry</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Prinsip visualisasi data yang menyatakan bahwa skala harus proporsional dan tidak menyesatkan disebut prinsip...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Estetik</label>
+                        <label><input type="radio" name="q8" value="b"> b. Akurat</label>
+                        <label><input type="radio" name="q8" value="c"> c. Sederhana</label>
+                        <label><input type="radio" name="q8" value="d"> d. Relevan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Analisis yang mencari keterkaitan antara dua atau lebih variabel disebut analisis...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Deskriptif</label>
+                        <label><input type="radio" name="q9" value="b"> b. Komparatif</label>
+                        <label><input type="radio" name="q9" value="c"> c. Hubungan (korelasi)</label>
+                        <label><input type="radio" name="q9" value="d"> d. Tematik</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. [HOTS] Sebuah tim projek menemukan data: 78% siswa ingin memilah sampah, tetapi hanya ada 2 tempat sampah di kantin yang tidak terpilah. Temuan analisis yang PALING TEPAT adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Siswa tidak peduli dengan lingkungan</label>
+                        <label><input type="radio" name="q10" value="b"> b. Masalah utama adalah kesadaran siswa yang rendah</label>
+                        <label><input type="radio" name="q10" value="c"> c. Masalah utama adalah ketiadaan fasilitas yang memadai, bukan kesadaran</label>
+                        <label><input type="radio" name="q10" value="d"> d. Sekolah tidak perlu menyediakan tempat sampah</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan 6 tahapan pengolahan data (pengecekan, pengkodean, tabulasi, entry, cleaning, categorizing)! Berikan contoh konkret untuk setiap tahapan dalam projek IPAS tentang "timbulan sampah plastik di kantin sekolah"!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Bandingkan 6 jenis visualisasi data (tabel, grafik batang, grafik garis, diagram lingkaran, peta, infografis)! Jelaskan fungsi masing-masing, kapan paling tepat digunakan, dan berikan contoh kasus penggunaannya dalam projek IPAS!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Uraikan 6 jenis analisis data (deskriptif, komparatif, tren, hubungan, tematik, SWOT)! Untuk setiap jenis, berikan definisi, tujuan, dan contoh penerapannya dalam projek IPAS tentang "penghematan energi listrik di sekolah"!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Jelaskan langkah-langkah menyusun alternatif solusi dan memilih solusi terbaik menggunakan matriks keputusan! Berikan contoh konkret matriks keputusan untuk memilih solusi terbaik dari 3 alternatif solusi dalam projek IPAS tentang "pengurangan sampah plastik di sekolah", lengkap dengan kriteria, bobot, skor, dan keputusan akhir!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Anda diberikan data fiktif berikut dari projek IPAS tentang "kesadaran siswa terhadap penggunaan air bersih di SMKN 1 Koto Balingka":<br><br>
+                    • 85% siswa tahu pentingnya menghemat air<br>
+                    • 60% siswa membiarkan keran mengalir saat menyabuni tangan<br>
+                    • Hanya 3 dari 10 keran di sekolah yang berfungsi baik (sisanya bocor)<br>
+                    • Tidak ada poster edukasi tentang penghematan air<br>
+                    • Tagihan air sekolah meningkat 25% dalam 6 bulan terakhir<br><br>
+                    Lakukan analisis data tersebut, hubungkan dengan masalah yang dikaji, identifikasi akar masalah, susun minimal 3 alternatif solusi, dan pilih solusi terbaik menggunakan matriks keputusan sederhana. Jelaskan alasan pemilihan solusi tersebut!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 14
+        const kunciJawaban = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'c',
+            q4: 'a',
+            q5: 'b',
+            q6: 'b',
+            q7: 'b',
+            q8: 'b',
+            q9: 'c',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            document.getElementById('skorPG').textContent = pgScore;
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            document.getElementById('hasilUjian').style.display = 'block';
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 1: Hakikat Sains dan Projek IPAS - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 1</span>
+            <h1>Hakikat Sains dan Projek IPAS</h1>
+            <p class="subtitle">Memahami dasar-dasar ilmu pengetahuan alam, sosial, metode ilmiah, serta etika dan keselamatan kerja dalam kegiatan proyek.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="index.html" class="btn">← Kembali ke Daftar Bab</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="2.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) merupakan mata pelajaran yang mengintegrasikan konsep-konsep sains dan ilmu sosial untuk memecahkan masalah nyata di lingkungan sekitar. Bagi peserta didik SMK, pemahaman terhadap hakikat sains dan sosial bukan hanya sekadar teori, melainkan fondasi untuk mengembangkan keterampilan berpikir kritis, analitis, dan solutif yang sangat dibutuhkan di dunia kerja.</p>
+                <br>
+                <p><strong>Ilmu Pengetahuan Alam (IPA)</strong> berfokus pada pemahaman fenomena alam melalui observasi dan eksperimen, sedangkan <strong>Ilmu Pengetahuan Sosial (IPS)</strong> mempelajari interaksi manusia, masyarakat, dan dampaknya terhadap lingkungan. Projek IPAS menggabungkan keduanya untuk menciptakan solusi yang holistik, berkelanjutan, dan relevan dengan konteks kehidupan sehari-hari serta dunia industri.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Projek IPAS:</strong> Pendekatan pembelajaran berbasis proyek yang mengintegrasikan sains dan sosial untuk menyelesaikan masalah kontekstual.</li>
+                    <li><strong>Metode Ilmiah:</strong> Prosedur sistematis yang meliputi mengamati, menanya, merumuskan hipotesis, mengumpulkan data, menganalisis, dan menyimpulkan.</li>
+                    <li><strong>Sikap Ilmiah:</strong> Karakteristik seperti jujur, objektif, teliti, terbuka, dan kritis dalam menghadapi suatu permasalahan.</li>
+                    <li><strong>Keselamatan Kerja (K3):</strong> Protokol dan penggunaan Alat Pelindung Diri (APD) untuk menjamin keamanan selama kegiatan proyek atau praktikum.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Kegagalan Akibat Mengabaikan Metode Ilmiah</h3>
+                <p>Sebuah kelompok siswa SMK ingin membuat proyek pengolahan limbah cair menjadi pupuk. Namun, mereka langsung mencampur berbagai bahan kimia tanpa melakukan observasi awal, tidak mencatat takaran (tidak teliti), dan mengabaikan penggunaan sarung tangan serta kacamata safety. Akibatnya, terjadi reaksi kimia yang tidak terduga, menghasilkan gas berbahaya, dan data yang dikumpulkan tidak valid karena tidak ada kontrol variabel.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Mengabaikan langkah metode ilmiah dan protokol keselamatan kerja tidak hanya membahayakan diri sendiri, tetapi juga menghasilkan solusi yang tidak valid dan tidak dapat dipertanggungjawabkan secara ilmiah.</p>
+            </div>
+
+            <h2>1.1 Landasan Teoretis Projek IPAS</h2>
+            <div class="card">
+                <h3>1.1.1 Integrasi Sains dan Sosial</h3>
+                <p>Dalam kurikulum Merdeka, IPAS dirancang untuk menghapus sekat kaku antara IPA dan IPS. Fenomena nyata (seperti perubahan iklim atau pengelolaan sampah) tidak bisa diselesaikan hanya dengan satu perspektif. Diperlukan pemahaman ilmiah (sains) tentang prosesnya, sekaligus pemahaman sosial tentang perilaku masyarakat dan dampak ekonominya.</p>
+
+                <h3>1.1.2 Project-Based Learning (PjBL)</h3>
+                <p>Projek IPAS menggunakan kerangka PjBL, di mana siswa belajar melalui pengalaman langsung dalam merancang, melaksanakan, dan mengevaluasi sebuah proyek. Tahapannya meliputi: penentuan pertanyaan mendasar, perencanaan proyek, penyusunan jadwal, monitoring, uji hasil, dan evaluasi pengalaman.</p>
+            </div>
+
+            <h2>1.2 Komponen Utama dalam Projek IPAS</h2>
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Komponen</th>
+                            <th>Deskripsi</th>
+                            <th>Contoh Penerapan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Observasi & Identifikasi Masalah</strong></td>
+                            <td>Mengamati fenomena dan merumuskan masalah nyata di lingkungan.</td>
+                            <td>Mengamati tumpukan sampah organik di kantin sekolah.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Metode Ilmiah</strong></td>
+                            <td>Langkah sistematis: Hipotesis, Eksperimen, Analisis Data, Kesimpulan.</td>
+                            <td>Menguji waktu penguraian sampah dengan berbagai jenis bioaktivator.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sikap Ilmiah</strong></td>
+                            <td>Integritas data, objektivitas, dan ketelitian.</td>
+                            <td>Tidak memanipulasi data hasil pengukuran pH limbah.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keselamatan & Etika</strong></td>
+                            <td>Penerapan K3 dan etika penelitian (izin, tidak merusak lingkungan).</td>
+                            <td>Menggunakan masker dan jas lab, serta meminta izin sebelum mengambil sampel tanah.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan yang Sering Terjadi dalam Projek IPAS</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Langsung membuat solusi tanpa melakukan observasi dan pengumpulan data yang valid.</li>
+                    <li>Mengabaikan aspek keselamatan kerja (K3) saat melakukan pengamatan atau eksperimen.</li>
+                    <li>Data dimanipulasi agar sesuai dengan harapan (tidak jujur/tidak objektif).</li>
+                    <li>Solusi yang ditawarkan tidak mempertimbangkan aspek sosial dan ekonomi masyarakat sekitar.</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Hakikat Projek IPAS adalah membekali siswa dengan kemampuan untuk melihat dunia secara holistik. Dengan menguasai metode ilmiah, menjunjung tinggi sikap ilmiah, dan mematuhi etika serta keselamatan kerja, siswa SMK tidak hanya menjadi calon tenaga kerja yang terampil, tetapi juga problem solver yang bertanggung jawab terhadap lingkungan dan masyarakat.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Pratiwi, D. A., et al. (2023). <em>Metodologi Penelitian dan Projek Sains untuk SMK</em>. Bandung: Erlangga.</li>
+                    <li>Supriadi. (2024). <em>Panduan Keselamatan dan Kesehatan Kerja (K3) di Laboratorium Sekolah</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="index.html" class="btn">← Kembali ke Daftar Bab</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="2.html" class="btn">Bab 2: Makhluk Hidup dan Lingkungannya →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 1: Hakikat Sains dan Projek IPAS</h2>
+                <p style="color: var(--text-secondary);">Materi: Pengertian IPAS, Metode Ilmiah, Sikap Ilmiah, dan Keselamatan Kerja</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Apa kepanjangan dari IPAS dalam kurikulum SMK?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Ilmu Pengetahuan Alam dan Sosial</label>
+                        <label><input type="radio" name="q1" value="b"> b. Ilmu Pengetahuan dan Alam Semesta</label>
+                        <label><input type="radio" name="q1" value="c"> c. Integrasi Pengetahuan dan Sains</label>
+                        <label><input type="radio" name="q1" value="d"> d. Ilmu Pengetahuan Aplikasi dan Sosial</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Langkah pertama yang harus dilakukan dalam metode ilmiah adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Membuat kesimpulan</label>
+                        <label><input type="radio" name="q2" value="b"> b. Mengamati dan merumuskan masalah</label>
+                        <label><input type="radio" name="q2" value="c"> c. Melakukan eksperimen</label>
+                        <label><input type="radio" name="q2" value="d"> d. Mengumpulkan data</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Sikap ilmiah yang berarti tidak memihak dan berdasarkan fakta data disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Subjektif</label>
+                        <label><input type="radio" name="q3" value="b"> b. Spekulatif</label>
+                        <label><input type="radio" name="q3" value="c"> c. Objektif</label>
+                        <label><input type="radio" name="q3" value="d"> d. Apatis</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Tujuan utama dari pembelajaran berbasis Projek IPAS di SMK adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Menghafal semua teori sains</label>
+                        <label><input type="radio" name="q4" value="b"> b. Menyelesaikan masalah nyata dengan pendekatan sains dan sosial</label>
+                        <label><input type="radio" name="q4" value="c"> c. Fokus hanya pada aspek ekonomi</label>
+                        <label><input type="radio" name="q4" value="d"> d. Menghindari kerja kelompok</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Alat Pelindung Diri (APD) dasar yang wajib digunakan saat praktikum di laboratorium adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Jas lab, kacamata safety, dan sarung tangan</label>
+                        <label><input type="radio" name="q5" value="b"> b. Helm proyek dan sepatu boots</label>
+                        <label><input type="radio" name="q5" value="c"> c. Masker N95 dan rompi reflektor</label>
+                        <label><input type="radio" name="q5" value="d"> d. Tidak perlu APD jika hati-hati</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Ilmu yang mempelajari interaksi manusia dengan lingkungan sosial dan budayanya termasuk dalam rumpun...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Ilmu Pengetahuan Alam</label>
+                        <label><input type="radio" name="q6" value="b"> b. Ilmu Pengetahuan Sosial</label>
+                        <label><input type="radio" name="q6" value="c"> c. Ilmu Teknik</label>
+                        <label><input type="radio" name="q6" value="d"> d. Ilmu Matematika</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Dalam pengumpulan data proyek, etika yang paling utama untuk dijaga adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Kecepatan pengumpulan data</label>
+                        <label><input type="radio" name="q7" value="b"> b. Kejujuran dan tidak memalsukan data</label>
+                        <label><input type="radio" name="q7" value="c"> c. Menyalin data dari kelompok lain</label>
+                        <label><input type="radio" name="q7" value="d"> d. Menggunakan data yang paling bagus saja</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Hipotesis dalam metode ilmiah dapat didefinisikan sebagai...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Kesimpulan akhir penelitian</label>
+                        <label><input type="radio" name="q8" value="b"> b. Dugaan sementara yang perlu diuji kebenarannya</label>
+                        <label><input type="radio" name="q8" value="c"> c. Daftar pustaka penelitian</label>
+                        <label><input type="radio" name="q8" value="d"> d. Alat ukur yang digunakan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Kesimpulan dalam metode ilmiah harus diambil berdasarkan...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Perasaan atau intuisi peneliti</label>
+                        <label><input type="radio" name="q9" value="b"> b. Analisis data hasil pengamatan atau eksperimen</label>
+                        <label><input type="radio" name="q9" value="c"> c. Pendapat mayoritas teman sekelas</label>
+                        <label><input type="radio" name="q9" value="d"> d. Teori yang paling terkenal</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. Projek IPAS mengintegrasikan dua bidang ilmu utama, yaitu...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Matematika dan Bahasa</label>
+                        <label><input type="radio" name="q10" value="b"> b. Alam dan Sosial</label>
+                        <label><input type="radio" name="q10" value="c"> c. Seni dan Olahraga</label>
+                        <label><input type="radio" name="q10" value="d"> d. Agama dan Sejarah</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan perbedaan mendasar antara Ilmu Pengetahuan Alam (IPA) dan Ilmu Pengetahuan Sosial (IPS), serta bagaimana keduanya berkolaborasi dalam Projek IPAS!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Uraikan langkah-langkah metode ilmiah secara berurutan dan berikan contoh penerapannya dalam sebuah proyek sederhana di lingkungan sekolah!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Mengapa sikap ilmiah (seperti jujur, teliti, dan objektif) sangat penting dalam pelaksanaan sebuah proyek? Jelaskan dampaknya jika sikap ini diabaikan!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Sebutkan dan jelaskan minimal 3 aturan keselamatan kerja (K3) yang wajib diperhatikan saat melakukan pengamatan atau eksperimen di lingkungan sekolah!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Analisis sebuah masalah lingkungan di sekitar Anda (misalnya: sampah atau pencemaran air), lalu rumuskan bagaimana pendekatan Projek IPAS dapat digunakan untuk mencari solusinya!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke dosen/guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'a',
+            q2: 'b',
+            q3: 'c',
+            q4: 'b',
+            q5: 'a',
+            q6: 'b',
+            q7: 'b',
+            q8: 'b',
+            q9: 'b',
+            q10: 'b'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay (jika terisi semua, tampilkan 100 dengan catatan)
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 9: Individu, Masyarakat, dan Interaksi Sosial - Aida Husni, S.Pd</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,70;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gold);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--gold-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Cards & Glassmorphism */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Special Boxes */
+        .concept-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .case-study {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--error);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.5rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.8rem;
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--error);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            color: #6ee7b7;
+        }
+
+        /* Results Section */
+        #hasilUjian {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-gold);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        @media print {
+            .navbar, .nav-buttons, .action-buttons, #ujiFormatifForm { display: none; }
+            body { background: white; color: black; }
+            .card { border: 1px solid #ccc; background: white; }
+            #hasilUjian { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">PROJEK IPAS KELAS X</a>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tentang">Tentang</a>
+            <a href="index.html#bab">Daftar Bab</a>
+            <a href="index.html#kontak">Penulis</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--gold-primary); font-family: 'Cinzel', serif; letter-spacing: 3px; font-size: 0.9rem;">PERTEMUAN 9</span>
+            <h1>Individu, Masyarakat, dan Interaksi Sosial</h1>
+            <p class="subtitle">Memahami konsep individu, kelompok, dan masyarakat; nilai, norma, dan aturan dalam kehidupan bersama; bentuk-bentuk interaksi sosial; serta kerja sama, komunikasi, dan penyelesaian masalah dalam kehidupan sosial.</p>
+        </div>
+
+        <!-- Navigation Top -->
+        <div class="nav-buttons">
+            <a href="8.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#sub1" class="btn btn-primary">Mulai Membaca</a>
+            <a href="10.html" class="btn">Bab Selanjutnya →</a>
+        </div>
+
+        <!-- Content -->
+        <article id="sub1">
+            <div class="card">
+                <h2>Pendahuluan</h2>
+                <p>Manusia adalah makhluk sosial (<em>zoon politikon</em>) yang tidak dapat hidup sendiri. Sejak lahir hingga akhir hayat, manusia selalu berinteraksi dengan individu lain, membentuk kelompok, dan membangun masyarakat. Dalam konteks Projek IPAS, pemahaman tentang individu, masyarakat, dan interaksi sosial merupakan fondasi penting untuk menganalisis fenomena sosial, merumuskan solusi atas masalah sosial, serta mengembangkan keterampilan kolaborasi yang dibutuhkan di dunia kerja.</p>
+                <br>
+                <p>Bagi peserta didik SMK, penguasaan konsep ini bukan hanya bersifat akademis, tetapi juga sangat aplikatif. Kemampuan berkomunikasi, bekerja sama dalam tim, menyelesaikan konflik, dan memahami norma sosial menjadi kompetensi kunci yang sangat dihargai di dunia industri dan kewirausahaan. Oleh karena itu, materi ini dirancang agar siswa mampu memahami struktur sosial, menganalisis bentuk-bentuk interaksi, serta menerapkan prinsip kerja sama dan penyelesaian masalah secara kontekstual.</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>🔑 Konsep Kunci</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Individu:</strong> Satuan terkecil masyarakat yang memiliki ciri khas, kepribadian, dan otonomi sendiri.</li>
+                    <li><strong>Kelompok Sosial:</strong> Kumpulan individu yang berinteraksi secara teratur, memiliki tujuan bersama, dan kesadaran sebagai anggota.</li>
+                    <li><strong>Masyarakat:</strong> Kesatuan sosial yang hidup dalam wilayah tertentu, memiliki norma, nilai, dan budaya yang sama.</li>
+                    <li><strong>Nilai:</strong> Sesuatu yang dianggap baik, benar, dan berharga oleh masyarakat sebagai pedoman perilaku.</li>
+                    <li><strong>Norma:</strong> Aturan konkret yang mengatur perilaku anggota masyarakat, disertai sanksi bagi pelanggarnya.</li>
+                    <li><strong>Interaksi Sosial:</strong> Hubungan timbal balik antara individu dengan individu, individu dengan kelompok, atau kelompok dengan kelompok.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>📖 Studi Kasus: Gotong Royong "Sambuik Random" di Sumatera Barat</h3>
+                <p>Di Nagari Koto Balingka, tradisi <em>sambuik random</em> (gotong royong bergilir) masih lestari hingga kini. Setiap minggu, warga secara bergiliran membantu tetangga yang memiliki hajat—mulai dari membangun rumah, panen padi, hingga mempersiapkan upacara adat. Tidak ada imbalan finansial; yang menggerakkan mereka adalah nilai <em>tolong-menolong</em> dan kesadaran sebagai bagian dari masyarakat nagari.</p>
+                <br>
+                <p>Tradisi ini menunjukkan bagaimana nilai dan norma sosial dapat menciptakan kerja sama yang kuat tanpa paksaan. Namun, seiring modernisasi, partisipasi generasi muda mulai menurun karena kesibukan sekolah dan pekerjaan. Para tetua adat kini berupaya mengadaptasi tradisi ini dengan melibatkan pemuda melalui kegiatan karang taruna dan program sekolah berbasis masyarakat.</p>
+                <br>
+                <p><strong>Pembelajaran:</strong> Interaksi sosial yang didasari nilai dan norma yang kuat dapat menciptakan kohesi sosial yang luar biasa. Siswa SMK perlu memahami dan melestarikan kearifan lokal seperti ini, sekaligus mengadaptasinya dengan konteks modern agar tetap relevan.</p>
+            </div>
+
+            <h2>9.1 Individu, Kelompok, dan Masyarakat</h2>
+            <div class="card">
+                <h3>9.1.1 Individu</h3>
+                <p><strong>Individu</strong> berasal dari kata <em>individual</em> (bahasa Latin: <em>individuum</em> = tidak terbagi). Individu adalah manusia sebagai satuan terkecil dalam masyarakat yang memiliki ciri khas, kepribadian, kebutuhan, dan potensi yang unik. Setiap individu berbeda satu sama lain dalam hal:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Fisik:</strong> Tinggi badan, warna kulit, bentuk wajah.</li>
+                    <li><strong>Psikologis:</strong> Kepribadian, minat, bakat, kecerdasan.</li>
+                    <li><strong>Sosial:</strong> Peran, status, latar belakang keluarga.</li>
+                </ul>
+                <p style="margin-top: 1rem;">Meskipun unik, individu tidak dapat hidup sendiri karena manusia adalah makhluk sosial yang membutuhkan orang lain untuk memenuhi kebutuhan biologis, psikologis, dan sosialnya.</p>
+
+                <h3>9.1.2 Kelompok Sosial</h3>
+                <p><strong>Kelompok sosial</strong> adalah kumpulan dua orang atau lebih yang berinteraksi secara teratur, memiliki kesadaran sebagai anggota, dan memiliki tujuan bersama. Ciri-ciri kelompok sosial:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Memiliki kesadaran sebagai anggota (<em>we-feeling</em>).</li>
+                    <li>Ada hubungan timbal balik antar anggota.</li>
+                    <li>Memiliki faktor pengikat (tujuan, nilai, norma, kepentingan bersama).</li>
+                    <li>Berstruktur, berkaidah, dan memiliki pola perilaku.</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>Jenis-jenis Kelompok Sosial:</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis</th>
+                            <th>Ciri</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Primer (Primer)</strong></td>
+                            <td>Hubungan erat, personal, dan berkelanjutan</td>
+                            <td>Keluarga, sahabat, kelompok bermain</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sekunder (Sekunder)</strong></td>
+                            <td>Hubungan formal, tidak personal, berjangka</td>
+                            <td>Organisasi perusahaan, serikat pekerja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Paguyuban (Gemeinschaft)</strong></td>
+                            <td>Ikatan batin murni, alamiah, kekal</td>
+                            <td>Keluarga, RT, kelompok arisan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Patembayan (Gesellschaft)</strong></td>
+                            <td>Ikatan kontraktual, kepentingan</td>
+                            <td>Perusahaan, koperasi, serikat buruh</td>
+                        </tr>
+                        <tr>
+                            <td><strong>In-Group</strong></td>
+                            <td>Kelompok "kita" (identitas kuat)</td>
+                            <td>Siswa SMKN 1 Koto Balingka</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Out-Group</strong></td>
+                            <td>Kelompok "mereka" (di luar identitas)</td>
+                            <td>Siswa sekolah lain</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>9.1.3 Masyarakat</h3>
+                <p><strong>Masyarakat</strong> adalah kesatuan sosial yang hidup dalam wilayah tertentu, memiliki hubungan timbal balik yang intensif, serta memiliki norma, nilai, dan budaya yang sama. Menurut <strong>Soerjono Soekanto</strong>, masyarakat harus memenuhi syarat:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Beranggotakan minimal dua orang atau lebih.</li>
+                    <li>Anggota memiliki kesadaran sebagai satu kesatuan.</li>
+                    <li>Berhubungan timbal balik secara intensif.</li>
+                    <li>Menghasilkan budaya sebagai hasil interaksi.</li>
+                    <li>Berlangsung cukup lama.</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Contoh masyarakat:</strong> Masyarakat nagari di Minangkabau, masyarakat desa, masyarakat perkotaan, masyarakat digital (netizen).</p>
+            </div>
+
+            <h2>9.2 Nilai, Norma, dan Aturan dalam Kehidupan Bersama</h2>
+            <div class="card">
+                <h3>9.2.1 Nilai Sosial</h3>
+                <p><strong>Nilai</strong> adalah sesuatu yang dianggap baik, benar, dan berharga oleh masyarakat sebagai pedoman perilaku dan pola pikir. Nilai merupakan abstraksi dari pengalaman dan menjadi dasar bagi norma.</p>
+                
+                <p style="margin-top: 1rem;"><strong>Jenis-jenis Nilai (Menurut Notonagoro):</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Nilai Material:</strong> Segala sesuatu yang berguna untuk kebutuhan fisik (makanan, pakaian, rumah).</li>
+                    <li><strong>Nilai Vital:</strong> Segala sesuatu yang berguna untuk melakukan kegiatan (kendaraan, alat tulis, komputer).</li>
+                    <li><strong>Nilai Spiritual:</strong> Segala sesuatu yang berguna untuk rohani (kebenaran, keindahan, kebaikan, religiusitas).</li>
+                </ul>
+
+                <h3>9.2.2 Norma Sosial</h3>
+                <p><strong>Norma</strong> adalah aturan konkret yang mengatur perilaku anggota masyarakat, disertai sanksi bagi pelanggarnya. Norma merupakan realisasi dari nilai yang telah disepakati.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Norma</th>
+                            <th>Sumber</th>
+                            <th>Sanksi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Norma Agama</strong></td>
+                            <td>Tuhan YME</td>
+                            <td>Dosa (akhirat)</td>
+                            <td>Shalat, tidak mencuri, jujur</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Norma Kesusilaan</strong></td>
+                            <td>Hati nurani</td>
+                            <td>Rasa malu, penyesalan</td>
+                            <td>Tidak berbohong, menghormati orang tua</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Norma Kesopanan</strong></td>
+                            <td>Pergaulan masyarakat</td>
+                            <td>Dikucilkan, digunjingkan</td>
+                            <td>Menghormati yang lebih tua, makan dengan tangan kanan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Norma Hukum</strong></td>
+                            <td>Negara/lembaga resmi</td>
+                            <td>Denda, penjara, pidana</td>
+                            <td>UU Lalu Lintas, KUHP, larangan korupsi</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>9.2.3 Fungsi Nilai dan Norma</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Sebagai pedoman perilaku bagi anggota masyarakat.</li>
+                    <li>Menciptakan ketertiban dan keadilan sosial.</li>
+                    <li>Menjaga keutuhan dan stabilitas masyarakat.</li>
+                    <li>Menjadi dasar penegakan sanksi bagi pelanggar.</li>
+                    <li>Membentuk identitas dan karakter masyarakat.</li>
+                </ul>
+            </div>
+
+            <h2>9.3 Bentuk-Bentuk Interaksi Sosial</h2>
+            <div class="card">
+                <p><strong>Interaksi sosial</strong> adalah hubungan timbal balik antara individu dengan individu, individu dengan kelompok, atau kelompok dengan kelompok. Syarat terjadinya interaksi sosial:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Kontak Sosial:</strong> Hubungan antar pihak (langsung/tidak langsung).</li>
+                    <li><strong>Komunikasi:</strong> Penyampaian pesan dan pemaknaan bersama.</li>
+                </ul>
+
+                <h3>9.3.1 Interaksi Asosiatif (Menyatukan)</h3>
+                <p>Interaksi yang mengarah pada kerja sama dan persatuan:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk</th>
+                            <th>Penjelasan</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kerja Sama (Cooperation)</strong></td>
+                            <td>Usaha bersama untuk mencapai tujuan bersama</td>
+                            <td>Gotong royong membersihkan nagari, kerja kelompok di sekolah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akomodasi</strong></td>
+                            <td>Usaha meredakan konflik untuk mencapai kestabilan</td>
+                            <td>Koersi, kompromi, arbitrasi, mediasi, konsiliasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asimilasi</strong></td>
+                            <td>Peleburan dua budaya menjadi budaya baru yang menghilangkan ciri khas asli</td>
+                            <td>Perkawinan campuran antar suku yang menghasilkan budaya baru</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Akulturasi</strong></td>
+                            <td>Penerimaan budaya asing tanpa menghilangkan budaya asli</td>
+                            <td>Arsitektur Masjid Raya Sumatera yang memadukan gaya Minang dan Islam</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>9.3.2 Interaksi Disosiatif (Memisahkan)</h3>
+                <p>Interaksi yang mengarah pada pertentangan dan perpecahan:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bentuk</th>
+                            <th>Penjelasan</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Persaingan (Competition)</strong></td>
+                            <td>Persaingan untuk mencapai tujuan tanpa kekerasan</td>
+                            <td>Lomba akademik antar kelas, persaingan bisnis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kontravensi</strong></td>
+                            <td>Sikap menentang secara tersembunyi (ambivalen)</td>
+                            <td>Desas-desus, provokasi, penghasutan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pertentangan (Conflict)</strong></td>
+                            <td>Pertentangan terbuka untuk menundukkan lawan</td>
+                            <td>Tawuran antar pelajar, konflik antar kelompok</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>9.3.3 Konteks Interaksi Sosial</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Di Keluarga:</strong> Interaksi antara orang tua dan anak, antar saudara (didominasi nilai kasih sayang dan norma kesusilaan).</li>
+                    <li><strong>Di Sekolah:</strong> Interaksi guru-siswa, antar siswa, staf-tata usaha (didominasi norma kesopanan dan hukum sekolah).</li>
+                    <li><strong>Di Masyarakat:</strong> Interaksi antar warga, dengan tokoh adat, dengan pemerintah nagari (didominasi norma adat, agama, dan hukum).</li>
+                    <li><strong>Di Dunia Kerja:</strong> Interaksi antar karyawan, dengan atasan, dengan klien (didominasi norma profesional dan hukum perusahaan).</li>
+                </ul>
+            </div>
+
+            <h2>9.4 Kerja Sama, Komunikasi, dan Penyelesaian Masalah Sosial</h2>
+            <div class="card">
+                <h3>9.4.1 Bentuk-Bentuk Kerja Sama</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Kerukunan (Gotong Royong):</strong> Kerja bersama tanpa pamrih, seperti tradisi <em>sambuik random</em> di Minangkabau.</li>
+                    <li><strong>Bargaining:</strong> Tawar-menawar dalam transaksi (jual-beli, negosiasi upah).</li>
+                    <li><strong>Kooptasi (Co-optation):</strong> Penerimaan unsur-unsur baru dalam kepemimpinan organisasi untuk menghindari konflik.</li>
+                    <li><strong>Koalisi (Coalition):</strong> Penggabungan dua organisasi atau lebih yang memiliki tujuan sama.</li>
+                    <li><strong>Joint Venture:</strong> Kerja sama antara perusahaan asing dan lokal dalam proyek tertentu.</li>
+                </ul>
+
+                <h3>9.4.2 Komunikasi Efektif</h3>
+                <p>Komunikasi adalah proses penyampaian pesan dari satu pihak ke pihak lain sehingga terjadi pemahaman bersama. Unsur komunikasi:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li><strong>Komunikator:</strong> Pengirim pesan.</li>
+                    <li><strong>Pesan (Message):</strong> Isi yang disampaikan.</li>
+                    <li><strong>Media:</strong> Saluran penyampaian (lisan, tulisan, digital).</li>
+                    <li><strong>Komunikan:</strong> Penerima pesan.</li>
+                    <li><strong>Umpan Balik (Feedback):</strong> Respon dari komunikan.</li>
+                </ul>
+
+                <p style="margin-top: 1rem;"><strong>Prinsip Komunikasi Efektif:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Jelas dan mudah dipahami (<em>clarity</em>).</li>
+                    <li>Singkat dan padat (<em>conciseness</em>).</li>
+                    <li>Sopan dan menghargai (<em>courtesy</em>).</li>
+                    <li>Tepat sasaran (<em>correctness</em>).</li>
+                    <li>Mendengarkan secara aktif (<em>active listening</em>).</li>
+                </ul>
+
+                <h3>9.4.3 Penyelesaian Konflik Sosial</h3>
+                <p>Konflik adalah pertentangan antar individu atau kelompok yang memiliki kepentingan berbeda. Penyelesaian konflik dapat dilakukan melalui:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metode</th>
+                            <th>Penjelasan</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Koersi (Coercion)</strong></td>
+                            <td>Paksaan oleh pihak yang lebih kuat</td>
+                            <td>Penertiban oleh aparat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kompromi (Compromise)</strong></td>
+                            <td>Saling mengurangi tuntutan agar tercapai kesepakatan</td>
+                            <td>Negosiasi upah antara buruh dan pengusaha</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Arbitrasi (Arbitration)</strong></td>
+                            <td>Menggunakan pihak ketiga sebagai penengah yang mengikat</td>
+                            <td>Badan Arbitrase Nasional Indonesia (BANI)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mediasi (Mediation)</strong></td>
+                            <td>Menggunakan pihak ketiga sebagai penengah yang tidak mengikat</td>
+                            <td>Tokoh adat menengahi sengketa tanah</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Konsiliasi (Conciliation)</strong></td>
+                            <td>Pertemuan pihak-pihak yang bertikai untuk mencapai kesepakatan</td>
+                            <td>Pertemuan buruh dan manajemen di Disnaker</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adjudikasi (Adjudication)</strong></td>
+                            <td>Penyelesaian melalui pengadilan</td>
+                            <td>Perkara perdata atau pidana di pengadilan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Segregasi</strong></td>
+                            <td>Saling memisahkan diri untuk menghindari konflik</td>
+                            <td>Dua kelompok yang bertikai menghindari pertemuan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ajudikasi</strong></td>
+                            <td>Penyelesaian melalui pengadilan (sama dengan adjudikasi)</td>
+                            <td>Sengketa warisan diselesaikan di pengadilan</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>9.4.4 Peran Siswa SMK dalam Interaksi Sosial</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                    <li>Menerapkan komunikasi efektif di sekolah dan dunia kerja.</li>
+                    <li>Menghormati nilai dan norma yang berlaku di masyarakat.</li>
+                    <li>Aktif dalam kegiatan kerja sama (OSIS, ekstrakurikuler, proyek kelompok).</li>
+                    <li>Menjadi agen resolusi konflik yang konstruktif.</li>
+                    <li>Melestarikan kearifan lokal (seperti <em>adat basandi syarak, syarak basandi Kitabullah</em> di Minangkabau).</li>
+                    <li>Mengembangkan keterampilan kolaborasi lintas budaya di era global.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Kesalahan Umum dalam Memahami Interaksi Sosial</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Menganggap semua konflik itu buruk (padahal konflik yang dikelola dengan baik dapat menghasilkan inovasi dan perubahan positif).</li>
+                    <li>Menyamakan asimilasi dengan akulturasi (asimilasi melebur budaya asli; akulturasi tetap mempertahankan budaya asli).</li>
+                    <li>Meremehkan peran norma adat (padahal di banyak daerah, norma adat masih sangat berpengaruh dalam kehidupan sosial).</li>
+                    <li>Beranggapan bahwa individu dapat hidup sepenuhnya sendiri (padahal manusia adalah makhluk sosial yang saling membutuhkan).</li>
+                    <li>Tidak menyadari bahwa interaksi di media sosial juga memiliki norma dan etika (netiket).</li>
+                </ul>
+            </div>
+
+            <h2>Kesimpulan</h2>
+            <div class="card">
+                <p>Individu adalah satuan terkecil masyarakat yang unik, sedangkan kelompok sosial adalah kumpulan individu yang berinteraksi dengan tujuan bersama, dan masyarakat adalah kesatuan sosial yang hidup dalam wilayah tertentu dengan norma dan budaya yang sama. Nilai dan norma menjadi pedoman perilaku yang menjaga ketertiban sosial. Interaksi sosial dapat bersifat asosiatif (kerja sama, akomodasi, asimilasi, akulturasi) atau disosiatif (persaingan, kontravensi, konflik). Penyelesaian konflik dapat dilakukan melalui berbagai metode seperti mediasi, arbitrasi, konsiliasi, atau adjudikasi. Sebagai calon tenaga kerja profesional, siswa SMK harus menguasai keterampilan komunikasi, kerja sama, dan resolusi konflik untuk menjadi warga masyarakat dan profesional yang bertanggung jawab.</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Daftar Pustaka</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran Projek Ilmu Pengetahuan Alam dan Sosial (IPAS) SMK</em>. Jakarta: Kemendikbudristek.</li>
+                    <li>Soekanto, S. (2012). <em>Sosiologi Suatu Pengantar (Edisi Baru)</em>. Jakarta: Rajawali Pers.</li>
+                    <li>Ritzer, G., & Goodman, D. J. (2012). <em>Sociological Theory (9th ed.)</em>. New York: McGraw-Hill.</li>
+                    <li>Szanton, D. (2002). <em>Ilmu Sosial: Sebuah Pengantar</em>. Jakarta: LP3ES.</li>
+                    <li>Supriadi. (2024). <em>Konsep Dasar Sosiologi dan Interaksi Sosial untuk SMK</em>. Bukittinggi: FTIK UIN Bukittinggi.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Navigation Bottom -->
+        <div class="nav-buttons">
+            <a href="8.html" class="btn">← Bab Sebelumnya</a>
+            <a href="#top" class="btn">↑ Ke Atas</a>
+            <a href="10.html" class="btn">Bab 10: Kegiatan Ekonomi →</a>
+        </div>
+
+        <hr style="border-color: var(--border-gold); margin: 4rem 0;">
+
+        <!-- UJI FORMATIF SECTION -->
+        <section id="uji-formatif">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>📋 Uji Formatif 9: Individu, Masyarakat, dan Interaksi Sosial</h2>
+                <p style="color: var(--text-secondary);">Materi: Individu-Kelompok-Masyarakat, Nilai & Norma, Bentuk Interaksi Sosial, Kerja Sama & Penyelesaian Konflik</p>
+            </div>
+
+            <div class="alert alert-error" id="errorMessage">⚠️ Mohon lengkapi semua data diri dan jawaban terlebih dahulu!</div>
+            <div class="alert alert-success" id="successMessage">✅ Jawaban berhasil dikirim dan dinilai!</div>
+
+            <form id="ujiFormatifForm" class="card">
+                <h3 style="margin-top: 0;">📋 Data Siswa</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap *</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nis">NIS *</label>
+                        <input type="text" id="nis" name="nis" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Ujian *</label>
+                        <input type="date" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas *</label>
+                        <select id="kelas" name="kelas" required>
+                            <option value="">Pilih Kelas</option>
+                            <option value="X-1">X-1</option>
+                            <option value="X-2">X-2</option>
+                            <option value="X-3">X-3</option>
+                            <option value="X-4">X-4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1" selected>Semester 1 (Ganjil)</option>
+                        <option value="2">Semester 2 (Genap)</option>
+                    </select>
+                </div>
+
+                <h3>📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                
+                <div class="question-block">
+                    <p class="question-text">1. Kesatuan sosial yang hidup dalam wilayah tertentu, memiliki hubungan timbal balik yang intensif, serta memiliki norma, nilai, dan budaya yang sama disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> a. Individu</label>
+                        <label><input type="radio" name="q1" value="b"> b. Kelompok sosial</label>
+                        <label><input type="radio" name="q1" value="c"> c. Masyarakat</label>
+                        <label><input type="radio" name="q1" value="d"> d. Komunitas virtual</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Norma yang bersumber dari negara/lembaga resmi dan disertai sanksi tegas seperti denda atau penjara adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> a. Norma hukum</label>
+                        <label><input type="radio" name="q2" value="b"> b. Norma kesusilaan</label>
+                        <label><input type="radio" name="q2" value="c"> c. Norma kesopanan</label>
+                        <label><input type="radio" name="q2" value="d"> d. Norma agama</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Tradisi gotong royong "sambuik random" di Sumatera Barat merupakan contoh interaksi sosial bersifat...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> a. Disosiatif</label>
+                        <label><input type="radio" name="q3" value="b"> b. Kontravensi</label>
+                        <label><input type="radio" name="q3" value="c"> c. Asosiatif (kerja sama)</label>
+                        <label><input type="radio" name="q3" value="d"> d. Konflik</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Proses penerimaan budaya asing tanpa menghilangkan ciri khas budaya asli disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> a. Asimilasi</label>
+                        <label><input type="radio" name="q4" value="b"> b. Akulturasi</label>
+                        <label><input type="radio" name="q4" value="c"> c. Akomodasi</label>
+                        <label><input type="radio" name="q4" value="d"> d. Segregasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Ciri-ciri kelompok sosial meliputi...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> a. Hanya terdiri dari satu orang</label>
+                        <label><input type="radio" name="q5" value="b"> b. Tidak memiliki tujuan bersama</label>
+                        <label><input type="radio" name="q5" value="c"> c. Anggota memiliki kesadaran sebagai satu kesatuan dan berinteraksi teratur</label>
+                        <label><input type="radio" name="q5" value="d"> d. Tidak memiliki norma atau aturan</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">6. Penyelesaian konflik dengan menggunakan pihak ketiga sebagai penengah yang keputusannya TIDAK mengikat disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> a. Arbitrasi</label>
+                        <label><input type="radio" name="q6" value="b"> b. Mediasi</label>
+                        <label><input type="radio" name="q6" value="c"> c. Adjudikasi</label>
+                        <label><input type="radio" name="q6" value="d"> d. Koersi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">7. Sikap menentang secara tersembunyi seperti desas-desus, provokasi, dan penghasutan disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> a. Persaingan</label>
+                        <label><input type="radio" name="q7" value="b"> b. Konflik terbuka</label>
+                        <label><input type="radio" name="q7" value="c"> c. Kontravensi</label>
+                        <label><input type="radio" name="q7" value="d"> d. Akomodasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">8. Kerja bersama tanpa pamrih yang menjadi ciri khas masyarakat Indonesia (seperti gotong royong) disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> a. Kerukunan</label>
+                        <label><input type="radio" name="q8" value="b"> b. Bargaining</label>
+                        <label><input type="radio" name="q8" value="c"> c. Joint venture</label>
+                        <label><input type="radio" name="q8" value="d"> d. Kooptasi</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">9. Sesuatu yang dianggap baik, benar, dan berharga oleh masyarakat sebagai pedoman perilaku disebut...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> a. Nilai</label>
+                        <label><input type="radio" name="q9" value="b"> b. Norma</label>
+                        <label><input type="radio" name="q9" value="c"> c. Sanksi</label>
+                        <label><input type="radio" name="q9" value="d"> d. Adat</label>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">10. [HOTS] Di sebuah perusahaan, terjadi konflik antara karyawan dan manajemen mengenai upah. Kedua belah pihak sepakat menggunakan Badan Arbitrase Nasional Indonesia (BANI) untuk menyelesaikan sengketa. Keputusan BANI bersifat mengikat dan harus dipatuhi. Metode penyelesaian konflik yang digunakan adalah...</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> a. Mediasi</label>
+                        <label><input type="radio" name="q10" value="b"> b. Konsiliasi</label>
+                        <label><input type="radio" name="q10" value="c"> c. Arbitrasi</label>
+                        <label><input type="radio" name="q10" value="d"> d. Kompromi</label>
+                    </div>
+                </div>
+
+                <h3>✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">⚠️ Jawablah dengan jelas dan lengkap. Penilaian essay akan disimulasikan berdasarkan kelengkapan jawaban (minimal 20 karakter per soal).</p>
+
+                <div class="question-block">
+                    <p class="question-text">1. Jelaskan perbedaan antara individu, kelompok sosial, dan masyarakat! Berikan masing-masing 2 contoh yang dapat Anda temukan dalam kehidupan sehari-hari!</p>
+                    <textarea id="essay1" name="essay1" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">2. Uraikan empat jenis norma sosial (agama, kesusilaan, kesopanan, hukum)! Berikan masing-masing 2 contoh konkret dan jelaskan sanksi yang diterima bagi pelanggarnya!</p>
+                    <textarea id="essay2" name="essay2" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">3. Bandingkan interaksi sosial asosiatif dan disosiatif! Berikan masing-masing 3 contoh bentuk interaksi beserta contoh nyata dalam kehidupan di sekolah atau masyarakat!</p>
+                    <textarea id="essay3" name="essay3" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">4. Jelaskan perbedaan antara asimilasi dan akulturasi! Berikan masing-masing 2 contoh dalam konteks masyarakat Indonesia, khususnya di Sumatera Barat!</p>
+                    <textarea id="essay4" name="essay4" required></textarea>
+                </div>
+
+                <div class="question-block">
+                    <p class="question-text">5. Analisis sebuah konflik yang terjadi di lingkungan sekitar Anda (misalnya: konflik antar siswa, konflik di tempat kerja magang, atau konflik di masyarakat). Identifikasi penyebab konflik, pihak-pihak yang terlibat, dan rumuskan solusi penyelesaian konflik menggunakan minimal 2 metode (seperti mediasi, arbitrasi, atau konsiliasi)!</p>
+                    <textarea id="essay5" name="essay5" required></textarea>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">✉️ KIRIM JAWABAN & LIHAT HASIL</button>
+                </div>
+            </form>
+
+            <!-- Hasil Ujian -->
+            <div id="hasilUjian" class="card">
+                <div class="score-display">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian A (Pilihan Ganda)</h3>
+                    <div class="score-number" id="skorPG">0</div>
+                    <p style="color: var(--text-secondary);">/ 100</p>
+                </div>
+
+                <div class="score-display" style="background: rgba(255, 255, 255, 0.05); border-color: var(--text-secondary);">
+                    <h3 style="margin-top: 0; color: var(--text-secondary);">Skor Bagian B (Essay)</h3>
+                    <div class="score-number" id="skorEssay" style="color: var(--text-secondary); font-size: 2rem;">Menunggu Penilaian Guru</div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">(Simulasi: Jika semua terisi, dianggap 100/100 untuk pratinjau)</p>
+                </div>
+
+                <div id="reviewJawaban" style="margin-top: 2rem;">
+                    <h3>📝 Ringkasan Jawaban Essay Anda:</h3>
+                    <div id="essayReviewContent" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn">📥 UNDUH PDF LENGKAP</button>
+                    <button onclick="resetForm()" class="btn">🔄 MULAI ULANG</button>
+                    <button onclick="alert('Fitur kirim email ke guru memerlukan konfigurasi server backend. Silakan unduh PDF dan kirimkan secara manual.')" class="btn">✉️ KIRIM EMAIL GURU</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <strong>Aida Husni, S.Pd</strong> | SMKN 1 Koto Balingka</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+            Dikembangkan untuk keperluan pembelajaran Projek IPAS Kelas X
+        </p>
+    </footer>
+
+    <script>
+        // Kunci Jawaban Pilihan Ganda Bab 9
+        const kunciJawaban = {
+            q1: 'c',
+            q2: 'a',
+            q3: 'c',
+            q4: 'b',
+            q5: 'c',
+            q6: 'b',
+            q7: 'c',
+            q8: 'a',
+            q9: 'a',
+            q10: 'c'
+        };
+
+        document.getElementById('ujiFormatifForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validasi: Cek apakah semua radio button terjawab
+            let allAnswered = true;
+            let pgScore = 0;
+            
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === kunciJawaban[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Validasi Essay (minimal 20 karakter per soal untuk dianggap "terisi")
+            let essayFilled = true;
+            for (let i = 1; i <= 5; i++) {
+                const essayVal = document.getElementById(`essay${i}`).value.trim();
+                if (essayVal.length < 20) {
+                    essayFilled = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered || !essayFilled) {
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Jika validasi lolos
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Tampilkan Skor
+            document.getElementById('skorPG').textContent = pgScore;
+            
+            // Simulasi skor essay
+            document.getElementById('skorEssay').textContent = "100 (Simulasi Terisi)";
+            document.getElementById('skorEssay').style.color = "var(--gold-primary)";
+
+            // Tampilkan ringkasan jawaban essay
+            let reviewHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const val = document.getElementById(`essay${i}`).value;
+                reviewHTML += `<p><strong>Soal ${i}:</strong> ${val}</p><hr style="border-color: var(--border-gold); margin: 1rem 0; opacity: 0.3;">`;
+            }
+            document.getElementById('essayReviewContent').innerHTML = reviewHTML;
+
+            // Tampilkan bagian hasil
+            document.getElementById('hasilUjian').style.display = 'block';
+            
+            // Scroll ke hasil
+            document.getElementById('hasilUjian').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function resetForm() {
+            document.getElementById('ujiFormatifForm').reset();
+            document.getElementById('hasilUjian').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('uji-formatif').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Set tanggal hari ini secara otomatis
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>
